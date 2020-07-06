@@ -1,3 +1,4 @@
 $(function() {
-    $("footer").load("/HTML/footer.html");
+    $("header").load("HTML/header.html");
+    $("footer").load("HTML/footer.html");
 });
