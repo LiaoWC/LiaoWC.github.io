@@ -12,8 +12,9 @@
             /* Get the string to be transformed */
             if ($('textarea#paste_graphviz_code_area') == undefined) {
                 alert("Transform failed. Please submit again.");
+                return;
             }
-            var str = $('textarea#paste_graphviz_code_area').val();
+            var str = $('textarea#paste_graphviz_code_area').val();;
             /* Trasform it */
             var newStr = "";
             for (var i = 0; i < str.length; i++) {
@@ -44,15 +45,25 @@
         
         .form_container {
             display: block;
+            /* width: 100%; */
+        }
+        
+        .form_container h1 {
+            text-align: center;
         }
         
         .result_container {
             display: block;
         }
         
-        .p_container {
-            min-width: 600px;
-            min-height: 300px;
+        div.p_container {
+            width: 100%;
+            max-width: 600px;
+            min-height: 200px;
+            border-radius: 5px;
+            border-style: dashed;
+            padding: 8px 12px 8px 12px;
+            overflow-wrap: break-word;
         }
         
         .result_container h1 {
@@ -63,19 +74,18 @@
 
 <body>
     <div class="form_container">
-        <h1>Graphviz CodeTransformer</h1>
-        <form onsubmit="transform()" id="paste_graphviz_form">
+        <h1>Graphviz Code Transformer</h1>
+        <div id="paste_graphviz_form">
             <label>Paste your graphviz code here:<br/></label>
             <textarea id="paste_graphviz_code_area" name="paste_graphviz_code_area" rows="20" cols="80" form="paste_graphviz_form"></textarea>
             <br/>
-            <input type="submit" value="Go">
-        </form>
-    </div>
-    <div class="result_container">
-        <h1>Result</h1>
-        <div class="p_container">
-            <p id="result_area"></p>
+            <button type="button" id="graphviz_btn" onclick="transform()">Go!</button>
+            </form>
         </div>
-    </div>
-
+        <div class="result_container">
+            <h1>Result</h1>
+            <div class="p_container">
+                <p id="result_area"></p>
+            </div>
+        </div>
 </body>
