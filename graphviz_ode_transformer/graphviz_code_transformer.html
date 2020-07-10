@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphviz_code_transformer</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        function transform() {
+            /* Get the string to be transformed */
+            if ($('textarea#paste_graphviz_code_area') == undefined) {
+                alert("Transform failed. Please submit again.");
+            }
+            var str = $('textarea#paste_graphviz_code_area').val();
+            /* Trasform it */
+            var newStr = "";
+            for (var i = 0; i < str.length; i++) {
+                if (str[i] == ' ' || str[i] == '\r' || str[i] == '\n')
+                    newStr += "%20";
+                else newStr += str[i];
+            }
+            /* Put it on the result area */
+            $("#result_area").text(newStr);
+            //     return;
+        }
+    </script>
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            /* height: 50%; */
+            /* max-height: 600px; */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .form_container {
+            display: block;
+        }
+        
+        .result_container {
+            display: block;
+        }
+        
+        .p_container {
+            min-width: 600px;
+            min-height: 300px;
+        }
+        
+        .result_container h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form_container">
+        <h1>Graphviz CodeTransformer</h1>
+        <form onsubmit="transform()" id="paste_graphviz_form">
+            <label>Paste your graphviz code here:<br/></label>
+            <textarea id="paste_graphviz_code_area" name="paste_graphviz_code_area" rows="20" cols="80" form="paste_graphviz_form"></textarea>
+            <br/>
+            <input type="submit" value="Go">
+        </form>
+    </div>
+    <div class="result_container">
+        <h1>Result</h1>
+        <div class="p_container">
+            <p id="result_area"></p>
+        </div>
+    </div>
+
+</body>
