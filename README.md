@@ -6,3 +6,4 @@ Open insecurity chrome on Ubuntu 18.04:
 ```
 google-chrome --user-data-dir="." --disable-web-security
 ```
+
