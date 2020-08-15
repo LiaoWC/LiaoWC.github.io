@@ -9,7 +9,7 @@
 
 #logo {
     margin-right: 23px;
-    margin-left: 7px;
+    margin-left: 0;
     font-size: x-large;
     border-style: double;
     border-radius: 20%;
@@ -42,4 +42,8 @@
 
 #card_nav div ul li a {
     color: grey;
+}
+
+#hello-alert-container {
+    margin-top: 1em;
 }
