@@ -78,9 +78,27 @@ renewDragDrop()
 /* Add a block */
 
 $(document).ready(function () {
-    $('#nav-add-block').click(function () {
+    function addNewBlock(){
         $('#blocks-row').append(newBlockHTML('Untitled'))
         renewDragDrop()
+    }
+
+    $('#nav-add-block').click(function () {
+        addNewBlock()
+    })
+    // use ctrl+space to add a new block
+    let holdOn = false
+    let delay = 100
+    $('*').keydown(function (e) {
+        if (e.ctrlKey && e.keyCode === 32 && holdOn===false) {
+            console.log('@',e.ctrlKey,e.keyCode)
+            holdOn = true
+            addNewBlock()
+            setTimeout(function () {
+                holdOn = false
+            },100)
+
+        }
     })
 })
 
@@ -239,7 +257,7 @@ $('#addCardModalCreateBtn').click(function () {
     finish_addCard()
 })
 
-
+// use ctrl+enter to add a new card when typing the content in the modal
 $('#addCardModal .modal-dialog .modal-content .modal-body textarea').keydown(function (e) {
     if (e.ctrlKey && e.keyCode === 13) {
         finish_addCard()
@@ -480,4 +498,22 @@ $('#importModalConfirm').click(function () {
 
 
 /////////////////////////////////
-/* remove */
+
+/* clear all blocks */
+
+$('#nav-clearAllBLocks').click(function () {
+    if(confirm('Are you sure to clear <b>all</b> blocks?')){
+        console.log('kkk')
+        Swal.fire('Hello world!')
+        Swal.fire('', 'Are you sure to clear all blocks?', 'warning', )
+
+
+    }
+
+
+})
+
+
+
+
+
