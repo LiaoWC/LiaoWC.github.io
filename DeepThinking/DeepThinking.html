@@ -44,6 +44,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="nav-clearAllBLocks">&#129529; Clear all blocks</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-deepMode" data-toggle="modal"
+                           data-target="#deepModeModal">&#10162; Deep Mode</a>
+                    </li>
                     <!--                    <li class="nav-item">-->
                     <!--                        <a class="nav-link" href="#" id="nav-add-block">Drop here to delete a block.</a>-->
                     <!--                    </li>-->
@@ -212,23 +216,57 @@
 </div>
 
 <!-- Modal of DOCUMENTATION of this website -->
-<div class="container-fluid">
-    <div class="modal fade" tabindex="-1" role="dialog" id="documentationModal">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">DeepThinking Documentation</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Document Modal Body -->
-                    <article id="b2f34bf2-be3f-4e12-9b4f-c48f491c6f4e" class="page sans"><div class="page-body"><h2 id="525aba29-7e28-406f-9fde-9ce2e2f744dd" class="">🔶 Introduction</h2><hr id="a3aed904-ae5c-4346-a8d1-60f3604d20b9"/><p id="3ebb082c-0e7b-4b0a-9826-45504edb28d2" class="">This app helps you to record and organize your ideas. It can lead you to think more deeply.</p><h2 id="60081b74-3e2b-43ef-8896-d56e631f1063" class="">🔶 Functions</h2><hr id="162fd937-e908-494b-b1df-13dfa06ef09a"/><h3 id="ccbcbc05-47e6-4a03-8195-db1f4d426e5c" class="">Block</h3><ul id="2c93a96f-8a02-4fdb-87f4-308d8c9445e5" class="bulleted-list"><li>A block can contain cards.</li></ul><ul id="40137286-f311-41f9-a79f-ad31bbf14b72" class="bulleted-list"><li>You can add a block, edit the name of a block, and delete a block.</li></ul><ul id="9f85588d-7a76-41b0-bb2f-3dfaac26b2f7" class="bulleted-list"><li>You can press <code>Ctrl+Space</code> to add a new block.</li></ul><ul id="1c30f6cd-b57b-42ef-8d84-8e16303dad74" class="bulleted-list"><li>In a block, you can add cards. When you are adding a new card and are typing, you can press <code>Ctrl+Enter</code> to add.</li></ul><h3 id="6e3ce624-3811-4621-999c-284f41ae4a95" class="">Card</h3><ul id="b1f698f0-0a38-4153-8cee-02cc1553170d" class="bulleted-list"><li>You can edit the content of a card.</li></ul><ul id="f1545ace-6b7c-48dd-8edc-307cf4e533f7" class="bulleted-list"><li>You can drag and drop a card to other blocks.</li></ul><h3 id="c1f70696-4579-4b8c-9766-7fe8427cb1d1" class="">Export</h3><p id="203b1c17-31fb-4235-860f-bba7c504ed7c" class="">Export as a text file. You can recover the blocks by importing the text file.</p><h3 id="83c72d35-6b61-4a69-8f58-0ad5cf712914" class="">Import</h3><p id="84de8b71-1526-4cd3-aac1-c9662b083abf" class="">Upload a text file exported in the past to import blocks.</p></div></article>                </div>
-                    <!------------------------->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+<div class="modal fade" tabindex="-1" role="dialog" id="documentationModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">DeepThinking Documentation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Document Modal Body -->
+                <article id="b2f34bf2-be3f-4e12-9b4f-c48f491c6f4e" class="page sans">
+                    <div class="page-body"><h2 id="525aba29-7e28-406f-9fde-9ce2e2f744dd" class="">🔶 Introduction</h2>
+                        <hr id="a3aed904-ae5c-4346-a8d1-60f3604d20b9"/>
+                        <p id="3ebb082c-0e7b-4b0a-9826-45504edb28d2" class="">This app helps you to record and organize
+                            your ideas. It can lead you to think more deeply.</p>
+                        <h2 id="60081b74-3e2b-43ef-8896-d56e631f1063" class="">🔶 Functions</h2>
+                        <hr id="162fd937-e908-494b-b1df-13dfa06ef09a"/>
+                        <h3 id="ccbcbc05-47e6-4a03-8195-db1f4d426e5c" class="">Block</h3>
+                        <ul id="2c93a96f-8a02-4fdb-87f4-308d8c9445e5" class="bulleted-list">
+                            <li>A block can contain cards.</li>
+                        </ul>
+                        <ul id="40137286-f311-41f9-a79f-ad31bbf14b72" class="bulleted-list">
+                            <li>You can add a block, edit the name of a block, and delete a block.</li>
+                        </ul>
+                        <ul id="9f85588d-7a76-41b0-bb2f-3dfaac26b2f7" class="bulleted-list">
+                            <li>You can press <code>Ctrl+Space</code> to add a new block.</li>
+                        </ul>
+                        <ul id="1c30f6cd-b57b-42ef-8d84-8e16303dad74" class="bulleted-list">
+                            <li>In a block, you can add cards. When you are adding a new card and are typing, you can
+                                press <code>Ctrl+Enter</code> to add.
+                            </li>
+                        </ul>
+                        <h3 id="6e3ce624-3811-4621-999c-284f41ae4a95" class="">Card</h3>
+                        <ul id="b1f698f0-0a38-4153-8cee-02cc1553170d" class="bulleted-list">
+                            <li>You can edit the content of a card.</li>
+                        </ul>
+                        <ul id="f1545ace-6b7c-48dd-8edc-307cf4e533f7" class="bulleted-list">
+                            <li>You can drag and drop a card to other blocks.</li>
+                        </ul>
+                        <h3 id="c1f70696-4579-4b8c-9766-7fe8427cb1d1" class="">Export</h3>
+                        <p id="203b1c17-31fb-4235-860f-bba7c504ed7c" class="">Export as a text file. You can recover the
+                            blocks by importing the text file.</p>
+                        <h3 id="83c72d35-6b61-4a69-8f58-0ad5cf712914" class="">Import</h3>
+                        <p id="84de8b71-1526-4cd3-aac1-c9662b083abf" class="">Upload a text file exported in the past to
+                            import blocks.</p></div>
+                </article>
+            </div>
+            <!------------------------->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -251,20 +289,109 @@
                             Please make sure your file is correct and is a text file.<br>
                             The blocks of the file will be inserted in the back.
                         </label>
-                        <input type="file" class="form-control-file" id="importBlocksFormControlFile" accept="text">
+                        <input type="file" class="form-control-file" id="importBlocksFormControlFile" accept="text/plain">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="importModalConfirm" >Confirm</button>
+                <button type="button" class="btn btn-primary" id="importModalConfirm">Confirm</button>
 
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid" id="editor"></div>
+<!-- Modal of deep mode -->
+<div class="modal fade" tabindex="-1" id="deepModeModal">
+    <div class="modal-dialog" id="deepModeModalDialog">
+        <div class="modal-content" id="deepModeModalContent">
+            <div class="modal-header">
+                <h5 class="modal-title">Deep Mode</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!---->
+                <!---->
+                <!---->
+                <div class="container-fluid row" id="deepModeRow">
+                    <div class="col-6" id="deepModeLeftHandSideCol">
+                        <div class="container-fluid">
+                            <div class="row justify-content-center">
+                                <div class="card" style="width: 18rem;" id="deepModeCard">
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the bulk of the card's content.</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <h6 class="card-subtitle mb-2 text-muted">Block: </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center" id="deepModeLeftHandSideColBtnRow">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-secondary deepModeCardBtn">&lt;</button>
+                                <button type="button" class="btn btn-secondary deepModeCardBtn">&gt;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6" id="deepModeRightHandSideCol">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <form class="deepModeRecordForm">
+                                    <div class="form-group">
+                                        <div>
+                                            <label for="deepModeFormTextAreaWhy">Why?</label>
+                                            <a class="text-right deepModeRightHandSideColRecordBtn">&#10003; </a>
+                                        </div>
+                                        <textarea id="deepModeFormTextAreaWhy" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <form class="deepModeRecordForm">
+                                    <div class="form-group">
+                                        <div>
+                                            <label for="deepModeFormTextAreaThen">Then...</label>
+                                            <a class="text-right deepModeRightHandSideColRecordBtn">&#10003; </a>
+                                        </div>
+                                        <textarea id="deepModeFormTextAreaThen" class="form-control"
+                                                  rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <form class="deepModeRecordForm">
+                                    <div class="form-group">
+                                        <div>
+                                            <label for="deepModeFormTextAreaReally">Really?</label>
+                                            <a class="text-right deepModeRightHandSideColRecordBtn">&#10003; </a>
+                                        </div>
+                                        <textarea id="deepModeFormTextAreaReally" class="form-control"
+                                                  rows="3"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <!---->
+        <!---->
+    </div>
+</div>
+</div>
+</div>
 
 
 <!-- Javascript -->
@@ -278,11 +405,6 @@
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript" src="DeepThinking.js"></script>
-
-
-
-
-
 
 
 </body>

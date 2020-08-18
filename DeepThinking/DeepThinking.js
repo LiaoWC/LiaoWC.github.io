@@ -78,7 +78,7 @@ renewDragDrop()
 /* Add a block */
 
 $(document).ready(function () {
-    function addNewBlock(){
+    function addNewBlock() {
         $('#blocks-row').append(newBlockHTML('Untitled'))
         renewDragDrop()
     }
@@ -88,15 +88,14 @@ $(document).ready(function () {
     })
     // use ctrl+space to add a new block
     let holdOn = false
-    let delay = 100
+    let delay = 100 // unit: micro delay
     $('*').keydown(function (e) {
-        if (e.ctrlKey && e.keyCode === 32 && holdOn===false) {
-            console.log('@',e.ctrlKey,e.keyCode)
+        if (e.ctrlKey && e.keyCode === 32 && holdOn === false) {
             holdOn = true
             addNewBlock()
             setTimeout(function () {
                 holdOn = false
-            },100)
+            }, delay)
 
         }
     })
@@ -183,11 +182,11 @@ function dragdrop_removeListener() {
                 this.style.backgroundColor = 'grey';
             });
 
-            block.removeEventListener('dragleave', function (e) {
+            block.removeEventListener('dragleave', function () {
                 this.style.backgroundColor = 'rgba(0,0,0,0.14)';
             });
 
-            block.removeEventListener('drop', function (e) {
+            block.removeEventListener('drop', function () {
                 console.log('drop');
                 this.append(draggedCard);
                 this.style.backgroundColor = 'rgba(0,0,0,0.14)';
@@ -298,24 +297,7 @@ function makeExportText() {
     //
     //////////////////////////
 
-    /* Find out all the blocks and cards */
-
-    let blocks = []
-
-    $('#blocks-row').find('div.deepthinking-block').each(function () {
-
-        let blockTitle = $(this).find('h3').text().trim()
-
-        /* find cards */
-        let cards = []
-        cards.push(blockTitle)
-        $(this).find('.card p').each(function () {
-            cards.push($(this).text().trim())
-        })
-
-        // First one in cards array is the title of this block.
-        blocks.push(cards)
-    })
+    let blocks = findAllBlockCardContent()
 
     /* Use the information we found to make text of file */
 
@@ -502,16 +484,118 @@ $('#importModalConfirm').click(function () {
 /* clear all blocks */
 
 $('#nav-clearAllBLocks').click(function () {
-    if(confirm('Are you sure to clear <b>all</b> blocks?')){
-        console.log('kkk')
-        Swal.fire('Hello world!')
-        Swal.fire('', 'Are you sure to clear all blocks?', 'warning', )
-
-
+    let blockArea = $('#blocks-row')
+    if (blockArea.text() === '') {
+        // There's no block now.
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'There is no blocks to delete.',
+        })
+    } else {
+        if (confirm('Are you sure to clear <b>all</b> blocks?')) {
+            $('#blocks-row').html('')
+            renewDragDrop()
+        }
     }
 
-
 })
+
+//////////////////////////////////
+
+/* the btn of recording in deep mode */
+let deepModeRightHandSideColRecordBtnTarget = $('.deepModeRightHandSideColRecordBtn')
+
+deepModeRightHandSideColRecordBtnTarget.mouseover(function () {
+    $(this).addClass('btn, btn-primary deepModeRightHandSideColRecordBtnHover')
+    $(this).css('border-radius', '10em')
+})
+
+deepModeRightHandSideColRecordBtnTarget.mouseleave(function () {
+    $(this).removeClass('btn, btn-primary deepModeRightHandSideColRecordBtnHover')
+})
+
+//////////////////////////////////
+
+/* Get all the information of blocks and cards. */
+
+function findAllBlockCardContent() {
+    /* Find out all the blocks and cards */
+
+    let blocks = []
+
+    $('#blocks-row').find('div.deepthinking-block').each(function () {
+
+        let blockTitle = $(this).find('h3').text().trim()
+
+        /* find cards */
+        let cards = []
+        cards.push(blockTitle)
+        $(this).find('.card p').each(function () {
+            cards.push($(this).text().trim())
+        })
+
+        // First one in cards array is the title of this block.
+        blocks.push(cards)
+    })
+
+    return blocks
+}
+
+////////////////////////////////////////////
+
+function findAllCards() {
+    let AllCards = []
+
+    let allBlockAndCard = findAllBlockCardContent()
+
+    for (let i = 0; i < allBlockAndCard.length; i++) {
+        let blockName = allBlockAndCard[i][0]
+        for (let j = 1; j < allBlockAndCard[i].length; j++) {
+            let card = []
+            card.push(allBlockAndCard[i][j])
+            card.push(blockName)
+            AllCards.push(card)
+        }
+    }
+
+    return AllCards
+}
+
+////////////////////////////////////////////
+
+/* Deep Mode -- Cards */
+
+let cardNum = 0
+let allCards = []
+
+function findAllCardsWhenEnteringDeepMode() {
+    allCards = findAllCards()
+    cardNum = allCards.length
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
