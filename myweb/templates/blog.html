@@ -1,11 +1,28 @@
-{% extends "layout.html" %}
+{% extends "partial_layout/blog_base.html" %}
 {% from "macros/blog.html" import render_blog_post %}
 {% from "macros/pagination.html" import render_pagination %}
 {% block title %}{{ this.title }}{% endblock %}
-{% block body %}
-  {% for child in this.pagination.items %}
-    {{ render_blog_post(child, from_index=true) }}
-  {% endfor %}
 
-  {{ render_pagination(this.pagination) }}
+{% block blog_post_area %}
+    {% if this.tags %}
+        <ul>
+            {% for t in this.tags -%}
+                <li>
+                    <a href="{{ ('/blog@tag/' ~ t)|url }}">
+                        All posts tagged {{ t }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% block body %}
+        {% for child in this.pagination.items %}
+            {{ render_blog_post(child, from_index=true) }}
+        {% endfor %}
+
+        {{ render_pagination(this.pagination) }}
+    {% endblock %}
 {% endblock %}
+
+
