@@ -11,9 +11,20 @@
 /*    background: #f1fbfe;*/
 /*}*/
 
+/* Modify the "blue" class color */
 .blue {
     background-color: #195c82 !important;
 }
+
+/* Automatically resize images to fit the column */
+.blog-post img{
+    max-width: 90%;
+}
+
+
+
+
+/* //////////////////////// */
 
 
 #left_nav_container {
