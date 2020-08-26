@@ -29,12 +29,13 @@
     </script>
     
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/partial_layout/footer.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/partial_layout/header.css">
     
 </head>
 <body>
 
 
-<link rel="stylesheet" type="text/css" href="../static/css/partial_layout/header.css">
 <section id="layout-nav">
 
     <nav id='top-nav' class="navbar navbar-expand-lg navbar-dark">
@@ -212,16 +213,29 @@
 
         
 
+
         
-  <div class="pagination">
-    
-      <span class="disabled">&laquo; Previous</span>
-    
-    | 1 |
-    
-      <span class="disabled">Next &raquo;</span>
-    
-  </div>
+    <nav aria-label="Page pagination navigation">
+        <ul class="pagination pg-blue-grey justify-content-center">
+            
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1">&laquo;</a>
+                </li>
+                
+            
+            <li class="page-item">
+                <a class="page-link" tabindex="-1">
+                    1
+                </a>
+            </li>
+            
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1">&raquo;</a>
+                </li>
+            
+        </ul>
+    </nav>
+
 
     
 
@@ -237,31 +251,44 @@
     </section>
 
 
-<link rel="stylesheet" type="text/css" href="../static/css/partial_layout/footer.css">
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+<footer class="page-footer font-small blue ">
 
-    <!-- Grid column -->
-    <div class="col-md-12 ">
-        <div class="mb-3 flex-center">
-            <!--Linkedin -->
-            <a class="li-ic" href="https://www.linkedin.com/in/%E5%94%AF%E8%BE%B0-%E5%BB%96-306b951b4/" aria-label="Go to LiaoWC's LinkedIn">
-                <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-            </a>
-            <!--Github-->
-            <a class="ins-ic" href="https://github.com/LiaoWC" aria-label="Go to LiaoWC's Github">
-                <i class="fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-            </a>
-            <!--Heroku-->
-            <a class="ins-ic" href="https://liaowc.herokuapp.com/" aria-label="Got to LiaoWC's Herokuapp">
-                <i class="fab fa-python fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-            </a>
+    
+    <div class="container">
+
+        
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 py-3">
+                <div class="mb-3 flex-center">
+
+                    <!--Linkedin -->
+                    <a class="li-ic" href="https://www.linkedin.com/in/%E5%94%AF%E8%BE%B0-%E5%BB%96-306b951b4/"
+                       aria-label="Go to LiaoWC's LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                    <!--Github-->
+                    <a class="ins-ic" href="https://github.com/LiaoWC" aria-label="Go to LiaoWC's Github">
+                        <i class="fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                    <!--Heroku-->
+                    <a class="ins-ic" href="https://liaowc.herokuapp.com/" aria-label="Got to LiaoWC's Herokuapp">
+                        <i class="fab fa-python fa-lg white-text  fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- Grid column -->
+
         </div>
+        
+
     </div>
-    <!-- Grid column -->
+    
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3"> Copyright &copy; 2020 liaowc. &nbsp;
+    <div class="footer-copyright text-center py-3"> Copyright &copy; 2020 LiaoWC. &nbsp;
     </div>
     <!-- Copyright -->
 
