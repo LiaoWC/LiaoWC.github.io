@@ -1,0 +1,26 @@
+#section_intro .container-xl {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.intro_topic_container {
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+#about_me .jumbotron {
+    margin-top: 6px;
+    background-color: #b7d0e838;
+    margin-bottom: 0;
+}
+
+#card_nav div ul li a {
+    color: grey;
+}
+
+#hello-alert-container {
+    margin-top: 1em;
+}
+
+
