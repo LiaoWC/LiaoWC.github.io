@@ -5,12 +5,12 @@ $(function () {
 
     function img_when_hover_func() {
         $('#about_me_avatar_img').css('filter', 'drop-shadow(2px 4px 6px #195c82) opacity(0.3)')
-        avatar_img_sentence_target.fadeIn(0)
+        avatar_img_sentence_target.fadeIn(500)
     }
 
     function img_when_not_hover_func() {
         $('#about_me_avatar_img').css('filter', 'none')
-        avatar_img_sentence_target.fadeOut(0)
+        avatar_img_sentence_target.fadeOut(500)
     }
 
     function img_being_visiting() {
