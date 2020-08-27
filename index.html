@@ -112,14 +112,13 @@
                 <div class="card-header nav nav-tabs">
                     <ul class="nav nav-tabs card-header-tabs" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="hello-tab" data-toggle="tab" href="#hello" role="tab"
-                               aria-controls="hello">Hello</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link " id="about_me-tab" data-toggle="tab" href="#about_me" role="tab"
+                            <a class="nav-link active" id="about_me-tab" data-toggle="tab" href="#about_me" role="tab"
                                aria-controls="about_me">About me</a>
                         </li>
-
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="hello-tab" data-toggle="tab" href="#hello" role="tab"
+                               aria-controls="hello">Hello</a>
+                        </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link " id="tools-tab" data-toggle="tab" href="#tools" role="tab"
                                aria-controls="tools">Tools</a>
@@ -128,21 +127,69 @@
                     </ul>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="hello" role="tabpanel" aria-labelledby="hello-tab">
+                    <div class="tab-pane fade  show active" id="about_me" role="tabpanel"
+                         aria-labelledby="about_me-tab">
+                        <div class="row">
+                            <div class="offset-3 col-6" style="padding:0 0 0 5%;">
+                                <div class="container-xl intro_topic_container" style="padding:5% 10% 10% 10%;">
+                                    <!-- Card image -->
+                                    <div class="view overlay" style="padding: 10%;">
+                                        <img class="card-img-top btn-link"
+                                             src="static/img/avatar_img.jpg"
+                                             alt="Card image cap"
+                                             id="about_me_avatar_img" style="border-radius: 100%;">
+                                        <a href="#!" id="avatar_img_link">
+                                            <div
+                                                    
+                                            >
+
+                                            </div>
+                                        </a>
+                                        <div id="avatar_img_sentence" style="
+                                                font-size: 3em;
+                                                position: absolute;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%);
+                                                max-width: 80%;
+                                                color:#195c82;
+                                                display: none;
+                                                
+                                                
+                                                ">
+                                            
+                                            Hi, I'm LiaoWC.
+                                            
+                                        </div>
+                                    </div>
+
+                                    <!-- Card content -->
+                                    <div class="card-body">
+
+                                        <!-- Title -->
+                                        <h4 class="card-title">Liao W.C.</h4>
+                                        <!-- Text -->
+                                        <p class="card-text">
+                                            Come from Taiwan.
+                                            Have passion in coding.
+                                            Program for a better world.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                                <!-- Card -->                            <!-- Card -->
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="hello" role="tabpanel" aria-labelledby="hello-tab">
                         <div class="jumbotron jumbotron-fluid">
                             <div class="container">
                                 <h1 class="display-4">Welcome!</h1>
                                 <p class="lead">Here, you "will" know more about me and you may find some interesting
                                     programs!</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="about_me" role="tabpanel" aria-labelledby="about_me-tab">
-                        <div class="container-xl intro_topic_container">
-                            <h5 class="card-title">Under Construction</h5>
-                            <p class="card-text">Here's under construction. Hope we can meet with each others as soon as
-                                possible.</p>
-                            <a href="#" class="btn btn-primary">???</a>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tools" role="tabpanel" aria-labelledby="tools-tab">
@@ -216,6 +263,9 @@
         crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+
+    <script src="static/js/index.js" type="text/javascript"></script>
 
 </body>
 </html>
