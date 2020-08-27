@@ -29,13 +29,15 @@ div#index_top_jumbotron {
     height: 100%;
     position: fixed;
     z-index: 999;
-    /*top: 0;*/
-    /*left: 0;*/
+    top: 0;
+    left: 0;
 }
+
+
 
 div#index_top_jumbotron > div{
     position: absolute;
-    top: 30%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
