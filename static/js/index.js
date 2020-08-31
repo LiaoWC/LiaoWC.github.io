@@ -36,6 +36,7 @@ $(function () {
     // avatar_img_sentence_target.hover(img_being_visiting(), img_not_being_visiting())
     // setTimeout(function () {
     let avatar_img_target = $('#about_me_avatar_img, #about_me_avatar_img *')
+
     function avatar_img_bind() {
         avatar_img_target.hover(function () {
                 avatar_img_sentence_target.unbind('mouseenter').unbind('mouseleave')
@@ -64,6 +65,21 @@ $(function () {
 
 })
 
-function homepage_jumbotron_clock_about_me(){
-    $('#index_top_jumbotron').fadeOut(700)
+/* Close the homepage big jumbotron */
+
+let ifClosed = false
+
+function homepage_jumbotron_close() {
+    if (!ifClosed) {
+        $('#index_top_jumbotron').fadeOut(700)
+        ifClosed = true
+    }
 }
+
+$('#homepage_jumbotron_about_me_btn').click(function () {
+    homepage_jumbotron_close()
+    console.log('kk')
+})
+$('html').keydown(function () {
+    homepage_jumbotron_close()
+})

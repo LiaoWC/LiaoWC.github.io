@@ -1,0 +1,12 @@
+body {
+    /*background-image: url('/static/img/index_bg.png');*/
+}
+
+#projects_page_container > h1 {
+    /*color:white;*/
+}
+
+#projects_page_container{
+    margin-bottom: 5vh;
+}
+
