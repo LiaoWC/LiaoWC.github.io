@@ -5,9 +5,9 @@
     <meta name="theme-color" content="#195c82">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>要如何檢測網站的連結是否有效？使用W3C Link Checker和Dr. Link進行網頁連結檢測 — Liao W.C.</title>
+    <title> — Liao W.C.</title>
     
-    <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../static/img/favicon.png">
     
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -46,11 +46,11 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
     
-    <link rel="stylesheet" href="../../static/style.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/partial_layout/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/partial_layout/header.css">
     
-    <link rel="stylesheet" type="text/css" href="../../static/css/blog_base.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/blog_base.css">
 
 </head>
 <body>
@@ -78,19 +78,19 @@
                             Projects
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarProjects">
-                            <a class="dropdown-item" href="../../projects/"
+                            <a class="dropdown-item" href="../../../projects/"
                                aria-label="See all projects">All projects</a>
                             <div class="dropdown-divider"></div>
                             <h6 class="text-center dropdown-header">Categories</h6>
                             
     
-        <a class="dropdown-item" href="../../projects/categories/artificial-intelligence/"
+        <a class="dropdown-item" href="../../../projects/categories/artificial-intelligence/"
            aria-label="See project category: Artificial Intelligence">Artificial Intelligence</a>
     
-        <a class="dropdown-item" href="../../projects/categories/database/"
+        <a class="dropdown-item" href="../../../projects/categories/database/"
            aria-label="See project category: Database">Database</a>
     
-        <a class="dropdown-item" href="../../projects/categories/thinking-assistant/"
+        <a class="dropdown-item" href="../../../projects/categories/thinking-assistant/"
            aria-label="See project category: Thinking Assistant">Thinking Assistant</a>
     
 
@@ -141,20 +141,20 @@
                             <nav>
                                 <ul class="nav navbar-nav">
                                     <li><a
-                                            href="../">All Posts</a>
+                                            href="../../">All Posts</a>
                                     </li>
                                     
                                     <li>
                                         
-    <a href="../langs/" class="dark">Language</a>
+    <a href="../../langs/" class="dark">Language</a>
     <ul style="list-style: none;">
         
             <li>
-                <a href="../langs/en/">English Articles</a>
+                <a href="../../langs/en/">English Articles</a>
             </li>
         
             <li>
-                <a href="../langs/ch/">中文文章</a>
+                <a href="../../langs/ch/">中文文章</a>
             </li>
         
     </ul>
@@ -167,7 +167,7 @@
                                     
                                     
                                     <li>
-                                        <a href="../" class="dark">Tags</a>
+                                        <a href="../../" class="dark">Tags</a>
                                         
                                         <ul style="list-style: none;">
                                             <li>
@@ -201,106 +201,37 @@
                 
                 <div class="container">
                     
-    
-    <div class="blog-post text-break">
-        <div>
-            
-                <h2 class="title">要如何檢測網站的連結是否有效？使用W3C Link Checker和Dr. Link進行網頁連結檢測</h2>
-            
-        </div>
+    <h1 class="tag_name">../../../blog@tag/</h1>
+    <script>
+        function getTagNameFromUrl(url_string) {
+            url_string = [...url_string].reverse().join("")
+            let result = ""
+            let i = 0
+            if (url_string[0] === '/') {
+                i = 1
+            }
+            for (; i < url_string.length; i++) {
+                if (url_string[i] === '/') {
+                    break
+                }
+                result += url_string[i]
+            }
+            result =  [...result].reverse().join("")
+            return decodeURIComponent(result)
+        }
 
+        let url_string = window.location.href
+        let target = document.getElementsByClassName('tag_name')
+        let tag_name = getTagNameFromUrl(url_string)
+        for (let i = 0; i < target.length; i++) {
+            target[i].innerText = tag_name
+        }
+    </script>
+    <ul>
         
-    <span class="badge badge-default">
-    
-        <a href="../langs/ch/" class="text-white">
-            Chinese
-        </a>
-    
-    </span>
-
-
+            <li><a href="../../how-to-check-the-effect-of-links-on-your-website-use-w3c-link-checker/">要如何檢測網站的連結是否有效？使用W3C Link Checker和Dr. Link進行網頁連結檢測</a></li>
         
-
-            <span class="badge badge-primary">
-                        <a href="../tag/Web Maintenance/" class="white-text"
-                           aria-label="blog@tagWeb Maintenance">
-                            Web Maintenance
-                        </a>
-                    </span>
-
-            
-
-        
-
-
-
-        <p class="meta">
-            written by
-            
-                LiaoWC
-            
-            on 2020-08-25
-        </p>
-        <hr>
-        
-            <p><em>你的網站上總是佈滿了琳瑯滿目的超連結？這麼多連結使你維護感到困難？今天筆者將介紹一款實用網頁工具—W3C Link Checker，協助你快速方便確認網頁上的連結有效性。</em></p>
-<hr>
-<!-- *[W3C Link Checker 網站連結](https://validator.w3.org/checklink)* -->
-
-<p><img src="screenshot-from-2020-08-25-22-55-51.png" alt="W3C網站"></p>
-<h2>W3C Link Checker 使用介紹</h2>
-<hr>
-<ol>
-<li><p>進入<a href="https://validator.w3.org/checklink">W3C Link Checker網站</a></p>
-<p><img src="untitled.png" alt="進入W3C Link Checker網站"></p>
-</li>
-<li><p>輸入您要檢測的網址。例如：</p>
-<p><img src="untitled-1.png" alt="輸入您要檢測的網址"></p>
-</li>
-<li><p>可以選擇更多的選項；之後按check即開始。</p>
-<p><img src="untitled-2.png" alt="可以選擇更多的選項；之後按check即開始。"></p>
-</li>
-<li><p>等待檢測完畢</p>
-<p><img src="untitled-3.png" alt="等待檢測完畢"></p>
-</li>
-<li><p>閱讀檢測結果</p>
-<p><img src="untitled-4.png" alt="閱讀檢測結果"></p>
-<p>網頁下方會有細項解釋。例如：</p>
-<p><img src="untitled-5.png" alt="網頁下方會有細項解釋"></p>
-</li>
-</ol>
-<h2>如果你的網站W3C Link Checker無法檢測怎麼辦？試試Dr. Link Check</h2>
-<hr>
-<p>網頁連結：<a href="https://www.drlinkcheck.com/">https://www.drlinkcheck.com/</a></p>
-<p>這個網站十分視覺化，只要在首頁輸入您的網站地址，按下Start Check，就能開始檢測。</p>
-<p><img alt="這個網站十分視覺化,只要在首頁輸入您的網站地址,按下Start Check,就能開始檢測" src="untitled-6.png"></p>
-<p>檢測結果如下</p>
-<p><img alt="檢測結果如下" src="untitled-7.png"></p>
-<p>本篇圖片來源：</p>
-<p><a href="https://validator.w3.org/checklink">https://validator.w3.org/checklink</a></p>
-<p><a href="https://www.drlinkcheck.com/">https://www.drlinkcheck.com/</a></p>
-
-        
-    </div>
-
-    <div class="py-2"></div>
-    <hr>
-    <div class="comments">
-<div id="disqus_thread"></div>
-<script>
-  var disqus_config = function() { this.page.identifier = "/blog/how-to-check-the-effect-of-links-on-your-website-use-w3c-link-checker"; };
-  (function() {
-    var d = document, s = d.createElement('script');
-    s.src = '//liaowc-github-page.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
-</script>
-<noscript>
-  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
-    rel="nofollow">comments powered by Disqus.</a>
-</noscript>
-</div>
+    </ul>
 
                 </div>
                 
@@ -371,9 +302,9 @@
 
 
 
-<script type="text/javascript" src="../../static/js/layout.js"></script>
+<script type="text/javascript" src="../../../static/js/layout.js"></script>
 
-    <script type="text/javascript" src="../../static/js/blog.js"></script>
+    <script type="text/javascript" src="../../../static/js/blog.js"></script>
 
 </body>
 </html>
