@@ -40,6 +40,7 @@ mql_blog_left_nav.addEventListener("change", (e) => {
 //
 if(!window.matchMedia(mql_blog_left_nav_query).matches){
     target_blog_left_nav.css('display','none')
+    target_blog_left_nav_hidden_place.html(blog_left_nav_html_content).css('display','block')
 }
 
 ///////////////////////////////////////////////////////////////////////////////
