@@ -42,3 +42,19 @@ div#index_top_jumbotron > div{
     transform: translate(-50%, -50%);
     width: 100%;
 }
+
+#avatar_img{
+    max-width: 150px;
+    width: 30vw;
+
+    border-radius: 100%;
+    border-style: double;
+    border-width: 4px;
+}
+
+#index_hr_below_img{
+        background-color: white;
+    border-width: 1px;
+    width: 75vw;
+    max-width: 350px;
+}

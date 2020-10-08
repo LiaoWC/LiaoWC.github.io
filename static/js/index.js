@@ -65,21 +65,21 @@ $(function () {
 
 })
 
-/* Close the homepage big jumbotron */
-
-let ifClosed = false
-
-function homepage_jumbotron_close() {
-    if (!ifClosed) {
-        $('#index_top_jumbotron').fadeOut(700)
-        ifClosed = true
-    }
-}
-
-$('#homepage_jumbotron_about_me_btn').click(function () {
-    homepage_jumbotron_close()
-    console.log('kk')
-})
-$('html').keydown(function () {
-    homepage_jumbotron_close()
-})
+// /* Close the homepage big jumbotron */
+//
+// let ifClosed = false
+//
+// function homepage_jumbotron_close() {
+//     if (!ifClosed) {
+//         $('#index_top_jumbotron').fadeOut(700)
+//         ifClosed = true
+//     }
+// }
+//
+// $('#homepage_jumbotron_about_me_btn').click(function () {
+//     homepage_jumbotron_close()
+//     console.log('kk')
+// })
+// $('html').keydown(function () {
+//     homepage_jumbotron_close()
+// })
