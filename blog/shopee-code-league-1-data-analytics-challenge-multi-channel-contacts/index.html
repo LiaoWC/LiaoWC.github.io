@@ -5,7 +5,7 @@
     <meta name="theme-color" content="#195c82">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>要如何檢測網站的連結是否有效？使用W3C Link Checker和Dr. Link進行網頁連結檢測 — Liao W.C.</title>
+    <title>Shopee Code League (1) Data Analytics Challenge - Multi-Channel Contacts — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
     
@@ -215,15 +215,15 @@
     <div class="blog-post text-break">
         <div>
             
-                <h1 class="title">要如何檢測網站的連結是否有效？使用W3C Link Checker和Dr. Link進行網頁連結檢測</h1>
+                <h1 class="title">Shopee Code League (1) Data Analytics Challenge - Multi-Channel Contacts</h1>
             
         </div>
 
         
     <span class="badge badge-default">
     
-        <a href="../langs/ch/" class="text-white">
-            Chinese
+        <a href="#" class="text-white">
+            
         </a>
     
     </span>
@@ -232,9 +232,9 @@
         
 
             <span class="badge badge-primary">
-                        <a href="../tag/Web Maintenance/" class="white-text"
-                           aria-label="blog@tagWeb Maintenance">
-                            Web Maintenance
+                        <a href="../tag/Data Analytics/" class="white-text"
+                           aria-label="blog@tagData Analytics">
+                            Data Analytics
                         </a>
                     </span>
 
@@ -249,46 +249,31 @@
             
                 LiaoWC
             
-            on 2020-08-25
+            on 2021-03-13
         </p>
         <hr>
         
-            <p><em>你的網站上總是佈滿了琳瑯滿目的超連結？這麼多連結使你維護感到困難？今天筆者將介紹一款實用網頁工具—W3C Link Checker，協助你快速方便確認網頁上的連結有效性。</em></p>
+            <p>Github source code: <a href="https://github.com/LiaoWC/shopee-code-league/blob/master/multi_channel_contacts/main.ipynb">link</a></p>
+<p>Contributor:</p>
+<ul>
+<li><a href="github.com/LiaoWC">LiaoWC</a></li>
+<li><a href="github.com/Ch1sInTheHouse">Ch1sInTheHouse</a></li>
+</ul>
+<p>Kaggle page: <a href="https://www.kaggle.com/c/scl-2021-da/overview">link</a></p>
+<h1>Method</h1>
+<p>We know that all tickets are unique, and that any two people have the same phone, email, or order ID are exactly the same people. Let's view all tickets as different nodes(vertices). We check phone, email, and order ID. If any two ticket are belong to the same person, we construct a undirected edge between them. Finally, we find the graph's connected components. Each unique user has a corresponding connected components.</p>
+<h1>Time complexity</h1>
+<p>Assume number of total tickets is n.</p>
+<ul>
+<li>Sorting takes <code>O(nlogn)</code> time.</li>
+<li>Getting edges by iterating takes <code>O(n)</code> time.</li>
+<li>Finding connected component takes <code>o(n^2)</code> time[1].</li>
+<li>Grouping takes <code>O(nlogn)</code> time.</li>
+<li>Finding group data and write file takes <code>O(nlogn)</code> time.</li>
+</ul>
+<p>The total time complexity is <code>o(n^2)</code>.</p>
 <hr>
-<!-- *[W3C Link Checker 網站連結](https://validator.w3.org/checklink)* -->
-
-<p><img src="screenshot-from-2020-08-25-22-55-51.png" alt="W3C網站"></p>
-<h2>W3C Link Checker 使用介紹</h2>
-<hr>
-<ol>
-<li><p>進入<a href="https://validator.w3.org/checklink">W3C Link Checker網站</a></p>
-<p><img src="untitled.png" alt="進入W3C Link Checker網站"></p>
-</li>
-<li><p>輸入您要檢測的網址。例如：</p>
-<p><img src="untitled-1.png" alt="輸入您要檢測的網址"></p>
-</li>
-<li><p>可以選擇更多的選項；之後按check即開始。</p>
-<p><img src="untitled-2.png" alt="可以選擇更多的選項；之後按check即開始。"></p>
-</li>
-<li><p>等待檢測完畢</p>
-<p><img src="untitled-3.png" alt="等待檢測完畢"></p>
-</li>
-<li><p>閱讀檢測結果</p>
-<p><img src="untitled-4.png" alt="閱讀檢測結果"></p>
-<p>網頁下方會有細項解釋。例如：</p>
-<p><img src="untitled-5.png" alt="網頁下方會有細項解釋"></p>
-</li>
-</ol>
-<h2>如果你的網站W3C Link Checker無法檢測怎麼辦？試試Dr. Link Check</h2>
-<hr>
-<p>網頁連結：<a href="https://www.drlinkcheck.com/">https://www.drlinkcheck.com/</a></p>
-<p>這個網站十分視覺化，只要在首頁輸入您的網站地址，按下Start Check，就能開始檢測。</p>
-<p><img alt="這個網站十分視覺化,只要在首頁輸入您的網站地址,按下Start Check,就能開始檢測" src="untitled-6.png"></p>
-<p>檢測結果如下</p>
-<p><img alt="檢測結果如下" src="untitled-7.png"></p>
-<p>本篇圖片來源：</p>
-<p><a href="https://validator.w3.org/checklink">https://validator.w3.org/checklink</a></p>
-<p><a href="https://www.drlinkcheck.com/">https://www.drlinkcheck.com/</a></p>
+<p>[1] Common ways of finding connected components like Tarjan's algorithm using adjacent list takes not more than O(number of vertices + number of edges). In this case, we use scipy's connected component function. We've tested that it seems not take up to n^2 time and it's fast. If you're interested in the algorithm, you can find more information about how scipy implements this function.</p>
 
         
     </div>
@@ -298,7 +283,7 @@
     <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/blog/how-to-check-the-effect-of-links-on-your-website-use-w3c-link-checker"; };
+  var disqus_config = function() { this.page.identifier = "/blog/shopee-code-league-1-data-analytics-challenge-multi-channel-contacts"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//liaowc-github-page.disqus.com/embed.js';
