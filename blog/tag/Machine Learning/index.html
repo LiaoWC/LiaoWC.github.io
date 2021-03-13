@@ -5,9 +5,9 @@
     <meta name="theme-color" content="#195c82">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Blog Post Languages — Liao W.C.</title>
+    <title> — Liao W.C.</title>
     
-    <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../static/img/favicon.png">
     
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -46,11 +46,11 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
     
-    <link rel="stylesheet" href="../../static/style.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
-    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
+    <link rel="stylesheet" href="../../../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/partial_layout/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/partial_layout/header.css">
     
-    <link rel="stylesheet" type="text/css" href="../../static/css/blog_base.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/blog_base.css">
 
 </head>
 <body>
@@ -63,7 +63,7 @@
     <nav id='top-nav' class="navbar navbar-expand-lg navbar-dark">
         <div class="container-xl" id="nav-section-container">
             <!--(Old logo)   a id='logo' class="navbar-brand" href="/" aria-label="Go to home page">LiaoWC</a-->
-            <a id="" class="navbar-brand" href="/" aria-label="Go to home page"><img src="../../static/img/lwc_logo2.png" alt="logo" style="max-height: 100px;"></a>
+            <a id="" class="navbar-brand" href="/" aria-label="Go to home page"><img src="../../../static/img/lwc_logo2.png" alt="logo" style="max-height: 100px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -79,25 +79,25 @@
                             Projects
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarProjects">
-                            <a class="dropdown-item" href="../../projects/"
+                            <a class="dropdown-item" href="../../../projects/"
                                aria-label="See all projects">All projects</a>
                             <div class="dropdown-divider"></div>
                             <h6 class="text-center dropdown-header">Categories</h6>
                             
     
-        <a class="dropdown-item" href="../../projects/categories/artificial-intelligence/"
+        <a class="dropdown-item" href="../../../projects/categories/artificial-intelligence/"
            aria-label="See project category: Artificial Intelligence">Artificial Intelligence</a>
     
-        <a class="dropdown-item" href="../../projects/categories/database/"
+        <a class="dropdown-item" href="../../../projects/categories/database/"
            aria-label="See project category: Database">Database</a>
     
-        <a class="dropdown-item" href="../../projects/categories/flask/"
+        <a class="dropdown-item" href="../../../projects/categories/flask/"
            aria-label="See project category: Flask">Flask</a>
     
-        <a class="dropdown-item" href="../../projects/categories/thinking-assistant/"
+        <a class="dropdown-item" href="../../../projects/categories/thinking-assistant/"
            aria-label="See project category: Thinking Assistant">Thinking Assistant</a>
     
-        <a class="dropdown-item" href="../../projects/categories/web-app/"
+        <a class="dropdown-item" href="../../../projects/categories/web-app/"
            aria-label="See project category: Web App">Web App</a>
     
 
@@ -148,20 +148,20 @@
                             <nav>
                                 <ul class="nav navbar-nav">
                                     <li><a
-                                            href="../">All Posts</a>
+                                            href="../../">All Posts</a>
                                     </li>
                                     
                                     <li>
                                         
-    <a href="./" class="dark">Language</a>
+    <a href="../../langs/" class="dark">Language</a>
     <ul style="list-style: none;">
         
             <li>
-                <a href="en/">English Articles</a>
+                <a href="../../langs/en/">English Articles</a>
             </li>
         
             <li>
-                <a href="ch/">中文文章</a>
+                <a href="../../langs/ch/">中文文章</a>
             </li>
         
     </ul>
@@ -174,12 +174,22 @@
                                     
                                     
                                     <li>
-                                        <a href="../" class="dark">Tags</a>
+                                        <a href="../../" class="dark">Tags</a>
                                         
                                         <ul style="list-style: none;">
                                             <li>
 
                                                 
+                                                    
+                                                        
+    <a href="/blog/tag/Web Maintenance" class="badge bg-white black-text">Web Maintenance</a>
+
+
+                                                    
+                                                        
+    <a href="/blog/tag/Machine Learning" class="badge bg-white black-text">Machine Learning</a>
+
+
                                                     
                                                 
 
@@ -198,67 +208,37 @@
                 
                 <div class="container">
                     
-    <h1>Post Languages</h1>
-    <div class="row" id="langs_image_row">
-        <!-- Card -->
-        <div class="col-sm-6" style="padding-bottom: 3vw; padding-top: 1vh;">
-            <div class="container-sm">
-                <div class="card">
-                    <!-- Card image -->
-                    <div class="view overlay">
+    <h1 class="tag_name">../../../blog@tag/</h1>
+    <script>
+        function getTagNameFromUrl(url_string) {
+            url_string = [...url_string].reverse().join("")
+            let result = ""
+            let i = 0
+            if (url_string[0] === '/') {
+                i = 1
+            }
+            for (; i < url_string.length; i++) {
+                if (url_string[i] === '/') {
+                    break
+                }
+                result += url_string[i]
+            }
+            result =  [...result].reverse().join("")
+            return decodeURIComponent(result)
+        }
 
-                        <a href="ch/">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <!-- -->
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">中文文章</h4>
-                        <!-- Text -->
-                        
-                        
-                        
-                        <!-- Button -->
-                        <a href="ch/" class="btn btn-primary">閱讀</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Card -->
-        <!-- Card -->
-        <div class="col-sm-6" style="padding-bottom: 3vw;  padding-top: 1vh;">
-            <div class="container-sm">
-                <div class="card">
-                    <!-- Card image -->
-                    <div class="view overlay">
-
-                        <a href="en/">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <!-- -->
-                    <!-- Card content -->
-                    <div class="card-body">
-
-                        <!-- Title -->
-                        <h4 class="card-title">English Articles</h4>
-                        <!-- Text -->
-                        
-                        
-                        
-                        <!-- Button -->
-                        <a href="en/" class="btn btn-primary">Go!</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Card -->
-    </div>
+        let url_string = window.location.href
+        let target = document.getElementsByClassName('tag_name')
+        let tag_name = getTagNameFromUrl(url_string)
+        for (let i = 0; i < target.length; i++) {
+            target[i].innerText = tag_name
+        }
+    </script>
+    <ul>
+        
+            <li><a href="../../use-naive-bayes-on-mushroom-dataset-and-iris-dataset/">Use Naïve Bayes on Mushroom dataset and Iris dataset</a></li>
+        
+    </ul>
 
                 </div>
                 
@@ -330,9 +310,9 @@
 
 
 
-<script type="text/javascript" src="../../static/js/layout.js"></script>
+<script type="text/javascript" src="../../../static/js/layout.js"></script>
 
-    <script type="text/javascript" src="../../static/js/blog.js"></script>
+    <script type="text/javascript" src="../../../static/js/blog.js"></script>
 
 </body>
 </html>
