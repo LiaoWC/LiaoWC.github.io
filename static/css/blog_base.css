@@ -23,12 +23,6 @@ body {
     border-radius: 5px;
 }
 
-@media (max-width: 767px) {
-    #blog_row > div {
-        border-radius: 0;
-    }
-}
-
 /************************************/
 /* blog row center area' font size */
 #blog_center_area {
