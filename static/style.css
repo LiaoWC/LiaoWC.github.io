@@ -1,0 +1,37 @@
+/* DEFAULT */
+/**/
+/*footer, div.page {*/
+/*    width: 760px;*/
+/*    margin: 0 auto;*/
+/*    background: #daeef3;*/
+/*    padding: 20px 30px;*/
+/*}*/
+/**/
+/*div.page {*/
+/*    background: #f1fbfe;*/
+/*}*/
+
+/* Modify the "blue" class color */
+.blue {
+    background-color: #195c82 !important;
+}
+
+/* Automatically resize images to fit the column */
+.blog-post img{
+    max-width: 90%;
+}
+
+
+
+
+/* //////////////////////// */
+
+#navbarSupportedContent .dropdown-menu{
+    border-width: medium;
+    border-style: dotted;
+    border-color: #195c82;
+}
+
+html{
+    font-size: 18px;
+}

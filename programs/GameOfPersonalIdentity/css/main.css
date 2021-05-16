@@ -1,0 +1,125 @@
+body {
+    margin-bottom: 300px;
+}
+
+
+#game_box_outer {
+    width: 822px;
+    min-height: 422px;
+    border: 1px solid #666;
+    margin: 50px auto 0;
+    background: #F1F1F1;
+    padding: 0;
+}
+
+#game_box_inner {
+    width: 800px;
+    min-height: 400px;
+    border: 1px solid #666;
+    background-color: #fff;
+    /*margin: 10px auto 0;*/
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: auto;
+    padding: 0;
+}
+
+.single_board {
+    width: 100%;
+    min-height: 400px;
+    cursor: pointer;
+}
+
+/* //////////////////////////////////////// */
+
+/*.talk_input {*/
+/*    width: 580px;*/
+/*    margin: 10px auto 0;*/
+/*}*/
+
+.whotalk {
+    width: 80px;
+    height: 30px;
+    float: left;
+    outline: none;
+}
+
+.talk_word {
+    width: 420px;
+    height: 26px;
+    padding: 0px;
+    float: left;
+    margin-left: 10px;
+    outline: none;
+    text-indent: 10px;
+}
+
+
+.atalk {
+    margin: 10px;
+}
+
+.atalk span {
+    display: inline-block;
+    background: #0181cc;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+
+.btalk {
+    margin: 10px;
+    text-align: right;
+}
+
+.btalk span {
+    display: inline-block;
+    background: #ef8201;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.mind_talk{
+    margin: 10px;
+    text-align: right;
+}
+
+.mind_talk span{
+    display: inline-block;
+    background: #633700;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.pedestrian_talk{
+    margin: 10px;
+}
+
+.pedestrian_talk span{
+    display: inline-block;
+    background: #20AD00;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.pedestrian2_talk{
+    margin: 10px;
+}
+
+.pedestrian2_talk span{
+    display: inline-block;
+    background: #A602B8;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.modal_fullscreen {
+    background-color: #5c636a;
+}
