@@ -30,17 +30,21 @@ mql_blog_left_nav.addEventListener("change", (e) => {
         /* > 768 pixels wide */
         target_blog_left_nav_hidden_place.html('').css('display', 'none')
         target_blog_left_nav.html(blog_left_nav_html_content).css('display', 'block')
+        $('#blog_center_area').removeClass('my-4').addClass('my-4')
+        $('#blog_center_area').removeClass('mx-4').addClass('mx-4')
     } else {
         /* <= 768 pixels */
         target_blog_left_nav_hidden_place.html(blog_left_nav_html_content).css('display', 'block')
         target_blog_left_nav.html('').css('display', 'none')
+        $('#blog_center_area').removeClass('my-4')
+        $('#blog_center_area').removeClass('mx-4')
     }
 })
 
 //
-if(!window.matchMedia(mql_blog_left_nav_query).matches){
-    target_blog_left_nav.css('display','none')
-    target_blog_left_nav_hidden_place.html(blog_left_nav_html_content).css('display','block')
+if (!window.matchMedia(mql_blog_left_nav_query).matches) {
+    target_blog_left_nav.css('display', 'none')
+    target_blog_left_nav_hidden_place.html(blog_left_nav_html_content).css('display', 'block')
 }
 
 ///////////////////////////////////////////////////////////////////////////////
