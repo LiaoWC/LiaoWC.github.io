@@ -41,6 +41,14 @@ mql_blog_left_nav.addEventListener("change", (e) => {
     }
 })
 
+if (window.matchMedia(mql_blog_left_nav_query).matches ){
+    // modify dom
+    $('#blog_center_area').removeClass('my-4').addClass('my-4')
+    $('#blog_center_area').removeClass('mx-4').addClass('mx-4')
+}
+
+
+
 //
 if (!window.matchMedia(mql_blog_left_nav_query).matches) {
     target_blog_left_nav.css('display', 'none')
