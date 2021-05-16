@@ -3,7 +3,11 @@
 }
 
 #project_description img {
-    max-width: 100%;
+    display: block;
+    max-width: 80%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     /*position: absolute;*/
     /*left: 50%;*/
     /*transform: translate(-50%);*/
