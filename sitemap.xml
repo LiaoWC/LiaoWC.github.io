@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url><loc>./</loc></url>
+      <url><loc>tags/</loc></url>
+      <url><loc>projects/categories/</loc></url>
+      <url><loc>projects/categories/ai/</loc></url>
+      <url><loc>projects/categories/database/</loc></url>
+      <url><loc>projects/categories/flask/</loc></url>
+      <url><loc>projects/categories/nodejs/</loc></url>
+      <url><loc>projects/categories/philosophy/</loc></url>
+      <url><loc>projects/categories/web-app/</loc></url>
+      <url><loc>projects/</loc></url>
+      <url><loc>projects/master-the-game-of-3d-connect-four/</loc></url>
+      <url><loc>projects/rush-hour-puzzle-ai/</loc></url>
+      <url><loc>projects/wfh-work-from-home/</loc></url>
+      <url><loc>projects/game_of_personal_identity/</loc></url>
+      <url><loc>projects/board-game-center/</loc></url>
+      <url><loc>projects/deepthinking/</loc></url>
+      <url><loc>robot.txt</loc></url>
+      <url><loc>about/</loc></url>
+      <url><loc>blog/</loc></url>
+      <url><loc>blog/ch07-multiple-division-techniques/</loc></url>
+      <url><loc>blog/ch8-channel-allocation/</loc></url>
+      <url><loc>blog/ch09-mobile-communication-systems/</loc></url>
+      <url><loc>blog/shopee-code-league-1-data-analytics-challenge-multi-channel-contacts/</loc></url>
+      <url><loc>blog/how-to-check-the-effect-of-links-on-your-website-use-w3c-link-checker/</loc></url>
+      <url><loc>blog/langs/</loc></url>
+      <url><loc>blog/langs/en/</loc></url>
+      <url><loc>blog/langs/ch/</loc></url>
+</urlset>
