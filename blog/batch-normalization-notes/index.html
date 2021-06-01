@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#195c82">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PyTorch Batch Normalization 1 - 四維張量是如何進行計算？ — Liao W.C.</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
+
+    
+
+    
+    <link rel="stylesheet" href="../../third_parties/fontawesome-free-5.15.3-web/css/all.css" -->
+    <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"-->
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+    
+    <link rel="stylesheet" href="../../third_parties/bootstrap-4.6.0-dist/css/bootstrap.css">
+    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"-->
+
+    
+    <link href="../../third_parties/MDB-Free_4.19.2/css/mdb.css" rel="stylesheet">
+    <!--link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"-->
+
+    
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176271587-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-176271587-1');
+    </script>
+
+    
+    <script src="../../third_parties/MDB-Free_4.19.2/js/jquery.js"></script>
+    <!--script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script-->
+
+    
+    
+    <!--script-- src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script-->
+
+    
+    <script src="../../third_parties/bootstrap-4.6.0-dist/js/bootstrap.bundle.js"></script>
+    <!--script-- src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script-->
+
+    
+    <script type="text/javascript" src="../../third_parties/MDB-Free_4.19.2/js/mdb.js"></script>
+    <!--script-- type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css"
+          integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"
+            integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp"
+            crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+            integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                // customised options
+                // • auto-render specific keys, e.g.:
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                // • rendering keys, e.g.:
+                throwOnError: false
+            });
+        });
+    </script>
+
+    
+    <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
+
+    
+    <link rel="stylesheet" href="../../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
+    
+    <link rel="stylesheet" type="text/css" href="../../static/css/blog_base.css">
+
+</head>
+<body>
+
+
+
+
+<section id="layout-nav">
+
+    <nav id='top-nav' class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-xl" id="nav-section-container">
+            <!--(Old logo)   a id='logo' class="navbar-brand" href="/" aria-label="Go to home page">LiaoWC</a-->
+            <a id="" class="navbar-brand" href="/" aria-label="Go to home page"><img src="../../static/img/lwc_logo2.png" alt="logo" style="max-height: 100px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarProjects" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Projects
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarProjects">
+                            <a class="dropdown-item" href="../../projects/"
+                               aria-label="See all projects">All projects</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="text-center dropdown-header">Categories</h6>
+                            
+    
+        <a class="dropdown-item" href="../../projects/categories/ai/"
+           aria-label="See project category: AI">AI</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/database/"
+           aria-label="See project category: Database">Database</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/flask/"
+           aria-label="See project category: Flask">Flask</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/nodejs/"
+           aria-label="See project category: NodeJS">NodeJS</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/philosophy/"
+           aria-label="See project category: Philosophy">Philosophy</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/web-app/"
+           aria-label="See project category: Web App">Web App</a>
+    
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarShortcut" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Shortcut
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarShortcut">
+                            <a class="dropdown-item" href="/programs/DeepThinking/DeepThinking.html"
+                               aria-label="Go to DeepThinking">DeepThinking</a>
+                            <a class="dropdown-item"
+                               href="/programs/GraphvizCodeTransformer/GraphvizCodeTransformer.html"
+                               aria-label="Go to Graphviz Code Transformer">Graphviz
+                                Code to SVG</a>
+                            
+                            
+                        </div>
+                    </li>
+                    
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog/" aria-label="Go to blog page">Blog</a>
+                        </li>
+                    
+                    <!--                    <li class="nav-item">-->
+                    <!--                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+                    <!--                    </li>-->
+                    <div class="container" id="hidden_blog_nav"
+                         style="background-color: white; border-radius: 5px; padding-top: 1.8vh;padding-bottom: 1.8vh; display: none;"></div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+
+
+    <section id="blog_post_center">
+        <div class="row" id="blog_row">
+            <div class="col-md-3 mx-4 my-4" id="blog_left_nav">
+                <div class="container" id="left_nav_container">
+                    
+                    <section id="section_navbar">
+                        <div class="container-fluid">
+                            <nav>
+                                <ul class="nav navbar-nav">
+                                    <li><a
+                                            href="../">All Posts</a>
+                                    </li>
+                                    
+                                    <li>
+                                        
+    <a href="../langs/" class="dark">Language</a>
+    <ul style="list-style: none;">
+        
+            <li>
+                <a href="../langs/en/">English Articles</a>
+            </li>
+        
+            <li>
+                <a href="../langs/ch/">中文文章</a>
+            </li>
+        
+    </ul>
+
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <li>
+                                        <a href="../" class="dark">Tags</a>
+                                        
+                                        <ul style="list-style: none;">
+                                            <li>
+
+                                                
+                                                    
+                                                        
+    
+    <a href="../tag/Web Maintenance/" class="badge bg-white black-text">Web Maintenance</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+
+                                                    
+                                                        
+    
+    <a href="." class="badge bg-white black-text">Deep Learning</a>
+
+                                                    
+                                                
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-7" id="blog_center_area">
+                
+                <div class="container-xl">
+                    
+    
+    <div class="blog-post text-break">
+        <div>
+            
+                <h1 class="title">PyTorch Batch Normalization 1 - 四維張量是如何進行計算？</h1>
+            
+        </div>
+
+        
+    <span class="badge badge-default">
+    
+        <a href="../langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+        
+
+            <span class="badge badge-primary">
+                        <a href="." class="white-text"
+                           aria-label="blog@tagDeep Learning">
+                            Deep Learning
+                        </a>
+                    </span>
+
+            
+
+        
+
+
+
+        <p class="meta">
+            written by
+            
+                LiaoWC
+            
+            on 2021-06-01
+        </p>
+        <hr>
+        
+            <p>本篇會提一些 PyTorch 的 <code>BatchNorm2d</code> 的一些細節。首先先問一個問題：你覺得下列哪個尺寸的張量在使用<code>BatchNorm2d</code>（以下以"BN"簡稱）時會報錯？（設 BN 的特徵數為 3）</p>
+<ol>
+<li>(1, 3, 1, 1)</li>
+<li>(2, 3, 1, 1)</li>
+<li>(1, 3, 2, 2)</li>
+</ol>
+<p>答案是：(1, 3, 1, 1)。</p>
+<pre><code class="lang-python">from math import prod
+from torch import nn
+
+# Shape 1
+bn1 = nn.BatchNorm2d(num_features=3)
+shape1 = (1, 3, 1, 1)
+tensor1 = torch.arange(float(prod(shape1))).reshape(shape1)
+print(tensor1)
+print(bn1(tensor1))
+</code></pre>
+<pre><code class="lang-python"># Shape 2
+bn2 = nn.BatchNorm2d(num_features=3)
+shape2 = (2, 3, 1, 1)
+tensor2 = torch.arange(float(prod(shape2))).reshape(shape2)
+print(tensor2)
+print(bn2(tensor2))
+</code></pre>
+<pre><code class="lang-python"># Shape 3
+bn3 = nn.BatchNorm2d(num_features=3)
+shape3 = (1, 3, 2, 2)
+tensor3 = torch.arange(float(prod(shape3))).reshape(shape3)
+print(tensor3)
+print(bn3(tensor3))
+</code></pre>
+<p>跑上面程式碼在第一個張量形狀會報錯：<code>ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 3, 1, 1])</code>，其餘則不會。</p>
+<p>一般圖像處理有關的張量會表示為四維，四個維度分別對應：<strong>N × C × H × W</strong>。N 為 batch size，C 為 channel 數量，H 為高，W 為寬。</p>
+<p>回到剛剛的問題，(1, 3, 1, 1) 會報錯是因為它的 batch size 只有 1 嗎？那 (1, 3, 2, 2) 為什麼可以呢？還是因為它的 H × W 只有 1？那 (1, 3, 1, 1) 為什麼不會報錯呢？</p>
+<p>參照下圖左上角。進行 Batch Norm 時，N × (H,W flatten) 的平面會在 channel 的維度上移動計算。</p>
+<p><img src="comparing-bn.png" alt="comparing-bn.png"></p>
+<p><sub>圖片來源： arXiv:1903.10520v2 [cs.CV] (<a href="https://arxiv.org/abs/1903.10520v2">https://arxiv.org/abs/1903.10520v2</a>)<sub/></p>
+<p>所以有幾個 channel 就會得到幾個 mean 和 var，每個 channel 計算所有 N x (H, W flatten) 個值的 mean 和 var。</p>
+<p>回到上面的例子，我們逐個來看</p>
+<ul>
+<li>(1, 3, 1, 1) ⇒ 3個 channel 各計算 1 × 1 × 1 = <strong>1</strong> 個值</li>
+<li>(2, 3, 1, 1) ⇒ 3個 channel 各計算 2 × 1 × 1 = <strong>2</strong> 個值</li>
+<li>(1, 3, 2, 2) ⇒ 3個 channel 各計算 1 × 2 × 2 = <strong>4</strong> 個值</li>
+</ul>
+<p>(1, 3, 1, 1) 會報錯是因為算 BN 時不能一次只有一個值，</p>
+<p><img src="bn2dformula.png" alt="bn2dformula.png"></p>
+<p><sub>圖片來源：<a href="https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html</a><sub/></p>
+<p>上面這是 <code>BatchNorm2d</code> 計算的式子，如果只有一個值可以算，那麼 $x - E[x] = 0$ 。Training 時這樣的資料形狀還做 BN 不知有何意義？如果是 testing，應該要 <code>model.eval()</code>。</p>
+<h2>Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/69431151">https://zhuanlan.zhihu.com/p/69431151</a>
+<a href="https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">https://pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html</a></p>
+
+        
+    </div>
+
+    <div class="py-2"></div>
+    <hr>
+    <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/blog/batch-normalization-notes"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//liaowc-github-page.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+
+                </div>
+                
+            </div>
+
+            <div class="col-md-2 mx-4 my-4">
+                
+
+            </div>
+
+        </div>
+    </section>
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue ">
+
+    
+    <div class="container">
+
+        
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 py-3">
+                <div class="mb-3 flex-center">
+
+                    <!--Linkedin -->
+                    <a class="li-ic" href="https://www.linkedin.com/in/%E5%94%AF%E8%BE%B0-%E5%BB%96-306b951b4/"
+                       aria-label="Go to LiaoWC's LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                    <!--Github-->
+                    <a class="ins-ic" href="https://github.com/LiaoWC" aria-label="Go to LiaoWC's Github">
+                        <i class="fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                    <!--Heroku-->
+                    <a tabindex="0" class="ins-ic popover-dismiss" aria-label="Got to LiaoWC's Herokuapp"
+                       role="button" data-toggle="popover" data-trigger="focus" data-placement="top"
+                            
+                       data-content="Coming soon..."
+                    >
+                        <i class="fab fa-python fa-lg white-text  fa-2x"></i>
+                    </a>
+
+                </div>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        
+
+    </div>
+    
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3"> Copyright &copy; 2020 LiaoWC. &nbsp;
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<script>
+    $('.popover-dismiss').popover({
+        trigger: 'focus'
+    })
+</script>
+
+
+
+<!-- Website: https://highlightjs.org/usage/ -->
+<script src="../../third_parties/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
+<script type="text/javascript" src="../../static/js/layout.js"></script>
+
+    <script type="text/javascript" src="../../static/js/blog.js"></script>
+
+</body>
+</html>

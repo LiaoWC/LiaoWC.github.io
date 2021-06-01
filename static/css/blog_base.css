@@ -73,3 +73,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
     font-size: 2rem;
 }
+
+/* Code Block */
+pre {
+    background-color: #E6F1FF;
+    padding: 15px 10px 10px 15px;
+    font-size: 75%;
+}
+
+.hljs {
+    background-color: #E6F1FF;
+}
