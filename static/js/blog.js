@@ -19,7 +19,7 @@
 
 //////// Hide the blog left nav into the header nav if max width < 768 px
 
-let mql_blog_left_nav_query = '(min-width: 768px)'
+let mql_blog_left_nav_query = '(min-width: 992px)'
 let mql_blog_left_nav = window.matchMedia(mql_blog_left_nav_query);
 let target_blog_left_nav = $('#blog_left_nav')
 let target_blog_left_nav_hidden_place = $('#hidden_blog_nav')

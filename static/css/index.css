@@ -25,23 +25,35 @@
 
 
 div#index_top_jumbotron {
-    width: 100%;
+    /* width: 100%;
     height: 100%;
     position: fixed;
     z-index: 999;
     top: 0;
-    left: 0;
+    left: 0; */
+    margin: 0;
+    /*z-index: -999;*/
+    background-image: url('/static/img/index_bg.png');
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+    height: 100%;
+}
+
+
+#layout-nav {
+    display: none;
 }
 
 
 
-div#index_top_jumbotron > div{
+/* div#index_top_jumbotron > div{
     position: absolute;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
-}
+} */
 
 #avatar_img{
     max-width: 150px;
@@ -57,4 +69,8 @@ div#index_top_jumbotron > div{
     border-width: 1px;
     width: 75vw;
     max-width: 350px;
+}
+
+.page-footer {
+    display: none;
 }
