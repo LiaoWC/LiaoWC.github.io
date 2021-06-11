@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>通訊原理與無線網路 - 10 1G~4G 簡史 — Liao W.C.</title>
+    <title>SENet 架構介紹 — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
 
@@ -379,13 +379,13 @@
                                                         <ul class="list-group">
                                                             
                                                             
-                                                                <a href="../SENet-structure/"
+                                                                <a href="./"
                                                                    class="list-group-item list-group-item-action">SENet 架構介紹</a>
                                                             
                                                                 <a href="../game-00/"
                                                                    class="list-group-item list-group-item-action">賽局與策略00 - 前言篇</a>
                                                             
-                                                                <a href="./"
+                                                                <a href="../-09-1g-4g/"
                                                                    class="list-group-item list-group-item-action">通訊原理與無線網路 - 10 1G~4G 簡史</a>
                                                             
                                                                 <a href="../batch-normalization-notes/"
@@ -486,7 +486,7 @@
     <div class="blog-post text-break">
         <div>
             
-                <h1 class="title">通訊原理與無線網路 - 10 1G~4G 簡史</h1>
+                <h1 class="title">SENet 架構介紹</h1>
             
         </div>
 
@@ -503,9 +503,9 @@
         
 
             <span class="badge badge-primary">
-                        <a href="../tag/通訊原理與無線網路/" class="white-text"
-                           aria-label="blog@tag通訊原理與無線網路">
-                            通訊原理與無線網路
+                        <a href="../tag/Deep Learning/" class="white-text"
+                           aria-label="blog@tagDeep Learning">
+                            Deep Learning
                         </a>
                     </span>
 
@@ -520,21 +520,86 @@
             
                 LiaoWC
             
-            on 2021-06-09
+            on 2021-06-11
         </p>
         <hr>
         
-            <p>接下來將進入 1G ~ 4G 技術的介紹，在此之前，先來了解一下行動通訊的歷史。</p>
-<h2>1G</h2>
-<p>第一代行動通訊誕生 1980 年代初，由美國 AT&amp;T 的貝爾實驗室開始，是唯一一代使用類比通訊技術的行動通訊系統。1G 的基地台涵蓋範圍較大，重複使用距離較遠，因此頻譜效率較差。此外，當時的行動裝置尺寸非常大。</p>
-<h2>2G</h2>
-<p>2G 開始於 1990 年代初，使用數位通訊技術，頻譜使用效率較第一代有所提升。由於半導體技術的進步，手持裝置逐漸變小並且變便宜。一開始主要給講電話用的，後來也支援簡訊服務。當時最盛行的 2G 系統是歐洲國家為主體制定出來的 GSM (Global System for Mobile Communication)。除了 GSM，北美地區也有 IS-95 等其它系統。</p>
-<h2>2.5G</h2>
-<p>2.5G 是 2G 到 3G 之間的過渡期。由於 2G 和網際網路成長的年代差不多，因此 2G 也出現了傳資料的需求。一套叫做 GPRS (General Packet Radio Service) 的系統被設計來和 GSM 搭配，GPRS 負責傳資料，GSM 負責傳聲音。另外，IS-95 也有另一個系統 IS-95B 與其搭配。</p>
-<h2>3G</h2>
-<p>3G 的時代大概是大約西元 2000 年後，此時民眾使用網路的需求提升，講電話的需求相對變少，因此行動通訊系統需要更積極支援網路使用的需求。支配 3G 市場的系統是 由 GSM 發展來的 UMTS (Universal Mobile Telecommunication System)。第三代行動通訊使用 CDMA。此外，3G 改變了 RAN (Radio Access Network)，所以在無線的部分，2G 和 3G 不相容。</p>
-<h2>4G</h2>
-<p>西元二零一幾年後，全世界的網路傳輸資料量一直在大量的增加。智慧型手機和物聯網裝置佔用量的大宗，智慧型手機產生的資料量上升，非智慧型手機產生的資料量下降，物聯網機器和機器間的資料量也上升。4G 被設計來因應行動資料傳輸的成長。</p>
+            <h2>概述</h2>
+<p>SENet 相較於原本的 ResNet 架構加了一些輕量級的機制，幫助神經網路了解全域性的資訊，並且能夠依通道（channel）的重要程度選擇性的調節不同通道（channel）激勵程度。換句話說，SENet 提升神經網路模型了解通道間關係的能力。</p>
+<h2>SE 架構剖析</h2>
+<p>這邊把 SE 的架構依流程分成四個步驟來介紹。這邊圖片來源皆是原論文[1]，有些圖片加了圖形或文字輔助。</p>
+<h3>1. Transformation</h3>
+<p><img src="senet-1.png" alt="senet-1.png"></p>
+<p>$F_{tr}$ 表示的是 $\bold X$ 到 $\bold U$ 的轉換關係 (tr: transformation)，比如是可以是卷積（convolution）。</p>
+<h3>2. Squeeze</h3>
+<p><img src="senet-2.png" alt="senet-2.png"></p>
+<p>將 H、W 兩個維度擠壓成一個維度。這邊的操作簡單來說就是全域平均池化（global average pooling）。論文中有提到作者們有實驗過 max pooling 和 average pooling，但 average pooling 的表現好一些。</p>
+<h3>3. Excitation</h3>
+<p><img src="senet-3.png" alt="senet-3.png"></p>
+<p>經過一連串的計算，得到一串下個步驟會用到的向量。上圖下方的式子看似複雜，但其實只是把上個步驟的產物 $\bold z$ 經過一次全連接層（fully-connected layer）+ 非線性激勵涵數（這裡用 ReLU） + 再一次全連接層 + sigmoid（讓範圍變到 0~1），即得到這裡的 $\bold s$。這個步驟可以學習到不同通道（channel）之間的關係，決定要如何激勵（excitate）不同的通道。</p>
+<h3>4. Scaling</h3>
+<p><img src="senet-4.png" alt="senet-4.png"></p>
+<p>用上一個得到的向量 $\bold s$ 對前面算出來的結果 $\bold U$ 進行 scale。$\bold s$ 和 $\bold U$ 進行通道間的相乘（channel-wise multiplication）。換句話說在前面的階段神經網路學習去判斷通道間的重要性，然後對原本的輸出進行調整。</p>
+<h3>和一般 Residual Block 比較</h3>
+<p><img src="senet-5.png" alt="senet-5.png"></p>
+<p>上圖右邊這邊直接把 SENet 架構詳細的表示出來。上圖左邊是一般的 Residual Block，可以看出 SENet 只是多了右邊那一條 squeeze &amp; exitation 用的路徑。</p>
+<p><img src="senet-6.png" alt="senet-6.png"></p>
+<p>上圖是 SENet 和其它模型的比較。SE-ResNet-50 和 SE-ResNeXt-50 裡中括號內最下方的 $fc, [..., ...]$ 表示 excitation 用的兩個全連接層的特徵（feature）數量。</p>
+<h2>SENet Code 範例</h2>
+<p>範例 code 出處為：<a href="[https:/github.com/moskomule/senet.pytorch](https:/github.com/moskomule/senet.pytorch">2</a>)，下面講解時有做一些修改。我們看怎麼用 SENet 的結構組出 Residual Block：</p>
+<pre><code class="lang-python">class SEBasicBlock(nn.Module):
+    expansion = 1
+
+    def __init__(self, inplanes, planes, stride=1, downsample=None, groups=1,
+                 base_width=64, dilation=1, norm_layer=None,
+                 *, reduction=16):
+        super(SEBasicBlock, self).__init__()
+        self.conv1 = conv3x3(inplanes, planes, stride) # 第一個 3x3 卷積
+        self.bn1 = nn.BatchNorm2d(planes)
+        self.relu = nn.ReLU(inplace=True)
+        self.conv2 = conv3x3(planes, planes, 1)  # 第二個 3x3 卷積
+        self.bn2 = nn.BatchNorm2d(planes)
+        self.se = SELayer(planes, reduction) # 進行 SE（這裡的 SELayer 下方有介紹）
+        self.stride = stride
+
+    def forward(self, x):
+        residual = x
+        out = self.conv1(x) # 第一個 3x3 卷積
+        out = self.bn1(out)
+        out = self.relu(out)
+
+        out = self.conv2(out) # 第二個 3x3 卷積
+        out = self.bn2(out)
+        out = self.se(out) # 進 SE
+
+        out += residual # 殘缺學習，和上個 block 的輸出相加
+        out = self.relu(out)
+
+        return out
+</code></pre>
+<p>SE Layer:</p>
+<pre><code class="lang-python">class SELayer(nn.Module):
+    def __init__(self, channel, reduction=16):
+        super(SELayer, self).__init__()
+        self.avg_pool = nn.AdaptiveAvgPool2d(1) # 進行 squeeze
+        self.fc = nn.Sequential( # 進行 excitation
+            nn.Linear(channel, channel // reduction, bias=False),
+            nn.ReLU(inplace=True),
+            nn.Linear(channel // reduction, channel, bias=False),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        b, c, _, _ = x.size()
+        y = self.avg_pool(x).view(b, c)
+        y = self.fc(y).view(b, c, 1, 1)
+        return x * y.expand_as(x) # 做 scale
+</code></pre>
+<h2>結論</h2>
+<p>以往卷積的研究常專注於「空間」的相關性，而 SENet 的架構做的是幫助原本的 ResNet 去了解不同「通道間」的相關性，學習各通道的重要性並進行激勵的調節，以提升神經網路模型的表現。本篇主要講述的是 SENet 基本的概念，希望能幫助你快速抓住基礎的概念，若有時間可以閱讀論文原文，以了解更多作者們的研究資訊。</p>
+<h2>Reference &amp; Source</h2>
+<p>[1] J. Hu, L. Shen and G. Sun, "Squeeze-and-Excitation Networks," 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141, doi: 10.1109/CVPR.2018.00745.</p>
+<p>[2] Repository "senet.pytorch" on GitHub by moskomule (<a href="https://github.com/moskomule/senet.pytorch">https://github.com/moskomule/senet.pytorch</a>)</p>
 
         
     </div>
@@ -544,7 +609,7 @@
     <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/blog/-09-1g-4g"; };
+  var disqus_config = function() { this.page.identifier = "/blog/SENet-structure"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//liaowc-github-page.disqus.com/embed.js';
