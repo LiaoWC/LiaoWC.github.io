@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>通訊原理與無線網路 - 08 Channel Allocation — Liao W.C.</title>
+    <title>SK-Net (Selective Kernel Networks) 架構介紹 — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
 
@@ -388,7 +388,7 @@
                                                                 <a href="../SENet-structure/"
                                                                    class="list-group-item list-group-item-action">SE-Net (Squeeze-and-Excitation Networks) 架構介紹</a>
                                                             
-                                                                <a href="../SKNet-structure/"
+                                                                <a href="./"
                                                                    class="list-group-item list-group-item-action">SK-Net (Selective Kernel Networks) 架構介紹</a>
                                                             
                                                                 <a href="../game-00/"
@@ -422,7 +422,7 @@
                                                                 <a href="../ch07-multiple-division-techniques/"
                                                                    class="list-group-item list-group-item-action">通訊原理與無線網路 - 07 Multiple Division Techniques</a>
                                                             
-                                                                <a href="./"
+                                                                <a href="../ch8-channel-allocation/"
                                                                    class="list-group-item list-group-item-action">通訊原理與無線網路 - 08 Channel Allocation</a>
                                                             
                                                                 <a href="../ch09-mobile-communication-systems/"
@@ -495,7 +495,7 @@
     <div class="blog-post text-break">
         <div>
             
-                <h1 class="title">通訊原理與無線網路 - 08 Channel Allocation</h1>
+                <h1 class="title">SK-Net (Selective Kernel Networks) 架構介紹</h1>
             
         </div>
 
@@ -512,9 +512,9 @@
         
 
             <span class="badge badge-primary">
-                        <a href="../tag/通訊原理與無線網路/" class="white-text"
-                           aria-label="blog@tag通訊原理與無線網路">
-                            通訊原理與無線網路
+                        <a href="../tag/Deep Learning/" class="white-text"
+                           aria-label="blog@tagDeep Learning">
+                            Deep Learning
                         </a>
                     </span>
 
@@ -529,260 +529,115 @@
             
                 LiaoWC
             
-            on 2021-05-31
+            on 2021-06-11
         </p>
         <hr>
         
-            <p>本章節講述行動通訊系統如何分配通道。</p>
-<h2>Static vs Dynamic Channel Allocation</h2>
-<p>Static:</p>
+            <p>過往做卷積（convolution）通常 kernel size 是固定的，而 SKNet[1] 的主要改進就是讓神經網路模型使用數種 kernel size 進行卷積並且能學習到如何選擇 kernel size（所以才叫 selective kernel）。SKNet 先使用多個不同 kernel size 的卷積進行運算，再用類似 SENet 的方式進行整合，讓神經網路不僅能夠學習到不同通道（channel）間的關係，還能學習到不同 kernel size 之間的關係。簡單來說可以想成：分成多個不同 kernel size 進行卷積再選擇性整合起來。至於詳細做法為何？讓我們繼續看下去。</p>
+<h2>SKNet 的架構</h2>
+<p>分支的數量可以調整，為方便討論，以下都用兩個分支的例子講解，多個分支的概念也是一樣的。</p>
+<p><img src="sknet-1.png" alt="sknet-1.png"></p>
+<h3>1. Split</h3>
+<p><img src="sknet-2.png" alt="sknet-2.png"></p>
+<p>分成數個平行的分支，每個分支皆為卷積層但各自的 kernel size 不同。以上圖為例，分成兩種 kernel size：3x3 和 5x5。實作上，5x5 不一定會真的有 25 個參數，可能用 3x3 且 dilation 為 2 的卷積層代替。Dilation 為 1 和為 2 的比較如下方兩張圖：</p>
+<p><img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/no_padding_no_strides.gif" alt="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/no_padding_no_strides.gif"></p>
+<p><sub>一般的卷積(no padding, dilation = 1)</sub></p>
+<p><img src="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/dilation.gif" alt="https://github.com/vdumoulin/conv_arithmetic/raw/master/gif/dilation.gif"></p>
+<p><sub>Dilation = 2 範例</sub></p>
+<p><sub>（以上兩圖的來源：[https://github.com/vdumoulin/conv_arithmetic](https://github.com/vdumoulin/conv_arithmetic) [2]）</sub></p>
+<p>所有分支用不同的 kernel size 對輸入做 grouped/depthwise convolution + Batch Normalization + ReLU（圖中兩個頭上有東西的 F），兩個分支就會產生兩個輸出，圖裡表示為兩個頭上有標記的 U。</p>
+<h3>2. Fuse</h3>
+<p><img src="sknet-3.png" alt="sknet-3.png"></p>
 <ul>
-<li>equal: 都固定給一樣多的通道。</li>
-<li>non-uniform: 固定的不會改變數量，不同基地台拿到的數量不一樣。</li>
+<li>把頭上有不同符號的那些的 U 各對應的元素加起來，得到 $\bold U$。</li>
+<li>對 $\bold U$ 做全域平均池化（global average pooling）得到 $\bold s$。</li>
+<li>$\bold s$ 經過全連接層（fully-connected layer）+ Batch Normalization + ReLU 得到 $\bold z$。$\bold z$ 的維度為 $d=max(C/r,L)$，$r$ 是一個控制用的比例，$L$ 是 $d$ 的最小值。</li>
 </ul>
-<p>Dynamic:</p>
+<h3>3. Select</h3>
+<p><img src="sknet-4.png" alt="sknet-4.png"></p>
+<p>上圖右下角的式子看起來複雜但其實意思是：</p>
 <ul>
-<li>不同的cell分配給不同的通道，按照需要。</li>
-<li>Dynamic 的用中心式的 overhead 滿高，後來有人發明分散式的。分散式的代價：要跟鄰居基地台交換資訊(也是個 overhead)，以避免干擾。</li>
+<li>各分支在這邊皆有一個全連接層對 $z$ 做運算。所以兩個分支就有兩個全連接層，以上圖來說，$a$、$b$ 便是這兩個全連接層的產物。</li>
+<li>之後各分支的全連接層進行 channel-wise 的 softmax，讓各全連接層各對應的通道的和為 1，做到比例分配的效果。從上圖來看，可以看到a、b相對應的通道有一個是黑色另一個不是黑色，表示在這個通道上對不同 kernel size 的分支產生的結果的比例不同，也就是：縱向的（每一列）進行softmax[3]。</li>
+<li>之後依各分支的全連接層對各分支一開始的卷積結果進行權重計算最後相加得到結果 $V$。以上圖來說，也就是 $a$、$b$ 上各通道的值是原本卷積結果（$\widetilde U$、$\hat U$）各通道的權重。</li>
 </ul>
-<p>Classification of channel allocation schemes:</p>
+<h2>與其它模型的比較</h2>
+<p><img src="sknet-5.png" alt="sknet-5.png"></p>
+<p>圖中 SK[M=......] 表示 SK 的超參數。</p>
 <ul>
-<li>Fixed</li>
-<li>Dynamic</li>
-<li>Hybrid: 結合fixed和dynamic</li>
+<li>$M$：是分支數，也就是有幾種 kernel size。</li>
+<li>$G$：是各分支的卷積層做分組卷積的分組數。</li>
+<li>$r$： $\bold z$ 的維度為 $d=max(C/r,L)$，$r$ 是控制用的比例（$L$ 是 $d$ 的最小值）。</li>
 </ul>
-<h2>FCA</h2>
-<p>FCA: <strong>Fixed</strong> Channel Allocation</p>
-<ul>
-<li>Static、fixed，一開始就配出去了。</li>
-<li>若不夠用的話可能的解法：<ul>
-<li>跟鄰居的借(borrowing)</li>
-<li>Non-uniform</li>
-</ul>
-</li>
-<li>簡單但沒有彈性</li>
-</ul>
-<h3>Simple Borrowing Schemes</h3>
-<ul>
-<li>Borrowing from the richest: 影響較小，但比較久，因為你要找最 richest 你要都問過。</li>
-<li>Borrow-first-available: 直接找第一個可以的，相對搜尋時間短。</li>
-<li>Reassignment: 自己的通道可以用的時候借的要還回去</li>
-</ul>
-<h3>Complex Borrowing Schemes</h3>
-<h4>Simple Hybrid Channel Borrowing Strategy</h4>
-<p>分兩組，一組不外借，一組可外借</p>
-<ul>
-<li>permanent: 不外借</li>
-<li>reserved: 可以借出去的</li>
-<li>問題來了，如果有20條，要怎麼切幾條 permanent，幾條 reserved？</li>
-</ul>
-<h4>Borrowing with Channel Ordering</h4>
-<ul>
-<li>沒限制借幾條，但借出的通道有優先權</li>
-<li>Local 的 calls 從高優先權開始用</li>
-<li>外借的從低優先權開始借</li>
-</ul>
-<h4>Borrowing with Directional Channel Locking</h4>
-<ul>
-<li>把 directional 的概念引進來。通道借出時，只有被影響到 sector 會被 lock 。被影響的變少了。</li>
-</ul>
-<h2>DCA</h2>
-<p>DCA: <strong>Dynamic</strong> Channel Allocation</p>
-<p>會有一個 channel pool，要從裡面去選擇 channel。</p>
-<p>選擇時用的 cost function 可能會根據：重複使用距離、未來的 blocking 機率、對整個系統的 blocking 機率的影響等因素。</p>
-<p>分類：</p>
-<ul>
-<li>Centralized ⇒ BS之間沒有訊息交換</li>
-<li>Distributed ⇒ BS之間有訊息交換</li>
-</ul>
-<h3>Centralized DCA schemes</h3>
-<p>※用這個方式，通道的重新分配可以增加效能，所以是需要做的。</p>
-<h4>FA (First Available)</h4>
-<p>找第一個可用而且符合 reuse distance 的。</p>
-<h4>LODA (Locally Optimized Dynamic Assignment)</h4>
-<p>用 cost function 選。Cost function 是基於未來鄰居的 blocking probability。</p>
-<h4>RING (Selection with Maximum Usage on the Ruse Ring)</h4>
-<p>選擇在同信道集中的大多數 cell 中使用的候選信道。</p>
-<h3>Distributed DCA schemes</h3>
-<h4>Cell-based</h4>
-<p>當發起一個 call 時，BS 為一個 cell 分配一個 channel。</p>
-<p>BS 要記自己附近的資訊。</p>
-<p><strong>LP-DDCA</strong> (Local Packing Dynamic Distributed Channel Assignment):</p>
-<ul>
-<li><strong>ACO</strong> (Augmented Channel Occupancy) matrix.</li>
-<li>BS 要維護並更新各 BS 通道指派的資訊。</li>
-</ul>
-<p><strong>ACI</strong> (Adjacent Channel Interference Constraint): LP-DDCA + ACI:</p>
-<ul>
-<li>多一張表。由於相鄰的通道 isolate 的不是很完美，因此要考慮隔壁鄰居距離這個通道應該有多遠的頻寬。</li>
-</ul>
-<h4>Signal Strength Measurement-based</h4>
-<p>MS 和 BS 估算 carrier-to-interference ratio (CIR)，若預測的 CIRs 比門檻高，就分配這個通道。</p>
-<ul>
-<li>SCS (Sequential Channel Search)<ul>
-<li>選擇第一個可以用而且它的 CIR 是可以接受的 channel。</li>
-<li>Service interrupt: 由於一些新的連接，使得有的舊有就連上的 calls 的通道狀況惡化，這些被 interrupted 的找新的 channel 去連接，也可能導致其它 calls 被 interrupted，造成一連串的連鎖反應 ⇒ 最後可能沒有 channel 是 available 的（block）</li>
-</ul>
-</li>
-</ul>
-<h2>HCA</h2>
-<h3>Hybrid Channel Allocation Scheme</h3>
-<ul>
-<li>Fixed + DCA。分成兩個集合。</li>
-<li>每個 cell 都給固定數量自己用的 channels。</li>
-<li>Issue: 分給 fixed 跟 dynamic 的比例？</li>
-</ul>
-<h3>Flexible Channel Allocation Scheme</h3>
-<ul>
-<li>分成 fixed 和 flexible 的 channel sets</li>
-<li>每個 cell 會有 fixed channel set 用來處理較輕量的任務</li>
-<li>Channel assignment of flexible channel set<ul>
-<li>Scheduled<ul>
-<li>量測流量的變化</li>
-<li>預先確定流量變化的峰值</li>
-</ul>
-</li>
-<li>Predictive<ul>
-<li>監控流量及阻塞的機率</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Non-uniform Compact Pattern Allocation</h2>
-<p>（針對 static 的 non-uniform 的做法）</p>
-<p>內容及圖片引用自：</p>
-<blockquote><p>Ming Zhang and T. -. P. Yum, "The nonuniform compact pattern allocation algorithm cellular mobile systems," in IEEE Transactions on Vehicular Technology, vol. 40, no. 2, pp. 387-391, May 1991, doi: 10.1109/25.289419.</p>
-</blockquote>
-<h2>Co-channel Allocation Pattern</h2>
-<p>(for channel k, denoted as $\pi_k$): the set of cells that use channel $k$ without co-channel interference.</p>
-<ul>
-<li><p>定義 indicator function $I_i(k)$</p>
-<p>$ I_i(k) = \begin{cases}     1, \quad \text{channel } k \text{ is allocated to cell }i \\      0, \quad \text{otherwise}     \end{cases} $</p>
-</li>
-<li><p>Co-channel allocation pattern 可以被描述成 ${I_1(k),\ I_2(k),\ I_3(k),\ ...,\ I_N(k)}$</p>
-</li>
-</ul>
-<h3>Compact Allocation Pattern</h3>
-<p>下圖範例中有 7 * 2 = 14 個 compact allocation patterns，標成 $G={g1, g2, …, g14}$
-!
-下圖範例中有 7 * 2 = 14 個 compact allocation patterns，標成 $G={g1, g2, …, g14}$</p>
-<p><img src="untitled-1.png" alt=""></p>
-<p>7 * 2：那個7指的是中間加上外面那六個；2指的是此圖左右兩邊兩種外圈配置方法（以中間上面的為例，可以放左上也可以放右上)</p>
-<h3>Average Call Blocking</h3>
-<ul>
-<li><p>Let $n_i(m)$ be the total #channels allocated to cell $i$ given that $m$ channels are allocated to the system. Therefore,</p>
-<p>$n_i(m)$</p>
-<p>$ = \sum_{k=1}^{m} {I_i(k)},\ i =1,2,...,N$</p>
-</li>
-<li><p>Let $\lambda_i$ be the traffic in Erlangs to cell $i$ and let the number of
-channels available in the cell be $n_i(m)$, then the call blocking
-probability in the cell is given by the Erlang B formula as</p>
-<p>$p(\lambda_i,n_i(m))$</p>
-<p>$=[     \sum_{k=1}^{m}    {\frac{\lambda_i^k}{k!}}   ]    ^{-1}    \frac{\lambda_i^{n_i(m)}}{n_i(m)!}$</p>
-</li>
-<li><p>The <strong>overall</strong> average blocking probability in the cellular
-system is
-   <img src="screenshot-from-2021-05-31-11-59-34.png" alt=""></p>
-<p>那個w是做權重的。</p>
-</li>
-</ul>
-<h3>Channel assignment strategy</h3>
-<h4>Fixed assignment (FA) strategy</h4>
-<ul>
-<li>每個 cell 永久分到一個集合的通道。如果都用完了，新的 call 就 block。</li>
-</ul>
-<h4>Borrowing with channel ordering (BCO) strategy</h4>
-<ul>
-<li>分到的通道有優先順序，自己用優先順序較高的，外借優先次序較小的。</li>
-<li>如果有個通道被借走，鎖住來借的那個 cell 的那個通道在 reuse distance 內的 co-channel cells。</li>
-</ul>
-<h4>Borrowing with directional channel locking strategy</h4>
-<ul>
-<li>當一個通道被借走，只會鎖住會被影響的。</li>
-<li><p>如下圖 P 借走了通道 x，A3 只有 3, 4, 5 方向會被鎖住。</p>
-<pre><code>  ![](untitled-2.png)
+<h2>學習調節感受野並結合 SENet</h2>
+<p>感受野（receptive field），受到影響的區域。以下圖為例，做 3x3 的卷積時，Layer 3 的黃色格子受到 Layer 2 中間那 3x3 格影響；而這 3x3 格又是受到前一層 5x5 格的影響。用這個概念來思考，如果 kernel size 變大，感受野也會變大。SKNet 作者之一的李翔在他一篇文章[5]提到「SKNet 啟發自皮質神經元根據不同的刺激可動態調節其自身的感受野」。</p>
+<p><img src="sknet-6.png" alt="sknet-6.png"></p>
+<p>圖片來源：[4]</p>
+<p>SKNet 結合了 SENet 的想法，除了學習感受野的調節，也學習到不同通道間的關係。</p>
+<h2>範例程式碼</h2>
+<p>以下範例程式碼修改自 <a href="https://github.com/developer0hye">developer0hye</a> 在 GitHub 上的 repository "SKNet-PyTorch" [6]。</p>
+<pre><code class="lang-python">class SKConv(nn.Module):
+    def __init__(self, features, M=2, G=32, r=16, stride=1 ,L=32):
+        &quot;&quot;&quot; Constructor
+        Args:
+            features: input channel dimensionality.
+            M: the number of branchs.
+            G: num of convolution groups.
+            r: the ratio for compute d, the length of z.
+            stride: stride, default 1.
+            L: the minimum dim of the vector z in paper, default 32.
+        &quot;&quot;&quot;
+        super(SKConv, self).__init__()
+        d = max(int(features/r), L) # z 的維度
+        self.M = M
+        self.features = features
+        self.convs = nn.ModuleList([]) # 各分支的卷積層
+        for i in range(M):
+            self.convs.append(nn.Sequential(
+                nn.Conv2d(features, features, kernel_size=3, stride=stride, padding=1+i, dilation=1+i, groups=G, bias=False),
+                nn.BatchNorm2d(features),
+                nn.ReLU(inplace=False)
+            ))
+        self.gap = nn.AdaptiveAvgPool2d((1,1)) # Global average pooling
+        self.fc = nn.Sequential(nn.Conv2d(features, d, kernel_size=1, stride=1, bias=False),
+                                nn.BatchNorm2d(d),
+                                nn.ReLU(inplace=False)) # Fuse 的全連結層
+        self.fcs = nn.ModuleList([]) # 各分支加起來前的全連結層
+        for i in range(M):
+            self.fcs.append(
+                 nn.Conv2d(d, features, kernel_size=1, stride=1)
+            )
+        self.softmax = nn.Softmax(dim=1) # Softmax
+
+    def forward(self, x):
+        batch_size = x.shape[0]
+        # 各分支的卷積計算
+        feats = [conv(x) for conv in self.convs]
+        # U
+        feats = torch.cat(feats, dim=1)
+        feats = feats.view(batch_size, self.M, self.features, feats.shape[2], feats.shape[3])
+        feats_U = torch.sum(feats, dim=1)
+        # s
+        feats_S = self.gap(feats_U)
+        # z
+        feats_Z = self.fc(feats_S)
+        # 各分支的全連結層
+        attention_vectors = [fc(feats_Z) for fc in self.fcs]
+        # Softmax
+        attention_vectors = torch.cat(attention_vectors, dim=1)
+        attention_vectors = attention_vectors.view(batch_size, self.M, self.features, 1, 1)
+        attention_vectors = self.softmax(attention_vectors)
+        # 最後加起來
+        feats_V = torch.sum(feats*attention_vectors, dim=1)
+        return feats_V
 </code></pre>
-</li>
-</ul>
-<h4>Locally optimized dynamic assignment (LODA)</h4>
-<ul>
-<li>Cells 沒有分配到 nominal channels。所有通道整個系統共享。</li>
-<li>有 call 時，選 cost 最小的。這裡的 cost 算得是未來的 blocking probability。</li>
-</ul>
-<h3>Shadow blocking factor</h3>
-<ul>
-<li>如果一個通道隔壁的 cell 就可以再使用，那麼 SBF = 1（例如兩個cell之間有天然屏障隔開）</li>
-<li>如果要隔兩個 cell 的話，SBF=2</li>
-<li>若沒有 shadow blocking，SBF=3</li>
-</ul>
-<h2>Channel Allocation in One-Dimensional Systems</h2>
-<ul>
-<li>在某些特殊的例子 MS 的流動是有固定方向性的，如 高速公路、高鐵、火車等。以高速公路為例子，一定的 reuse distance 外和自己同行進方向的車可以和自己用同一個通道，只要速度固定就不會影響。</li>
-</ul>
-<h2>Reuse Partitioning-Based Channel Allocation</h2>
-<ul>
-<li>產生不同大小的區域，呈現出內外圈</li>
-<li>如何做出內外圈的差別 ⇒ 控制功率大小</li>
-<li>內圈的範圍比較小，重複利用距離較短，可重複使用的次數較多</li>
-<li>週期性測量 SIR 來調整通道組合</li>
-</ul>
-<p><img src="dsvsdfsadf.svg" alt=""></p>
-<h2>Overlapped Cells-Based Channel Allocation</h2>
-<p>會重疊的設計。</p>
-<h3>Layout 1</h3>
-<h4>方案 1</h4>
-<ul>
-<li>針對 MS 的流動性給出適合的通道</li>
-<li>流動慢的裝置：給 micocell</li>
-<li>流動快的裝置：給 cell</li>
-</ul>
-<h4>方案 2</h4>
-<ul>
-<li>低流量時：關閉 microcell</li>
-<li>流量增加時，當干擾的影響開始不能接受或是資源不夠，打開對應可以進行服務的 microcell。</li>
-</ul>
-<h3>Layout 2</h3>
-<ul>
-<li>Directed retry: 當 MS 在一個重疊區（假設在 A, B 兩區重疊處），若它拿不到 A 的任何通道，就換拿 B 的。</li>
-<li>Directed handoff: 假設A, B 兩區有重疊，如果 A 區有 call 找不到可用的通道，會強制重疊區使用 A 的換手改用 B 區的通道。</li>
-</ul>
-<h2>Fractional Frequency Reuse (FFR)</h2>
-<p>以下內容引用自:</p>
-<blockquote><p>T. Novlan, J. G. Andrews, I. Sohn, R. K. Ganti and A. Ghosh, "Comparison of Fractional Frequency Reuse Approaches in the OFDMA Cellular Downlink," 2010 IEEE Global Telecommunications Conference GLOBECOM 2010, 2010, pp. 1-5, doi: 10.1109/GLOCOM.2010.5683973.</p>
-</blockquote>
-<p>Kinds of interference management</p>
-<ul>
-<li>FFR</li>
-<li>Power control</li>
-<li>Smart antenna</li>
-</ul>
-<p>Motivation:</p>
-<p>aggressive spectrum reuse (隔壁的也能用) to achieve high system capacity and simplify radio network planning (如果你的基地台能夠使用每一個通道，那麼基地台就少了決定要用哪個通道的這個工作了)</p>
-<p>Two categories:</p>
-<ul>
-<li>Hard FFR (strict FFR)</li>
-<li>Soft FFR</li>
-</ul>
-<h3>Hard FFR</h3>
-<ul>
-<li>Cell center reuse factor: 1</li>
-<li>Cell edge reuse factor: $\Delta$ (e.g. 3)</li>
-<li>Require channels in total: $\Delta + 1$</li>
-<li>Interior users do not share any spectrum with edge users</li>
-</ul>
-<p><img src="untitled-3.png" alt=""></p>
-<h3>Soft FFR</h3>
-<ul>
-<li>Interior users are allowed to share sub-bands with edge users in other cells</li>
-<li>Cell interior users typically transmit at low power levels than the cell edge users</li>
-<li>How to classify cell center or cell edge users?<ul>
-<li>BS-to-UE SNR</li>
-<li>UE location （使用者位置）</li>
-</ul>
-</li>
-</ul>
-<p><img src="untitiled-4.png" alt=""></p>
+<h2>Reference &amp; Source</h2>
+<p>[1] X. Li, W. Wang, X. Hu and J. Yang, "Selective Kernel Networks," 2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2019, pp. 510-519, doi: 10.1109/CVPR.2019.00060.</p>
+<p>[2] <a href="https://github.com/vdumoulin/conv_arithmetic">https://github.com/vdumoulin/conv_arithmetic</a></p>
+<p>[3] 引用自 CSDN 博主「ITOMG」的原創文章，遵循CC 4.0 BY-SA版權協議，轉載請附上原文出處連結及本聲明。原文連結：<a href="https://blog.csdn.net/ITOMG/article/details/89673593">https://blog.csdn.net/ITOMG/article/details/89673593</a></p>
+<p>[4] Lin, H.; Shi, Z.; Zou, Z. Maritime Semantic Labeling of Optical Remote Sensing Images with Multi-Scale Fully Convolutional Network. Remote Sens. 2017, 9, 480. <a href="https://doi.org/10.3390/rs9050480">https://doi.org/10.3390/rs9050480</a></p>
+<p>[5] 李翔：SKNet——SENet孪生兄弟篇(<a href="https://zhuanlan.zhihu.com/p/59690223">https://zhuanlan.zhihu.com/p/59690223</a>)</p>
+<p>[6] Repository "SKNet-PyTorch" on GitHub by pppLang (<a href="https://github.com/developer0hye/SKNet-PyTorch">https://github.com/developer0hye/SKNet-PyTorch</a>)</p>
 
         
     </div>
@@ -792,7 +647,7 @@ system is
     <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/blog/ch8-channel-allocation"; };
+  var disqus_config = function() { this.page.identifier = "/blog/SKNet-structure"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//liaowc-github-page.disqus.com/embed.js';

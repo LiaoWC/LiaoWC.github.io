@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SENet 架構介紹 — Liao W.C.</title>
+    <title>SE-Net (Squeeze-and-Excitation Networks) 架構介紹 — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
 
@@ -261,12 +261,7 @@
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
-
-                                                    
-                                                        
-    
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
                                                         
@@ -276,7 +271,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                 
@@ -297,6 +297,12 @@
                                             
                                                 
                                                 
+                                                
+                                            
+
+                                        
+                                            
+                                            
                                                 
                                             
 
@@ -371,7 +377,7 @@
                                                            href="#nav_post_date_month_collapse_2021-06"
                                                            aria-expanded="false"
                                                            aria-controls="nav_post_date_month_collapse_2021-06">2021-06
-                                                            (4 posts)</a>
+                                                            (5 posts)</a>
                                                     </div>
                                                     
                                                     <div class="collapse list-group"
@@ -380,7 +386,10 @@
                                                             
                                                             
                                                                 <a href="./"
-                                                                   class="list-group-item list-group-item-action">SENet 架構介紹</a>
+                                                                   class="list-group-item list-group-item-action">SE-Net (Squeeze-and-Excitation Networks) 架構介紹</a>
+                                                            
+                                                                <a href="../SKNet-structure/"
+                                                                   class="list-group-item list-group-item-action">SK-Net (Selective Kernel Networks) 架構介紹</a>
                                                             
                                                                 <a href="../game-00/"
                                                                    class="list-group-item list-group-item-action">賽局與策略00 - 前言篇</a>
@@ -486,7 +495,7 @@
     <div class="blog-post text-break">
         <div>
             
-                <h1 class="title">SENet 架構介紹</h1>
+                <h1 class="title">SE-Net (Squeeze-and-Excitation Networks) 架構介紹</h1>
             
         </div>
 
@@ -546,7 +555,7 @@
 <p><img src="senet-6.png" alt="senet-6.png"></p>
 <p>上圖是 SENet 和其它模型的比較。SE-ResNet-50 和 SE-ResNeXt-50 裡中括號內最下方的 $fc, [..., ...]$ 表示 excitation 用的兩個全連接層的特徵（feature）數量。</p>
 <h2>SENet Code 範例</h2>
-<p>範例 code 出處為：<a href="[https:/github.com/moskomule/senet.pytorch](https:/github.com/moskomule/senet.pytorch">2</a>)，下面講解時有做一些修改。我們看怎麼用 SENet 的結構組出 Residual Block：</p>
+<p>範例 code 出處為：[2] (<a href="https://github.com/moskomule/senet.pytorch">https://github.com/moskomule/senet.pytorch</a>，下面講解時有做一些修改。我們看怎麼用 SENet 的結構組出 Residual Block：</p>
 <pre><code class="lang-python">class SEBasicBlock(nn.Module):
     expansion = 1
 
