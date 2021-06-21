@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>通訊原理與無線網路 - 07 Multiple Division Techniques — Liao W.C.</title>
+    <title>設施位置賽局 Facility Location Game【賽局與策略06】 — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
 
@@ -427,7 +427,7 @@
                                                         <ul class="list-group">
                                                             
                                                             
-                                                                <a href="../facility-location-game/"
+                                                                <a href="./"
                                                                    class="list-group-item list-group-item-action">設施位置賽局 Facility Location Game【賽局與策略06】</a>
                                                             
                                                                 <a href="../coordination-game/"
@@ -482,7 +482,7 @@
                                                         <ul class="list-group">
                                                             
                                                             
-                                                                <a href="./"
+                                                                <a href="../ch07-multiple-division-techniques/"
                                                                    class="list-group-item list-group-item-action">通訊原理與無線網路 - 07 Multiple Division Techniques</a>
                                                             
                                                                 <a href="../ch8-channel-allocation/"
@@ -558,7 +558,7 @@
     <div class="blog-post text-break">
         <div>
             
-                <h1 class="title">通訊原理與無線網路 - 07 Multiple Division Techniques</h1>
+                <h1 class="title">設施位置賽局 Facility Location Game【賽局與策略06】</h1>
             
         </div>
 
@@ -575,9 +575,9 @@
         
 
             <span class="badge badge-primary">
-                        <a href="../tag/通訊原理與無線網路/" class="white-text"
-                           aria-label="blog@tag通訊原理與無線網路">
-                            通訊原理與無線網路
+                        <a href="../tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
                         </a>
                     </span>
 
@@ -592,174 +592,20 @@
             
                 LiaoWC
             
-            on 2021-05-31
+            on 2021-06-21
         </p>
         <hr>
         
-            <h2>Introduction and Comparisons</h2>
-<p>行動通訊系統的 channel 分成兩類：control channel 和 data channel。</p>
-<ol>
-<li>Multiple radio access: 此主題探討的是 random access 的 control channel。例如打電話你將電話號碼播出去時但還沒接通時。</li>
-<li>Multiple division techniques: 探討 <strong>data</strong> channel。在有限頻寬內，要<strong>切出多條</strong>使用者能使用的通道。例如電話打通後，就會拿到一條資料通道。</li>
-</ol>
-<h2>Classifications</h2>
-<p>資料的傳輸需要資源，那有哪些資源可以用來傳輸資料呢？</p>
-<ul>
-<li>頻譜</li>
-<li>時間</li>
-<li>空間(SDMA：可以用指向性天線讓多個人可以在同個空間 access 基地臺)</li>
-</ul>
-<p>分類</p>
-<ul>
-<li>頻譜：FDMA （第一代行動通訊網路）（Frequency Division Multiple Access）</li>
-<li>時間：TDMA （第二代行動通訊網路）（Time Division Multiple Access）</li>
-<li>Code：CDMA （第三代行動通訊網路）（Code Division Multiple Access）</li>
-<li>空間：SDMA （泛指一般加上指向性天線後的。可以加 frequency、time 一起使用）（Space Division Multiple Access）</li>
-</ul>
-<p>※第四代行動通訊網路用到了：OFDM/OFDMA（後面會討論）</p>
-<h2>Model of Multiple Divisions</h2>
-<h4>General model</h4>
-<p>$s(f,t,c) =s(f,t)c(t)$</p>
-<h4>為什麼 c 跟時間有關？</h4>
-<p>一個系統的正交碼是固定的長度（正交碼：兩個碼的內積為零），例如四個位元的正交碼可以產生四種正交碼。正交碼的長度<strong>不會</strong>因為使用人數上升而變長。使用中的裝置（例如在講電話）數量是受控制的，若你閒置（像是沒有在通話中）就不會配給你正交碼，所以跟你當下時間的狀況有關。</p>
-<p>在一個你要通話的時間點，系統會看可以配的正交碼有多少，然後配給你一個正交碼，但過了一小時，你又撥了一通電話，這時候你前一個通話用的正交碼可能被用掉了，配給你的就可能是另外一個正交碼。保持現在使用中的用戶的正交碼彼此的內積皆為零。</p>
-<h4>假設沒有用正交碼的model</h4>
-<p>$s(f,t,c) =s(f,t)$</p>
-<p>第二代、第四代、第五代行動通訊沒有使用正交碼。Wifi 有版本有用到，但效果據說沒那麼好。</p>
-<h2>Duplex Communication</h2>
-<p>基地臺如果要同時送跟收，那應該至少要有幾個天線？兩個？但現階段的技術我們也<strong>不會</strong>讓基地台的兩根天線同時送跟收。可以兩根<strong>同時</strong>當傳送者或兩根<strong>同時</strong>當接收者。</p>
-<ul>
-<li>如果兩根天線都一樣做送者，可以一根傳給一個人另一根傳給另一個人；也可以兩根都給同一個人（spatial diversity。但接受者通常只有一根天線）。</li>
-<li>如果兩根都一樣做接收者的話，使用者送的時候即使AP天線再多，都收同一個人的。最新的Wifi（如ax, be）才能做到同時收不同人的訊號。但要做到收不同人的訊號需要做到<strong>時間同步</strong>(至少要大概微秒等級的同步)而且要消除一些頻道的干擾才做得出來。所以 uplink（上行）可能永遠沒有辦法把基地台所有的天線用完，要多個使用者能一起送就要做到時間同步等，增加overhead。</li>
-</ul>
-<h4>Full duplex vs half duplex</h4>
-<ul>
-<li>Full duplex: 送跟收同時進行。（至少要有兩根天線）</li>
-<li>Half duplex: 可以送跟收，但同時間只能做一件事。（可以只有一根天線）</li>
-</ul>
-<h4>Forward vs reverse channel</h4>
-<ul>
-<li>A <strong>forward</strong> (downlink) channel: BS → MS</li>
-<li>A <strong>reverse</strong> (uplink) channel: MS → BS</li>
-</ul>
-<h4>Two types: FDD vs TDD</h4>
-<ul>
-<li><p>FDD: frequency division duplexing</p>
-<p>（例如買來的頻譜切兩段，一段給基地台送出用，一段給基地台接收用）</p>
-<p>（範例：ALOHA，上行在一個頻率，下行在一個頻率，所以在送了之後要到另一個通道聽聽看有沒有 ACK，沒有的話就知道是失敗了。所以 ALOHA 使用 FDD 但 duplex 是 half duplex。）</p>
-</li>
-<li><p>TDD: time division duplexing</p>
-<p>（沒有辦法做到 full duplex，因為時間是有序列的，不可能同一時間切成可以同時送跟收！）</p>
-</li>
-</ul>
-<h4>有A vs 沒A ！？</h4>
-<p><em>FDMA &lt;=&gt; FDM</em></p>
-<p><em>TDMA &lt;=&gt; TDM</em></p>
-<p><em>CDMA &lt;=&gt; 無</em></p>
-<p><em>SDMA &lt;=&gt; 無</em></p>
-<p><em>OFDMA &lt;=&gt; OFDM</em></p>
-<p>左邊這群在網路分層架構的第 2 層，右邊這群在第 1 層</p>
-<ul>
-<li><p>有沒有"A"差別：</p>
-<p>有 A 的是 BS ↔ 一群人</p>
-<p>沒 A 的是 BS ↔ 一個人</p>
-</li>
-<li><p>例如：FDM 在網路五層架構裡，比較像哪一層的技術？而 FDMA 呢？</p>
-<p>FDM: physical layer</p>
-<p>FDMA: link layer</p>
-</li>
-</ul>
-<h4>FDMA + FDD? FDMA + TDD?</h4>
-<p>FDMA, TDMA跟FDD, TDD排列組合：</p>
-<ul>
-<li>FDMA over FDD: ✅</li>
-<li>FDMA over TDD: 可，但通常不會這樣做</li>
-<li>TDMA over FDD: ✅</li>
-<li>TDMA over TDD: ✅</li>
-</ul>
-<p>※ CDMA的也需要 FDD 或 TDD</p>
-<h2>FDMA</h2>
-<ul>
-<li>用頻率切</li>
-<li>Reverse channels 和 forward channels 之間有 protecting bandwidth、不同的 suband 之間有 guard band：因為現在的濾波器設計並不完美，波的形狀不可能完美地變成方形的，稍為隔開能避免通道間的干擾。</li>
-</ul>
-<h2>TDMA</h2>
-<ul>
-<li>用時間切</li>
-<li>TDMA 的 frame 有 guard time，用來減少不同路徑下傳播延遲的干擾。</li>
-<li>Frame 傳輸時配給 data 的單位時間是一樣的，所以傳輸速度慢（如通道狀況不好），會傳比較少的資料。</li>
-</ul>
-<h2>CDMA</h2>
-<ul>
-<li>基於 spectrum-spread （展頻通訊） technology</li>
-<li>每個使用者會得到一組跟別人不一樣的 spread-spectrum （展頻通訊） code</li>
-<li>功率控制能改善頻率使用的效率</li>
-<li>兩種 CDMA 實作方法：<strong>direct sequence</strong> (DS) and <strong>frequency hopping</strong> (FH)</li>
-<li>DSSS: direct sequence spreading spectrum. FHSS: frequency hopping spreading spectrum</li>
-</ul>
-<h3>範例</h3>
-<p>假設共有四組正交碼：</p>
-<ul>
-<li>[+1 +1 +1 +1]</li>
-<li>[+1 -1 +1 -1]</li>
-<li>[+1 +1 -1 -1]</li>
-<li>[+1 -1 -1 +1]</li>
-</ul>
-<p>※ 它們兩兩內積皆為零</p>
-<p>如果我要傳的 bit 是 0 ⇒ 用 -1 算</p>
-<p>如果我要傳的 bit 是 1 ⇒ 用 1 算</p>
-<p>如果我沒有要傳(silent) ⇒ 用 0 算</p>
-<p><img src="untitled-5.png" alt=""></p>
-<p><img src="untitled-6.png" alt=""></p>
-<p>以這個例子來看，原本一個位元會變成四個位元（時間仍沒有拉長） ⇒ <strong>頻率變高</strong></p>
-<h3>正交碼如何產生</h3>
-<p><img src="screenshot-from-2021-05-31-12-38-17.png" alt=""></p>
-<h3>Spreading spectrun（展頻通訊）</h3>
-<ul>
-<li>展頻通訊是一種使用比所需更多頻寬來傳輸的技術。</li>
-<li>一開始被用在軍用上，因為訊號聽起來像是雜訊，防止竊聽。</li>
-<li>傳輸前先用獨立的 code 去做處理，接收者用相同的 code 去做反調變。</li>
-<li>如何做展頻的調變？有兩種：DSSS 和 FHSS（DSSS: direct sequence spreading spectrum. FHSS: frequency hopping spreading spectrum）。</li>
-</ul>
-<h4>DSSS</h4>
-<p>直接將 message symbol 和 wideband pseudo noise (PN) spreading sequence 乘起來。</p>
-<p>傳送者：</p>
-<p>$m(t) = c(t) \otimes b(t)$</p>
-<p>$c(t)$: wideband PN signal</p>
-<p>$b(t)$: narrowband message signal</p>
-<p>接受者：</p>
-<p>收到 $r(t) = m(t) + i(t) = c(t) \otimes b(t) + i(t)$</p>
-<p>$i(t)$ 是干擾。</p>
-<p>如何解調變？乘上$c(t)$</p>
-<p>$z(t) = c(t) \otimes r(t) = c^2(t)b(t) + c(t)i(t)$</p>
-<p>由於$c^2(t) = 1$</p>
-<p>$z(t) = b(t) + c(t)i(t)$</p>
-<p>干擾$i(t)$也一樣會被$c(t)$ spread，最後再用 filter 濾掉。</p>
-<h4>FHSS</h4>
-<ul>
-<li>傳輸時迅速的跳到別的 carrier。</li>
-<li>可以同時不同頻，多人使用。</li>
-<li>換通道的原因：換位置環境的干擾會換。藍芽用此減少 frequency-selective fading，跳到不同頻率的就不會一直拿到 fading 很嚴重的通道。（某通道對你來說不好，對他人來說不一定就不好。）</li>
-<li>FHSS 需要精準的同步。</li>
-<li>Fast hopping：一個位元時間跳多條通道。</li>
-<li>Slow hopping：停在某通道上傳送多個位元。</li>
-<li>藍芽使用這個。</li>
-<li>比較慢。看看藍芽的速度就知道了。</li>
-<li>可能會跟別人碰撞，如果跳到同一個地方的話。</li>
-</ul>
-<h2>SDMA</h2>
-<ul>
-<li>用 smart antenna: 指向性天線，會跟著人轉。</li>
-<li>註：九十度角能量最集中。</li>
-</ul>
-<h2>OFDM &amp; OFDMA</h2>
-<ul>
-<li>OFDM: Orthogonal Frequency Division Multiplexing</li>
-<li>Multi-carrier 的調變，意即各子載波自己做自己的調變。</li>
-<li>大量接近的正交 sub-carrier 平行地傳輸。</li>
-<li>每個 sub-carrier 用一些傳統 low symbol rate 的調變方法，維持 data rates 跟 single-carrier 相似。</li>
-<li>優點是在一些通道狀況較差的地方可以用。Low symbol rate 讓 symbol 之間的 guard interval 比較小，讓它比較可能去減低 ISI 的發生。另外還有節省頻寬的優點。</li>
-</ul>
+            <p><img src="untitled-15.png" alt="untitled-15.png"></p>
+<p>想像一下，有一條高速公路如下圖，有五個交流道，串連了A、B、C、D 和 E 五個城鎮。今天有兩個販賣相同性質商品的公司想要開店，他們要開在哪裡？要在 A 開還是 B、C、D 或 E？我們假設每個城鎮的人只會去離他們城鎮<strong>最近</strong>的店消費。如果兩家公司對該城鎮來說一樣遠，則平分顧客。每個城鎮的消費力相同。</p>
+<p><img src="untitled-16.png" alt="untitled-16.png"></p>
+<p>這時的賽局矩陣如下圖。Payoff 為可以吸引道的客源數。舉例來說，(A, C) 那格是 (1.5, 3.5) 是因為甲公司在 A 的店可以吸引到 A 城鎮 + B 城鎮一半的顧客；而乙公司在 C 的店可以吸引到一半的 B 城鎮顧客 + C + D + E 的顧客。</p>
+<p><img src="untitled-17.png" alt="untitled-17.png"></p>
+<p>納許均衡落在中間的 (C, C)，也就是兩家公司都會開在中間一樣的地方。這個現象十分有趣，可以一定程度地解釋為什許多地方都是<strong>同性質的商店開在一起</strong>，比如說有的地方一次就有多家速食店，又或者是婚紗街、珠寶街等等。</p>
+<p><img src="tom-sodoge-jzoqhwy8-cq-unsplash.jpg" alt="tom-sodoge-jzoqhwy8-cq-unsplash.jpg"></p>
+<h3>圖片來源</h3>
+<p><a href="https://unsplash.com/photos/JZoqhwY8_CQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/JZoqhwY8_CQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
+<p><a href="https://unsplash.com/photos/NSuufgf-BME?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/NSuufgf-BME?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
         
     </div>
@@ -769,7 +615,7 @@
     <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/blog/ch07-multiple-division-techniques"; };
+  var disqus_config = function() { this.page.identifier = "/blog/facility-location-game"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//liaowc-github-page.disqus.com/embed.js';
