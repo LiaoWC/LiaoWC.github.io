@@ -88,3 +88,8 @@ pre {
 strong {
     font-weight: 600;
 }
+
+/* */
+.series_prev_next_link{
+    color: #212529 !important;
+}
