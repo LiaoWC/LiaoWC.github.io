@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>通訊原理與無線網路 - 09 Mobile Communication Systems — Liao W.C.</title>
+    <title>交通網路模擬與布雷斯悖論 Braess&#39;s Paradox — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
 
@@ -484,7 +484,7 @@
                                                         <ul class="list-group">
                                                             
                                                             
-                                                                <a href="../network-modeling-braess-paradox/"
+                                                                <a href="./"
                                                                    class="list-group-item list-group-item-action">交通網路模擬與布雷斯悖論 Braess&#39;s Paradox</a>
                                                             
                                                                 <a href="../dynamic-game/"
@@ -582,7 +582,7 @@
                                                                 <a href="../ch8-channel-allocation/"
                                                                    class="list-group-item list-group-item-action">通訊原理與無線網路 - 08 Channel Allocation</a>
                                                             
-                                                                <a href="./"
+                                                                <a href="../ch09-mobile-communication-systems/"
                                                                    class="list-group-item list-group-item-action">通訊原理與無線網路 - 09 Mobile Communication Systems</a>
                                                             
                                                             
@@ -651,9 +651,16 @@
     
     <div class="blog-post text-break">
         
+            
+            
+                
+                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 12]</a>
+                
+            
+        
         <div>
             
-                <h1 class="title">通訊原理與無線網路 - 09 Mobile Communication Systems
+                <h1 class="title">交通網路模擬與布雷斯悖論 Braess&#39;s Paradox
             
 
             </h1>
@@ -672,9 +679,9 @@
         
 
             <span class="badge badge-primary">
-                        <a href="../tag/通訊原理與無線網路/" class="white-text"
-                           aria-label="blog@tag通訊原理與無線網路">
-                            通訊原理與無線網路
+                        <a href="../tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
                         </a>
                     </span>
 
@@ -686,103 +693,31 @@
             
                 LiaoWC
             
-            on 2021-05-31
+            on 2021-07-04
         </p>
         <hr>
         
-            <h2>Cellular System Infrastructure</h2>
-<p><img src="untitled-7.png" alt=""></p>
-<p>主要的兩塊：</p>
-<ol>
-<li>Radio Access Network (RAN)</li>
-<li>Core Network (CN)</li>
-</ol>
-<p>名詞解釋</p>
-<ul>
-<li>BS = BTS (base transceiver system) + BSC (BS controller)</li>
-<li>BTS: tower + antenna，塔台、天線</li>
-<li>BSC: electronics，進行運算、功率控制、選通道，一個BSC可以管上百台BTS以上。不同的 BSC 要進行溝通要經過 MSC，在 4G（不確定 3G 有沒有）有多「BSC 和 BSC 之間的連線」，連不同的基地台而不用經過機房。</li>
-<li>AUC (authentication center): 認證用戶、算錢</li>
-<li>EIR (equipment identity register): 有硬體設備的資訊。可以找到你的手機在哪個基地台附近。</li>
-<li>VLR (visitor location register): 記錄訪問這個 MSC 的 MS 的資訊。</li>
-<li>HLR (home location register): 儲存基本資料（像戶籍地址的感覺）；會記錄你的VLR在哪裡。</li>
-<li>PSDN: public switch data network（市話接 modem 上網）、ISDN ⇒ 可以傳 data &amp; voice</li>
-<li>MSC (a mobile switching center)</li>
-</ul>
-<p>Notes</p>
-<ul>
-<li>MS到BS是「無線」的，而基地台往機房這邊是「有線」拉光纖（到第五代有人開始提這邊也用無線）。</li>
-<li>HLR 和 VLR 會互指。</li>
-<li>天線跟 BSC 佔基地台的主要花費。</li>
-</ul>
-<h2>Registration</h2>
-<p>MS 要註冊 Visiting-MSC，透過 beacon signal。Visiting-MSC 會回去問你的 Home-MSC，進行驗證，確認你的身份。會被登錄在 Visiting-MSC 的 VLR和在 Home-MSC HLR。</p>
-<h2>Handoff</h2>
-<p>MS在不同基地台之間轉換或者是在同個基地台不同天線裡轉換都稱為換手（handoff、handover）。換手的原因有很多種，像是因為你正在移動，所以需要換基地，也有可能是網路負載極度不平衡使得讓你換手去用不同基地台的資源。</p>
-<p>換手分成兩個種類：hard 和 soft。</p>
-<ul>
-<li><p>Hard Handoff:</p>
-<p>在建新的連線前先斷掉舊的連線。FDMA 和 TDMA 使用此種換手機制。</p>
-</li>
-<li><p>Soft Handoff:</p>
-<p>建新的連線後才斷掉舊的連線。在 CDMA 的情境下，如果你正在使用的正交碼新的基地台目前沒有人使用，你可以直接搬過去新的基地台；但如果你正在用的基地台的正交碼已經有人在用了，還是要用 hard handoff。</p>
-</li>
-</ul>
-<p>換手可能發生在不同基地台之間的轉換，也可能發生在同一個基地，像是更換使用不同的 sector。</p>
-<h2>Roaming</h2>
-<p>Roaming 和 handoff 相似的地方是它們常常都是因為使用者的移動而產生的，不同的地方在於 roaming 穿越核心網路，需要用到 <strong>router</strong>。Roaming 需要討論的是如何找到好的路徑。使用者跨越不同基地台的範圍時，若新的基地台所屬的 MSC 有所不同，可能需要 router 參與進來找尋溝通的路徑。</p>
-<p><strong>Paging area</strong> (PA) 在這種是個重要的概念，一個 paging area 可能包含多個 MSC，它幫助我們進行路線的查找。試想，如果你用中華電信的號碼，別的電信業者的門號打來你的手機號碼，它難道會進行全域的廣播，把整個中華電信廣播一次？這樣的效率太差。一個個 paging area 的找跟一次全域地找，這種分區的查找較有效率。</p>
-<h2>Mobile IP</h2>
-<p>首先必需先了解 HA 與 PA：</p>
-<ul>
-<li>HA (home agent): 你啟動服務時位置最近的 router，但如果離你最近的 router 負載太重，也可能換成別的 router。</li>
-<li>FA (foreign agent): 啟動服務之後，你移動到別的位置去了，隨著你移動而換成的 router 為 foreign agent。</li>
-</ul>
-<p>Mobile IP 流程：</p>
-<ol>
-<li>MS 偵測到 FA 定期發的 beacon signal 或 MS 主動發 agent solicitation messages。</li>
-<li>FA 分配地址給 MS。若給的是 FA 自己的地址，稱為 <strong>CoA</strong> (care-of-address)，若是用 DHCP 的話，稱為 <strong>C-CoA</strong> (colocated CoA)</li>
-<li>MS 收到 CoA 後，會向它的 HA 註冊這個 CoA 和它的有效綁定的時間限制。這個註冊的過程可能是 MS 直接做，也可能是透過 FA。</li>
-<li>別人要傳給 MS 的東西，一開始會先到 HA，HA 會進行封裝。如果用的是 CoA，會先傳給 FA，FA 解封裝後再傳你 MS；如果是用 C-CoA，HA 會直接傳給 MS。</li>
-</ol>
-<p>Mobile IP 流程：</p>
-<ol>
-<li>MS 偵測到 FA 定期發的 beacon signal 或 MS 主動發 agent solicitation messages。</li>
-<li>FA 分配地址給 MS。若給的是 FA 自己的地址，稱為 <strong>CoA</strong> (care-of-address)，若是用 DHCP 的話，稱為 <strong>C-CoA</strong> (colocated CoA)</li>
-<li>MS 收到 CoA 後，會向它的 HA 註冊這個 CoA 和它的有效綁定的時間限制。這個註冊的過程可能是 MS 直接做，也可能是透過 FA。</li>
-<li>別人要傳給 MS 的東西，一開始會先到 HA，HA 會進行封裝。如果用的是 CoA，會先傳給 FA，FA 解封裝後再傳你 MS；如果是用 C-CoA，HA 會直接傳給 MS。</li>
-</ol>
-<h4>Triangular Routing Problem</h4>
-<p><img src="untitled-8.png" alt=""></p>
-<p>以上圖左邊為例，對要傳給你的 source 來說，你直接從 FA 傳回給它它會不知道你是誰（它認為它是跟 HA 通訊，所以不知道你 FA 是誰）。解決方法為 reverse tunneling，FA 還是要走反方向回去 HA。所以在這個問題裡，不可避免的要繞遠路。</p>
-<h2>Rerouting in Backbone Routers</h2>
-<p>MS 到了新的地方要接用新的 FA，MS 的 HA 不變，那麼新的 FA 是要如何知道 HA 在哪？怎麼去？</p>
-<p>每個 router 會維護一張表。上面不是記去每個 paging area 要怎麼走的詳細資料，而是類似 gateway 的概念，記的是去哪個 paging area 從當前的 router 走的話下一站要走到哪裡。在這裡記的是 paging area 是因為如果是記 router 的話，數量太多了，不可能都放。</p>
-<p><img src="untitled-9.png" alt="">
-<img src="untitled-10.png" alt=""></p>
-<h2>Multicasting</h2>
-<p>群播：一個傳送者多個接受者。</p>
-<h3>大家從同樣的 HA 移動到同樣的 FA</h3>
-<p>做法：bidirectional tunneling、remote subscription。</p>
-<h4>Bidirectional Tunneling</h4>
-<p>每個 MS 建一個 HA 到 FA 的 tunnel。</p>
-<ul>
-<li>缺點：傳送的資料重複了，浪費頻寬。</li>
-<li>優點：由於有 HA，資料傳輸不會中斷。</li>
-</ul>
-<h4>Remote Subscription</h4>
-<p>FA 不透過 HA 拿資料。FA 它自己長到 delivery tree。</p>
-<ul>
-<li>缺點：有資料中斷的可能。（在 FA 長到樹上之前，MS 收不到資料）</li>
-<li>優點：(1)避免傳一樣的資料。(2)不透過 HA 就能找一條更近的路直接從 source 到 FA。</li>
-</ul>
-<h3>在不同 HA 的大家移動到相同 FA 的狀況</h3>
-<h4>DMSP (Designated Multicast Service Provider)</h4>
-<p>從多個選一個 HA 建 tunnel 到 FA。被選到那個的 MS 若自己本身就跑掉去別的 FA 的話，再從剩下的選一個。</p>
-<ul>
-<li>缺點：可能會資料中斷。（一次找多個一點可以降低資料中斷的可能）</li>
-<li>優點：避免傳重覆的東西。</li>
-</ul>
+            <p><img src="radek-kilijanek-jqt6xxs16dg-unsplash.jpg" alt="radek-kilijanek-jqt6xxs16dg-unsplash.jpg"></p>
+<p>賽局理論可以應用在交通網路。我們看以下的例子：</p>
+<p><img src="untitled-14.png" alt="untitled-14.png"></p>
+<p>假設有 2000 台車要從 A 到 B，圖中的箭頭都是路，箭頭旁的數學式子是走該條路要花的時間，$x$表示走開條路的車子數量。所以$\frac{x}{100}$跟走那條路的車子數量有關，你可以想成是一些比較近的巷弄，車子少的話像是捷徑，車子多就會塞車。$22$ 那兩條路你可以想成是平常沒塞車的高速公路。在這個情況下大家會怎麼選擇要開道路呢？下圖是賽局理論算出來的結果，2000 台車上下的路各分一半，此時從 A 到 B 總共要花 15 + 22 (或 22 + 15) =37 單位的時間。</p>
+<p><img src="untitled-15.png" alt="untitled-15.png"></p>
+<p>如果今天政府決定在 C 和 D 之間多蓋一條路，如下圖所示，而且這條路很快，司機花極少時間通過，趨於 0。</p>
+<p><img src="untitled-16.png" alt="untitled-16.png"></p>
+<p>那麼在加上這條路後，交通狀況會怎麼改變？</p>
+<p><img src="untitled-17.png" alt="untitled-17.png"></p>
+<p>上圖為加上這段路後的結果。大家都走 A ⇒ C ⇒ D ⇒ B。沒有要走 $\bar{AD}$ 及 $\bar{CB}$，因為 22 &gt; 20 啊！總路程最後會變成：20 + 20 = 40。40 &gt; 37，總花費時間變多了！所以，路蓋越多真的對交通狀況就會變好嗎？現實的範例有興趣者可以上網查詢韓國清溪川高架的案例。</p>
+<p>從以上這個範例，可以看出來，<strong>路不是蓋越多越好</strong>！把這個範例廣泛一點地看，我們可以推得「選項變多不一定更好」的道理。</p>
+<h3>選項變多不一定更好</h3>
+<p>回顧以前文章提到的囚徒困境，只要嫌犯們都不認罪，他們就難以定罪。</p>
+<p><img src="untitled-18.png" alt="untitled-18.png"></p>
+<p>但警方有個很聰明的辦法，就是給囚犯引誘，多一個「認罪」的選擇。只要其中一個囚犯認罪，另一個囚犯不認罪的話，認罪的可以馬上釋放。再多了一個選擇後，賽局的矩陣變成以下：</p>
+<p><img src="untitled-19.png" alt="untitled-19.png"></p>
+<p>右下角那格，也就是雙方都認罪就變成了新的均衡點。</p>
+<h3>結論</h3>
+<p>本篇我們用路網模型和囚徒困境講述了布雷斯悖論，說明了選項越多不一定越好的這個道理。另外，這些範例還可以讓人體會賽局有一個特質，就是只要情境有一點點改變，最後結果可能就會大不相同。路網的範例中就只是多了一條路，就對結果有重大影響。</p>
+<h3>圖片來源</h3>
+<p><a href="https://unsplash.com/photos/JQT6xXS16dg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/JQT6xXS16dg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
         
     </div>
@@ -791,12 +726,28 @@
     
     <hr>
     
+        <div class="row">
+            <div class="text-right col">
+                
+                
+                    
+                    <a href="../evolutionary-hawk-dove-game/" class="series_prev_next_link">
+                        &laquo;️ 演化賽局版鷹鴿賽局
+                    </a>
+                
+            </div>
+            <div class="text-left col">
+                
+                
+            </div>
+        </div>
+    
     
     <hr>
     <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/blog/ch09-mobile-communication-systems"; };
+  var disqus_config = function() { this.page.identifier = "/blog/network-modeling-braess-paradox"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//liaowc-github-page.disqus.com/embed.js';
