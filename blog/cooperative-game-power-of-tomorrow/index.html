@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>賽局理論篇：納許均衡 Nash Equilibrium — Liao W.C.</title>
+    <title>市場與網路篇：合作賽局—明天的力量 — Liao W.C.</title>
     
     <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
 
@@ -610,7 +610,7 @@
                                                         <ul class="list-group">
                                                             
                                                             
-                                                                <a href="../cooperative-game-power-of-tomorrow/"
+                                                                <a href="./"
                                                                    class="list-group-item list-group-item-action">市場與網路篇：合作賽局—明天的力量</a>
                                                             
                                                                 <a href="../prediction-market-horse-races/"
@@ -716,7 +716,7 @@
                                                                 <a href="../coordination-game/"
                                                                    class="list-group-item list-group-item-action">賽局理論篇：協作賽局 Coordination Game</a>
                                                             
-                                                                <a href="./"
+                                                                <a href="../nash-equilibrium/"
                                                                    class="list-group-item list-group-item-action">賽局理論篇：納許均衡 Nash Equilibrium</a>
                                                             
                                                                 <a href="../prepare-exam-or-presentation/"
@@ -843,13 +843,13 @@
             
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 2]</a>
+                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 24]</a>
                 
             
         
         <div>
             
-                <h1 class="title">賽局理論篇：納許均衡 Nash Equilibrium
+                <h1 class="title">市場與網路篇：合作賽局—明天的力量
             
 
             </h1>
@@ -882,21 +882,32 @@
             
                 LiaoWC
             
-            on 2021-06-20
+            on 2021-07-12
         </p>
         <hr>
         
-            <p><img src="javier-allegue-barros-c7b-exxpoie-unsplash.jpg" alt="javier-allegue-barros-c7b-exxpoie-unsplash.jpg"></p>
-<p>上回介紹了囚徒困境，我們用下圖表示了這個囚徒困境的情境。對於其中一個嫌疑犯來說，無論另一個嫌疑犯選擇的策略為何，認罪都是最好的選項（如下圖紅線所示），因此認罪是支配性策略（dominant strategy）；反過來看，另一個嫌疑犯的支配性策略也是認罪，因此最後結果會落在雙方都選擇認罪（即圖中右下角那格）。</p>
-<p><img src="untitled-1.png" alt="untitled-1.png"></p>
-<p>在這個範例中，我們運用了「支配性策略」來預測結果，那如果今天我們的賽局矩陣並不能找到支配性策略（如下圖的數字組合），我們要怎麼進行結果的預測？</p>
+            <p><img src="untitled-1.png" alt="untitled-1.png"></p>
+<p>我們回顧一下囚徒困境，情境如下圖。如果兩個人都選擇不認罪背叛對方（信任、合作）的話，他們一起的回報是最高的。在這個情境中，無論對方選什麼策略，自己認罪背叛對方的回報都會比較好，所以因為人性的自私，雙方往往會都背叛對方選擇認罪，使得結果落到比較差的點（右下角那格）。以上所描述的是「一次性」賽局，意即 A 和 B 只玩這個賽局一次，那如果是個「重複性」賽局，結果會變成怎樣呢？</p>
 <p><img src="untitled-2.png" alt="untitled-2.png"></p>
-<p>對玩家 A 來說，當 B 選擇策略 1 時，他的最佳策略是策略 1；但如果 B 選擇的是策略 2，則是策略 2 帶給 A 最大的回報。在這個沒有支配性策略的情境下，我們可以使用<strong>納許均衡</strong>（Nash Equilibrium）的概念來看這個問題。</p>
-<h3>什麼是納許均衡？</h3>
-<p>以兩個玩家的賽局來說，當我們說雙方各自選擇的策略的這個組合是納許均衡，指的是雙方玩家所選策略<strong>皆</strong>是對方選的策略的<strong>最佳回覆</strong>。以上圖來說，A 選擇策略 1 + B 選擇策略 1 就是個納許均衡（左上角那個），為什麼？因為在 B 選策略 1 時，A 選策略 1 是最佳回覆；同時，在 A 選策略 1 時，B 選策略 1 也是最佳回覆。用這個概念來看，右下角(2, 2)那個也是個納許均衡，我們可以預估結果會落在納許均衡點上，意即落在(5, 5)或(2, 2)上。三人以上賽局的納許均衡概念也是一樣。</p>
-<p>納許均衡點是個穩定的點，在納許均衡點上你沒辦法單方面藉由改變策略而得到更好的回報，所以納許均衡點會讓雙方動不了，換句話說，就是沒有讓你想選別的點的動力。</p>
+<p>在一次性賽局中，雙方會落到都背叛對方是因為對對方沒有信任，所以不能達到雙贏的結果（左上角的格子）。如果是重複性賽局，大家有建立信任的機會，所以有可能一起雙贏！囚徒困境只是一個例子，更重要的是它代表的賽局涵義，許多其它的賽局都是這種模式。囚徒困境總結來說，它是一個「足夠有動力讓人選擇自私」的賽局。我們把囚徒困境抽象化，並調整數值，全部加十，使得全部都大於等於零，方便待會容易大家理解與計算。</p>
+<p><img src="untitled-3.png" alt="untitled-3.png"></p>
+<p>我們接下來討論的情境如下：</p>
+<ul>
+<li>兩個玩家有個上圖的賽局，而且是重複性一直下去，每天一次</li>
+<li>如果有人背叛對方（不合作），那麼另一個以後也都會不合作。藉此模擬信任的破滅。</li>
+<li>大家第一天是相互信任的</li>
+<li>你扮演其中一個玩家，假設你覺得「明天的價值權重」是 $\delta$。未來的權重會依這個權重疊加計算，例如：明天的權重是 $\delta$，後天的權重是 $\delta^2$，以此類推，所以如果你覺得明天比今天不重要一點點，那你的 $\delta$ 會小於一，離現在越遠的未來的價值權重就會越低。</li>
+</ul>
+<p>有了這些明確的設定，我們就可以來討論一開始要怎麼選擇策略比較好？要合作還是不合作？</p>
+<p>選擇背叛的回報：</p>
+<p>$V_{不合作（背叛）}=10+5\delta+5\delta^2+...=10+5(\delta+\delta^2+...)=10+5\frac{\delta}{1-\delta}$</p>
+<p>$V_{合作（不背叛）}=9+9\delta+9\delta^2+...=9+9(\delta+\delta^2+...)=9+9(\frac{\delta}{1-\delta})$</p>
+<p>會不會背叛對方的關鍵在於合作(不背叛)的 V 要大於不合作(背叛)的 V：</p>
+<p>$9+9(\frac{\delta}{1-\delta}) &gt; 10+5(\frac{\delta}{1-\delta}) \Rightarrow \delta &gt;\frac{1}{5}$</p>
+<p>所以說，如果你是一個未來的價值權重 &gt; 1/5 的人，你就會選擇合作，反之你就會選擇不合作而做出較自私的行為。</p>
+<p>整理以上，可以看出說服對方，讓對方覺得和你一起的未來的價值很高的話，能幫助你們的合作更為鞏固。反過來講，如果一個人感到沒有未來，他就會選擇對現在自己最有利的選項。想像一下，如果明天就世界末日，你會怎麼安排剩下的時間？</p>
 <h3>圖片來源</h3>
-<p><a href="https://unsplash.com/photos/C7B-ExXpOIE?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/C7B-ExXpOIE?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
+<p><a href="https://unsplash.com/photos/absT1BNRDAI?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/absT1BNRDAI?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
         
     </div>
@@ -910,8 +921,8 @@
                 
                 
                     
-                    <a href="../game-01/" class="series_prev_next_link">
-                        &laquo;️ 賽局理論篇：從囚徒困境認識賽局基本觀念
+                    <a href="../cooperative-game/" class="series_prev_next_link">
+                        &laquo;️ 市場與網路篇：兩個人要怎麼一起分利益？ - 合作賽局 Cooperative Game
                     </a>
                 
             </div>
@@ -919,8 +930,8 @@
                 
                 
                     
-                    <a href="../coordination-game/" class="series_prev_next_link">
-                        賽局理論篇：協作賽局 Coordination Game &raquo;
+                    <a href="../prediction-market-horse-races/" class="series_prev_next_link">
+                        市場與資訊篇：預測市場與賽馬下注 &raquo;
                     </a>
                 
             </div>
@@ -931,7 +942,7 @@
     <div class="comments">
 <div id="disqus_thread"></div>
 <script>
-  var disqus_config = function() { this.page.identifier = "/blog/nash-equilibrium"; };
+  var disqus_config = function() { this.page.identifier = "/blog/cooperative-game-power-of-tomorrow"; };
   (function() {
     var d = document, s = d.createElement('script');
     s.src = '//liaowc-github-page.disqus.com/embed.js';
