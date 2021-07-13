@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 6]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 6]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局理論篇：設施位置賽局 Facility Location Game
-            
+            <div>
+                
+                    <h1 class="title">賽局理論篇：設施位置賽局 Facility Location Game
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-21
+            </p>
+            <hr>
             
-            on 2021-06-21
-        </p>
-        <hr>
-        
-            <p><img src="untitled-15.png" alt="untitled-15.png"></p>
+                <p><img src="untitled-15.png" alt="untitled-15.png"></p>
 <p>想像一下，有一條高速公路如下圖，有五個交流道，串連了A、B、C、D 和 E 五個城鎮。今天有兩個販賣相同性質商品的公司想要開店，他們要開在哪裡？要在 A 開還是 B、C、D 或 E？我們假設每個城鎮的人只會去離他們城鎮<strong>最近</strong>的店消費。如果兩家公司對該城鎮來說一樣遠，則平分顧客。每個城鎮的消費力相同。</p>
 <p><img src="untitled-16.png" alt="untitled-16.png"></p>
 <p>這時的賽局矩陣如下圖。Payoff 為可以吸引道的客源數。舉例來說，(A, C) 那格是 (1.5, 3.5) 是因為甲公司在 A 的店可以吸引到 A 城鎮 + B 城鎮一半的顧客；而乙公司在 C 的店可以吸引到一半的 B 城鎮顧客 + C + D + E 的顧客。</p>
@@ -897,8 +911,9 @@
 <p><a href="https://unsplash.com/photos/JZoqhwY8_CQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/JZoqhwY8_CQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 <p><a href="https://unsplash.com/photos/NSuufgf-BME?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/NSuufgf-BME?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,17 +849,20 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-        <div>
-            
-                <h1 class="title">ResNeXt 架構介紹
-            
 
-            </h1>
-        </div>
+    
 
-        
+        <div class="blog-post text-break">
+            
+            <div>
+                
+                    <h1 class="title">ResNeXt 架構介紹
+                
+
+                </h1>
+            </div>
+
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -858,28 +872,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/Deep Learning/" class="white-text"
                            aria-label="blog@tagDeep Learning">
                             Deep Learning
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-19
+            </p>
+            <hr>
             
-            on 2021-06-19
-        </p>
-        <hr>
-        
-            <h2>架構</h2>
+                <h2>架構</h2>
 <p>ResNeXt[1] 的架構類似於 ResNet[2]，但不一樣的地方在於 ResNeXt 把輸入分成許多相同寬度的卷積層，之後再合起來。如下圖所示，左邊為一般 ResNet 的 bottleneck block，右邊是 ResNeXt 的 block 架構。分支的數量稱為 cardinality。</p>
 <p><img src="resnext-1.png" alt="resnext-1.png"></p>
 <p>ResNeXt block 有三種相等的形式 ，如下圖：</p>
@@ -901,8 +915,9 @@
 <p>[2] K. He, X. Zhang, S. Ren and J. Sun, "Deep Residual Learning for Image Recognition," 2016 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2016, pp. 770-778, doi: 10.1109/CVPR.2016.90.</p>
 <p>[3] <a href="https://www.zhihu.com/question/65305385/answer/451060549">https://www.zhihu.com/question/65305385/answer/451060549</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

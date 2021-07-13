@@ -64,3 +64,28 @@ html {
         box-shadow: 2px 2px 3px rgba(25, 92, 130, 0.45);
     }
 }
+
+/* /////// Loader ///////// */
+#loader_spinner_container {
+    position: absolute;
+    z-index: 99999;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+
+#loader {
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: 9999;
+}
+
+.scroll-fadeInUp{
+
+}
+
+html {
+  scroll-behavior: smooth;
+}

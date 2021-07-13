@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 15]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 15]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">拍賣篇：最高價拍賣與全支付拍賣介紹 First-Price Auction &amp; All-Pay Auction
-            
+            <div>
+                
+                    <h1 class="title">拍賣篇：最高價拍賣與全支付拍賣介紹 First-Price Auction &amp; All-Pay Auction
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-07-08
+            </p>
+            <hr>
             
-            on 2021-07-08
-        </p>
-        <hr>
-        
-            <p><img src="jp-valery-lvfoii3sjq8-unsplash.jpg" alt="jp-valery-lvfoii3sjq8-unsplash.jpg"></p>
+                <p><img src="jp-valery-lvfoii3sjq8-unsplash.jpg" alt="jp-valery-lvfoii3sjq8-unsplash.jpg"></p>
 <h3>最高價拍賣</h3>
 <p>最高價拍賣策略在前面有介紹過，它是一種出<strong>最高價者得標且付最高價</strong>的拍賣。荷式拍賣和最高價密封式拍賣都屬於這種拍賣。前一篇提到，次高價拍賣有絕對最好的策略就是「覺得商品值多少就出多少」，那最高價拍賣有「只要這樣做一定是最好」的這種策略嗎？</p>
 <p>先說結論是：沒有。在最高價拍賣裡，覺得值多少就出多少不再是支配性策略（dominant strategy）。我們在這裡稱你覺得商品真正值多少的數字為「真值」。在最高價拍賣裡，你出真值的話，無論得標與否，收益都是 0。你要得到較好的收益，你就要削減你的出價，出價越低贏得商品時的收益越高，但是贏得的機會較小；出價越高贏的機會越大，但贏得時的收益越小。你要出比真值低多少的價格是很難決定的，太低或太高都不好。你如果想要有越好的期望值，你就要<strong>考慮別人</strong>。你越了解別人對商品價值的評估、越了解別人想法，對你就越有利。所以，最高價拍賣跟次高價拍賣比是很燒腦的，不像次高價拍賣可以不用管別人，在最高價拍賣裡你要<strong>知己且知彼</strong>。</p>
@@ -895,8 +909,9 @@
 <h3>圖片來源</h3>
 <p><a href="https://unsplash.com/photos/lVFoIi3SJq8?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/lVFoIi3SJq8?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

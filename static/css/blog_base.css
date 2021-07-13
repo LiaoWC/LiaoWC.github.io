@@ -14,9 +14,9 @@
     }
 }
 
-body {
-    background-image: url('/static/img/index_bg.png');
-}
+/*body {*/
+/*    background-image: url('/static/img/index_bg.png');*/
+/*}*/
 
 #blog_center_area, #blog_left_nav {
     background-color: white;
@@ -90,6 +90,38 @@ strong {
 }
 
 /* */
-.series_prev_next_link{
+.series_prev_next_link {
     color: #212529 !important;
+}
+
+.post_cover_img img {
+    max-width: 100%;
+}
+
+.post_cover_description p {
+    font-size: 0.81rem;
+}
+
+/* /////////////////////////////////// */
+
+.card-columns {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (min-width: 1457px) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
 }

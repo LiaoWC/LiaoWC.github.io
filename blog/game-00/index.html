@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 0]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 0]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局與策略前言
-            
+            <div>
+                
+                    <h1 class="title">賽局與策略前言
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-10
+            </p>
+            <hr>
             
-            on 2021-06-10
-        </p>
-        <hr>
-        
-            <p>「賽局理論與策略」這堂課可能是我大學上過最特別的課，它和我們資工系開的課非常不同。許多系上的課內容大概是在探討如何做到 optimal、如何做到最好，而賽局注重的是對於其它人可能的行為的「最佳回覆」，非常不一樣。賽局考慮到很多「其他人」的因素，而資工系的課通常都不會特別去把別人的行為考慮在內。</p>
+                <p>「賽局理論與策略」這堂課可能是我大學上過最特別的課，它和我們資工系開的課非常不同。許多系上的課內容大概是在探討如何做到 optimal、如何做到最好，而賽局注重的是對於其它人可能的行為的「最佳回覆」，非常不一樣。賽局考慮到很多「其他人」的因素，而資工系的課通常都不會特別去把別人的行為考慮在內。</p>
 <p>學習賽局理論對我的思維產生巨大的改變。還記得修人工智慧相關的課時，老師舉了決定要不要排隊買食物的例子來講述一些人工智慧的演算法。我當下馬上想到的是，如果這個人工智慧可以幫助個人做選擇，那麼如果所有人都有這套人工智慧，每個人的收益會何改變？廣泛一點的換句話說，如果一個人有比其它人好的武器，那他會變得非常與眾不同；但如果所有人都拿了一樣的武器，是不是大家好像又回到相同的起點？</p>
 <p>以下舉印象深刻的範例—電子商務來講述賽局帶給我的震撼。</p>
 <h2>電子商務</h2>
@@ -905,8 +919,9 @@
 <p>由於有這些改進方式，人們成功搭起買家跟賣家之間信任的橋樑，促成電子商務的成功。</p>
 <p>從這個例子我們可以體會：用賽局的方式來分析跟人有關的議題，可以幫助<strong>解決問題</strong>和找到問題的癥結點。除了直接用於解決問題，賽局更妙的是，當你深入剖析一項議題，你可能會洞察到你未曾想過的想法。例如當你在思考電子商務這項議題時，你有沒有想過「人類比較信任人？還是比較信任科技？」；有些人成功讓人「信任科技」是不是很厲害？那麼那些成功讓人「信任人」的，是不是更厲害？</p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

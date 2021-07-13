@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,17 +849,20 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-        <div>
-            
-                <h1 class="title">SK-Net (Selective Kernel Networks) 架構介紹
-            
 
-            </h1>
-        </div>
+    
 
-        
+        <div class="blog-post text-break">
+            
+            <div>
+                
+                    <h1 class="title">SK-Net (Selective Kernel Networks) 架構介紹
+                
+
+                </h1>
+            </div>
+
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -858,28 +872,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/Deep Learning/" class="white-text"
                            aria-label="blog@tagDeep Learning">
                             Deep Learning
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-11
+            </p>
+            <hr>
             
-            on 2021-06-11
-        </p>
-        <hr>
-        
-            <p>過往做卷積（convolution）通常 kernel size 是固定的，而 SKNet[1] 的主要改進就是讓神經網路模型使用數種 kernel size 進行卷積並且能學習到如何選擇 kernel size（所以才叫 selective kernel）。SKNet 先使用多個不同 kernel size 的卷積進行運算，再用類似 SENet 的方式進行整合，讓神經網路不僅能夠學習到不同通道（channel）間的關係，還能學習到不同 kernel size 之間的關係。簡單來說可以想成：分成多個不同 kernel size 進行卷積再選擇性整合起來。至於詳細做法為何？讓我們繼續看下去。</p>
+                <p>過往做卷積（convolution）通常 kernel size 是固定的，而 SKNet[1] 的主要改進就是讓神經網路模型使用數種 kernel size 進行卷積並且能學習到如何選擇 kernel size（所以才叫 selective kernel）。SKNet 先使用多個不同 kernel size 的卷積進行運算，再用類似 SENet 的方式進行整合，讓神經網路不僅能夠學習到不同通道（channel）間的關係，還能學習到不同 kernel size 之間的關係。簡單來說可以想成：分成多個不同 kernel size 進行卷積再選擇性整合起來。至於詳細做法為何？讓我們繼續看下去。</p>
 <h2>SKNet 的架構</h2>
 <p>分支的數量可以調整，為方便討論，以下都用兩個分支的例子講解，多個分支的概念也是一樣的。</p>
 <p><img src="sknet-1.png" alt="sknet-1.png"></p>
@@ -985,8 +999,9 @@
 <p>[5] 李翔：SKNet——SENet孪生兄弟篇(<a href="https://zhuanlan.zhihu.com/p/59690223">https://zhuanlan.zhihu.com/p/59690223</a>)</p>
 <p>[6] Repository "SKNet-PyTorch" on GitHub by pppLang (<a href="https://github.com/developer0hye/SKNet-PyTorch">https://github.com/developer0hye/SKNet-PyTorch</a>)</p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 2]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 2]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局理論篇：納許均衡 Nash Equilibrium
-            
+            <div>
+                
+                    <h1 class="title">賽局理論篇：納許均衡 Nash Equilibrium
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-20
+            </p>
+            <hr>
             
-            on 2021-06-20
-        </p>
-        <hr>
-        
-            <p><img src="javier-allegue-barros-c7b-exxpoie-unsplash.jpg" alt="javier-allegue-barros-c7b-exxpoie-unsplash.jpg"></p>
+                <p><img src="javier-allegue-barros-c7b-exxpoie-unsplash.jpg" alt="javier-allegue-barros-c7b-exxpoie-unsplash.jpg"></p>
 <p>上回介紹了囚徒困境，我們用下圖表示了這個囚徒困境的情境。對於其中一個嫌疑犯來說，無論另一個嫌疑犯選擇的策略為何，認罪都是最好的選項（如下圖紅線所示），因此認罪是支配性策略（dominant strategy）；反過來看，另一個嫌疑犯的支配性策略也是認罪，因此最後結果會落在雙方都選擇認罪（即圖中右下角那格）。</p>
 <p><img src="untitled-1.png" alt="untitled-1.png"></p>
 <p>在這個範例中，我們運用了「支配性策略」來預測結果，那如果今天我們的賽局矩陣並不能找到支配性策略（如下圖的數字組合），我們要怎麼進行結果的預測？</p>
@@ -898,8 +912,9 @@
 <h3>圖片來源</h3>
 <p><a href="https://unsplash.com/photos/C7B-ExXpOIE?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/C7B-ExXpOIE?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

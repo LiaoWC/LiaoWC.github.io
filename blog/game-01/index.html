@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 1]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 1]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局理論篇：從囚徒困境認識賽局基本觀念
-            
+            <div>
+                
+                    <h1 class="title">賽局理論篇：從囚徒困境認識賽局基本觀念
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-12
+            </p>
+            <hr>
             
-            on 2021-06-12
-        </p>
-        <hr>
-        
-            <p><img src="1.jpg" alt="1.jpg"></p>
+                <p><img src="1.jpg" alt="1.jpg"></p>
 <p><sub>Photo by <a href="[https://unsplash.com/@mattpopovich?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText](https://unsplash.com/@mattpopovich?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)">Matt Popovich</a> on <a href="[https://unsplash.com/s/photos/suspect?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText](https://unsplash.com/s/photos/suspect?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)">Unsplash</a></sub></p>
 <p>囚徒困境（prisoner's dilemma）是賽局理論中一個非常經典的範例。有兩個人被認為一起犯案的嫌疑犯遭警方逮捕，警方對他們進行審訊。特別的是，警察將他們分開審訊，不給他們溝通討論的機會。</p>
 <p>分開審訊時，兩邊的警察皆對犯人說：如果你們都不認罪，都關一個月；如果兩個人都認罪，都關五年；如果一個人認罪而另一個沒有認罪，背叛對方認罪的立即釋放，沒認罪的關十年。情境如下圖所表示。這裡我們假設人都是<strong>理性</strong>的、只為自己的利益。</p>
@@ -924,8 +938,9 @@
 </ul>
 <p>下一篇我們將介紹納許均衡~</p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

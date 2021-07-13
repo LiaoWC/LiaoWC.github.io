@@ -74,3 +74,18 @@ div#index_top_jumbotron {
 .page-footer {
     display: none;
 }
+
+.index_sub_pane{
+    width: 100%;
+    min-height : 90vh;
+    /* margin-top: 5vh; */
+    padding-top: 10vh;
+    margin-bottom: 20vh;
+}
+
+.index_sub_pane_hr{
+    width: 100px;
+    margin: auto;
+    border-color: #195c82;
+    border-width: 2px;
+}

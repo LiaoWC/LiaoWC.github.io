@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,17 +849,20 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-        <div>
-            
-                <h1 class="title">Shopee Code League (1) Data Analytics Challenge - Multi-Channel Contacts
-            
 
-            </h1>
-        </div>
+    
 
-        
+        <div class="blog-post text-break">
+            
+            <div>
+                
+                    <h1 class="title">Shopee Code League (1) Data Analytics Challenge - Multi-Channel Contacts
+                
+
+                </h1>
+            </div>
+
+            
     <span class="badge badge-default">
     
         <a href="../langs/en/" class="text-white">
@@ -858,28 +872,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/Data Analytics/" class="white-text"
                            aria-label="blog@tagData Analytics">
                             Data Analytics
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-03-13
+            </p>
+            <hr>
             
-            on 2021-03-13
-        </p>
-        <hr>
-        
-            <p>Github source code: <a href="https://github.com/LiaoWC/shopee-code-league/blob/master/multi_channel_contacts/main.ipynb">link</a></p>
+                <p>Github source code: <a href="https://github.com/LiaoWC/shopee-code-league/blob/master/multi_channel_contacts/main.ipynb">link</a></p>
 <p>Contributor:</p>
 <ul>
 <li><a href="github.com/LiaoWC">LiaoWC</a></li>
@@ -901,8 +915,9 @@
 <hr>
 <p>[1] Common ways of finding connected components like Tarjan's algorithm using adjacent list takes not more than O(number of vertices + number of edges). In this case, we use scipy's connected component function. We've tested that it seems not take up to n^2 time and it's fast. If you're interested in the algorithm, you can find more information about how scipy implements this function.</p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

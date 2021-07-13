@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 17]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 17]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">拍賣篇：全支付拍賣的均衡點探討 All-Pay Auction Equilibrium
-            
+            <div>
+                
+                    <h1 class="title">拍賣篇：全支付拍賣的均衡點探討 All-Pay Auction Equilibrium
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-07-08
+            </p>
+            <hr>
             
-            on 2021-07-08
-        </p>
-        <hr>
-        
-            <p><img src="jorge-salvador-y36nkahybhg-unsplash.jpg" alt="jorge-salvador-y36nkahybhg-unsplash.jpg"></p>
+                <p><img src="jorge-salvador-y36nkahybhg-unsplash.jpg" alt="jorge-salvador-y36nkahybhg-unsplash.jpg"></p>
 <p>上一篇講了最高價拍賣的均衡點，這一篇要講的是全支付拍賣的均衡點。這邊我們要用的思考計算模型和上一篇的一樣，大家的心裡對拍賣品的估值（真值）是從均勻分布取出來的：</p>
 <p>$v_i \sim U[0, 1]$。$v_i$ 是競標者 $i$ 的真值，U 是 uniform distribution。</p>
 <p>全支付拍賣的特點是：只要你有出價，無論有沒有贏得拍賣品，你都要付你出價的金額。所以競標者的期望值為：</p>
@@ -914,8 +928,9 @@ v^{n-1}(v_i-s(v))+(1-v^{n-1})(-s(v))$</p>
 <h3>圖片來源</h3>
 <p><a href="https://unsplash.com/photos/y36NKahybhg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/y36NKahybhg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

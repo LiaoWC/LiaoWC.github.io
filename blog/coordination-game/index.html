@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 3]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 3]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局理論篇：協作賽局 Coordination Game
-            
+            <div>
+                
+                    <h1 class="title">賽局理論篇：協作賽局 Coordination Game
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-20
+            </p>
+            <hr>
             
-            on 2021-06-20
-        </p>
-        <hr>
-        
-            <p>上回我們討論納許均衡，這次我們要討論的是協作問題，並且會應用上回講述的納許均衡觀念。在協作問題的賽局中，通常玩家們要一致選擇的相同的策略才能得到收益，若玩家們選擇不一致，可能變成誰到沒賺到。我們用以下範例來進行講解。</p>
+                <p>上回我們討論納許均衡，這次我們要討論的是協作問題，並且會應用上回講述的納許均衡觀念。在協作問題的賽局中，通常玩家們要一致選擇的相同的策略才能得到收益，若玩家們選擇不一致，可能變成誰到沒賺到。我們用以下範例來進行講解。</p>
 <p><img src="untitled-3.png" alt="untitled-3.png"></p>
 <h3>小組程式作業該用 Python 還是 C++？</h3>
 <p>想像你修了一堂資工系相關的課，這堂課其中一個作業是小組程式作業。你被分配到和另一個人同一組。在這裡稱你和你的組員為 A 和 B。這個作業有些難度，一定要兩個人一起做才做得出來，而且這個作業只能用一致的程式語言。你們正在討論作業該使用哪種程式語言撰寫，你們都會寫 Python 和 C++，這時你們的狀況如同下圖：</p>
@@ -910,8 +924,9 @@
 <hr>
 <p>下篇將介紹「鷹鴿問題」</p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

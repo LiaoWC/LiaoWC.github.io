@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 12]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 12]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局理論篇：交通網路模擬與布雷斯悖論 Braess&#39;s Paradox
-            
+            <div>
+                
+                    <h1 class="title">賽局理論篇：交通網路模擬與布雷斯悖論 Braess&#39;s Paradox
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-07-04
+            </p>
+            <hr>
             
-            on 2021-07-04
-        </p>
-        <hr>
-        
-            <p><img src="radek-kilijanek-jqt6xxs16dg-unsplash.jpg" alt="radek-kilijanek-jqt6xxs16dg-unsplash.jpg"></p>
+                <p><img src="radek-kilijanek-jqt6xxs16dg-unsplash.jpg" alt="radek-kilijanek-jqt6xxs16dg-unsplash.jpg"></p>
 <p>賽局理論可以應用在交通網路。我們看以下的例子：</p>
 <p><img src="untitled-14.png" alt="untitled-14.png"></p>
 <p>假設有 2000 台車要從 A 到 B，圖中的箭頭都是路，箭頭旁的數學式子是走該條路要花的時間，$x$表示走開條路的車子數量。所以$\frac{x}{100}$跟走那條路的車子數量有關，你可以想成是一些比較近的巷弄，車子少的話像是捷徑，車子多就會塞車。$22$ 那兩條路你可以想成是平常沒塞車的高速公路。在這個情況下大家會怎麼選擇要開道路呢？下圖是賽局理論算出來的結果，2000 台車上下的路各分一半，此時從 A 到 B 總共要花 15 + 22 (或 22 + 15) =37 單位的時間。</p>
@@ -908,8 +922,9 @@
 <h3>圖片來源</h3>
 <p><a href="https://unsplash.com/photos/JQT6xXS16dg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/JQT6xXS16dg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

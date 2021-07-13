@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,17 +849,20 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-        <div>
-            
-                <h1 class="title">SE-Net (Squeeze-and-Excitation Networks) 架構介紹
-            
 
-            </h1>
-        </div>
+    
 
-        
+        <div class="blog-post text-break">
+            
+            <div>
+                
+                    <h1 class="title">SE-Net (Squeeze-and-Excitation Networks) 架構介紹
+                
+
+                </h1>
+            </div>
+
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -858,28 +872,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/Deep Learning/" class="white-text"
                            aria-label="blog@tagDeep Learning">
                             Deep Learning
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-06-11
+            </p>
+            <hr>
             
-            on 2021-06-11
-        </p>
-        <hr>
-        
-            <h2>概述</h2>
+                <h2>概述</h2>
 <p>SENet 相較於原本的 ResNet 架構加了一些輕量級的機制，幫助神經網路了解全域性的資訊，並且能夠依通道（channel）的重要程度選擇性的調節不同通道（channel）激勵程度。換句話說，SENet 提升神經網路模型了解通道間關係的能力。</p>
 <h2>SE 架構剖析</h2>
 <p>這邊把 SE 的架構依流程分成四個步驟來介紹。這邊圖片來源皆是原論文[1]，有些圖片加了圖形或文字輔助。</p>
@@ -956,8 +970,9 @@
 <p>[1] J. Hu, L. Shen and G. Sun, "Squeeze-and-Excitation Networks," 2018 IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2018, pp. 7132-7141, doi: 10.1109/CVPR.2018.00745.</p>
 <p>[2] Repository "senet.pytorch" on GitHub by moskomule (<a href="https://github.com/moskomule/senet.pytorch">https://github.com/moskomule/senet.pytorch</a>)</p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

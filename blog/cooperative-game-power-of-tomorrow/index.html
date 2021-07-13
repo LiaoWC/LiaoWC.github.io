@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 24]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 24]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">市場與網路篇：合作賽局—明天的力量
-            
+            <div>
+                
+                    <h1 class="title">市場與網路篇：合作賽局—明天的力量
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-07-12
+            </p>
+            <hr>
             
-            on 2021-07-12
-        </p>
-        <hr>
-        
-            <p><img src="untitled-1.png" alt="untitled-1.png"></p>
+                <p><img src="untitled-1.png" alt="untitled-1.png"></p>
 <p>我們回顧一下囚徒困境，情境如下圖。如果兩個人都選擇不認罪背叛對方（信任、合作）的話，他們一起的回報是最高的。在這個情境中，無論對方選什麼策略，自己認罪背叛對方的回報都會比較好，所以因為人性的自私，雙方往往會都背叛對方選擇認罪，使得結果落到比較差的點（右下角那格）。以上所描述的是「一次性」賽局，意即 A 和 B 只玩這個賽局一次，那如果是個「重複性」賽局，結果會變成怎樣呢？</p>
 <p><img src="untitled-2.png" alt="untitled-2.png"></p>
 <p>在一次性賽局中，雙方會落到都背叛對方是因為對對方沒有信任，所以不能達到雙贏的結果（左上角的格子）。如果是重複性賽局，大家有建立信任的機會，所以有可能一起雙贏！囚徒困境只是一個例子，更重要的是它代表的賽局涵義，許多其它的賽局都是這種模式。囚徒困境總結來說，它是一個「足夠有動力讓人選擇自私」的賽局。我們把囚徒困境抽象化，並調整數值，全部加十，使得全部都大於等於零，方便待會容易大家理解與計算。</p>
@@ -909,8 +923,9 @@
 <h3>圖片來源</h3>
 <p><a href="https://unsplash.com/photos/absT1BNRDAI?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/absT1BNRDAI?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

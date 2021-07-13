@@ -113,6 +113,9 @@
     <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="../../static/style.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
@@ -121,6 +124,14 @@
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -256,12 +267,12 @@
                                                     
                                                         
     
-    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
 
                                                     
                                                         
@@ -271,12 +282,12 @@
                                                     
                                                         
     
-    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
     
-    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
 
                                                     
 
@@ -838,24 +849,27 @@
                 <div class="container-xl">
                     
     
-    <div class="blog-post text-break">
-        
-            
+
+    
+
+        <div class="blog-post text-break">
             
                 
-                    <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 7]</a>
+                
+                    
+                        <a class="text-primary" href="../series/game-theory-and-strategy/">[Game Theory and Strategy 7]</a>
+                    
                 
             
-        
-        <div>
-            
-                <h1 class="title">賽局理論篇：混合策略 Mixed Strategies － 猜拳、猜硬幣、猜對方如何進攻
-            
+            <div>
+                
+                    <h1 class="title">賽局理論篇：混合策略 Mixed Strategies － 猜拳、猜硬幣、猜對方如何進攻
+                
 
-            </h1>
-        </div>
+                </h1>
+            </div>
 
-        
+            
     <span class="badge badge-default">
     
         <a href="../langs/ch/" class="text-white">
@@ -865,28 +879,28 @@
     </span>
 
 
-        
+            
 
-            <span class="badge badge-primary">
+                <span class="badge badge-primary">
                         <a href="../tag/賽局與策略/" class="white-text"
                            aria-label="blog@tag賽局與策略">
                             賽局與策略
                         </a>
                     </span>
 
-            
+                
 
-        
-        <p class="meta">
-            written by
             
-                LiaoWC
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2021-07-01
+            </p>
+            <hr>
             
-            on 2021-07-01
-        </p>
-        <hr>
-        
-            <p><img src="untitled-18.png" alt="untitled-18.png"></p>
+                <p><img src="untitled-18.png" alt="untitled-18.png"></p>
 <h2>Matching Pennies Game</h2>
 <p>在講混合策略是什麽以前，我們先看“Matching Pennies”這個遊戲。簡單來說，有點像是猜硬幣賭博，有兩位玩家各有一枚硬幣，雙方可以決定要翻到哪一面，然後雙方同時出示自己翻的那一面，如果兩個人的硬幣是同一面，則一方贏錢，若不同面，則另一方獲勝。如下圖所表示：</p>
 <p><img src="untitled-20.png" alt="untitled-20.png"></p>
@@ -931,8 +945,9 @@
 <p><a href="https://unsplash.com/photos/kY6HbkiauSc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/kY6HbkiauSc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a>
 <a href="https://unsplash.com/photos/9OzQCwuaJhc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink">https://unsplash.com/photos/9OzQCwuaJhc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditShareLink</a></p>
 
-        
-    </div>
+            
+        </div>
+    
 
     <div class="py-2"></div>
     

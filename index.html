@@ -113,14 +113,119 @@
     <link rel="stylesheet" href="third_parties/highlight/styles/github.css">
 
     
+    <link rel="stylesheet" href="third_parties/Animate.css/animate.min.css">
+
+    
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" type="text/css" href="static/css/partial_layout/footer.css">
     <link rel="stylesheet" type="text/css" href="static/css/partial_layout/header.css">
     
     <link rel="stylesheet" href="static/css/index.css">
+    <style>
+        /* Reference: https://codepen.io/Minmin9/pen/wvKgpdv */
+        .scroll-down {
+            position: absolute;
+            bottom: 9vh;
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            text-decoration: none;
+            text-shadow: none;
+            width: 13px;
+            height: 13px;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+            z-index: 9;
+            left: 50%;
+            -webkit-transform: translate(-50%, 0%) rotate(45deg);
+            -moz-transform: translate(-50%, 0%) rotate(45deg);
+            transform: translate(-50%, 0%) rotate(45deg);
+            -webkit-animation: fade_move_down 4s ease-in-out infinite;
+            -moz-animation: fade_move_down 4s ease-in-out infinite;
+            animation: fade_move_down 4s ease-in-out infinite;
+        }
+
+
+        /*animated scroll arrow animation*/
+        @-webkit-keyframes fade_move_down {
+            0% {
+                -webkit-transform: translate(0, -10px) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate(0, 10px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes fade_move_down {
+            0% {
+                -moz-transform: translate(0, -10px) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -moz-transform: translate(0, 10px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fade_move_down {
+            0% {
+                transform: translate(0, -10px) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(0, 10px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .post_cover_img img {
+            max-width: 100%;
+        }
+
+        .card-columns {
+            -webkit-column-count: 1;
+            -moz-column-count: 1;
+            column-count: 1;
+        }
+
+        @media (min-width: 768px) {
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .card-columns {
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
+        }
+    </style>
 
 </head>
 <body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -211,37 +316,471 @@
 
 
 
-
-
-
-
-
-    <div id="index_top_jumbotron" class="jumbotron card card-image"
-
-    >
-        <div class="text-white text-center py-5 px-4 container">
-            <div>
-                <img id="avatar_img" src="static/img/avatar_img.jpg">
-                <h2 class="card-title h1-responsive pt-3 mb-3 font-bold">
-                    Hi, I'm Liao.<br>
-                    I like AI & Web App design.
-                </h2>
-
-                <a class="btn btn-outline-white btn-md" id="homepage_jumbotron_about_me_btn"
-                   href="about"><i
-                        class="fas fa-user left"></i>About Me</a>
-                <a class="btn btn-outline-white btn-md" href="projects/"><i
-                        class="fas fa-clone left"></i>Projects</a>
-                <a class="btn btn-outline-white btn-md" href="blog/"><i class="fas fa-file-alt left"></i>Go
-                    to blog!</a>
-                <hr class="my-4 mt-3" id="index_hr_below_img">
-                <p class="mx-3 mb-3">
-                    Welcome to Liao Wei-Chen's home page!
-                </p>
+    
+    <div id="index_top_jumbotron" class="jumbotron card card-image">
+        <div id="jumbotron_content" class="text-white text-center mt-5 py-5 px-4 container">
+            <div style="animation: fadeIn; animation-duration: 0.5s;">
+                <!-- Image source: https://unsplash.com/photos/rTZW4f02zY8?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink (Revised)-->
+                <div class="text-left">
+                    <!--img src=""-->
+                    <h1 class="card-title pt-3 font-bold fs-1"> Hi, I'm Liao. </h1>
+                    <h4 class="card-title pb-3 font-bold ">Welcome to my home page!</h4>
+                    <a class="btn btn-outline-white btn-md" id="homepage_jumbotron_about_me_btn"
+                             href="#about_me"><i
+                            class="fas fa-user left"></i>About Me</a>
+                    <a class="btn btn-outline-white btn-md" href="projects/"><i
+                            class="fas fa-clone left"></i>Projects</a>
+                    <a class="btn btn-outline-white btn-md" href="#my_blog"><i
+                            class="fas fa-file-alt left"></i>My Blog</a>
+                </div>
             </div>
         </div>
+        <a class="scroll-down" href="#about_me"></a>
     </div>
 
+    
+    <div id="about_me" class="index_sub_pane">
+        <div class="scroll-fadeInUp">
+            <h2 class="text-center">About Me</h2>
+            <hr class="index_sub_pane_hr"/>
+        </div>
+        <div class="container-xl pt-5">
+            
+        
+        <div class="container-xl">
+            <div id="about_me_avatar_row_div" class=" row mt-3">
+                <div class="intro_topic_container text-center col-lg-5" style="padding:6% 10% 0% 10%;">
+                    <!-- Card image -->
+                    <div class="view overlay" style="padding: 0% 25% 0% 25%;">
+                        <img class="card-img-top btn-link"
+                             src="static/img/avatar_img.jpg"
+                             alt="Card image cap"
+                             id="about_me_avatar_img" style="border-radius: 100%; z-index: 2;">
+                        <div id="avatar_img_sentence" style="
+                                font-size: min(10vw,3em);
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                max-width: 80%;
+                                color:#195c82;
+                                display: none;
+                                
+                                
+                                ">
+                            Hi, I'm LiaoWC.
+                        </div>
+                    </div>
+
+                    <!-- Card content -->
+                    <div class="card-body">
+
+                        <!-- English Name -->
+                        <h4 class="card-title">
+                            Wei-Chen Liao 
+                        </h4>
+                        <!-- Chinese Name -->
+                        <h5 class="card-title"></h5>
+                        <!-- Text -->
+                        <p class="card-text">Dept. of Computer Science, National Yang Ming Chiao Tung University</p>
+
+                    </div>
+
+                </div>
+                <!-- Card -->                            <!-- Card -->
+                <div class="col-lg-7 pt-3 pb-3">
+                    <div>
+                        <h4 class="text-center">Interests</h4>
+                        <p class="text-center">
+                            <span class="badge"
+                                  style="margin-right: 3px; color: #212529 !important; font-weight: initial;">Deep Learning</span>
+                        
+                            <span class="badge"
+                                  style="margin-right: 3px; color: #212529 !important; font-weight: initial;">Reinforcement Learning</span>
+                        
+                            <span class="badge"
+                                  style="margin-right: 3px; color: #212529 !important; font-weight: initial;">Game AI</span>
+                        
+                            <span class="badge"
+                                  style="margin-right: 3px; color: #212529 !important; font-weight: initial;">Web APP Development</span>
+                        </p>
+                    </div>
+                    
+                        <div>
+                            <h4 class="text-center">Awards</h4>
+                            <p><ul>
+<li>2020 ICGA Computer Olympiad Outer-Open Gomoku <strong>Gold Medal</strong></li>
+<li>2020 TAAI Outer-Open Gomoku <strong>Gold Medal</strong></li>
+<li>2021 TCGA Outer-Open Gomoku <strong>Gold Medal</strong></li>
+</ul>
+</p>
+                        </div>
+                    
+                        <div>
+                            <h4 class="text-center">Papers</h4>
+                            <p><ul>
+<li>廖唯辰、黃柏維、鄭紹雄、吳毅成（2021年7月）。KataGo方法於外圍開局五子棋上的通用性。發表於台灣電腦對局協會之 2021 TCGA 電腦對局研討會。</li>
+</ul>
+</p>
+                        </div>
+                    
+
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <div class="text-center scroll-fadeInUp">
+            <a class="btn btn-outline btn-sm" id="homepage_jumbotron_about_me_btn" href="about/"><i
+                    class="fas fa-arrow-right left"></i>More About Me</a>
+        </div>
+    </div>
+    
+    
+    <div id="my_blog" class="index_sub_pane">
+        <div class="scroll-fadeInUp">
+            <h2 class="text-center">My Blog</h2>
+            <hr class="index_sub_pane_hr"/>
+        </div>
+        <div class="text-center scroll-fadeInUp">
+            <a class="btn btn-outline btn-sm" id="homepage_jumbotron_about_me_btn" href="blog/"><i
+                    class="fas fa-arrow-right left"></i>Go to blog!</a>
+        </div>
+        <div id='all_posts' class="container-xl py-3">
+            <div class="card-columns g-4">
+                
+                    
+
+    
+
+        
+        <div class="card">
+            
+                <div class="post_cover_img"><p><img src="blog/cooperative-game-power-of-tomorrow/untitled-1.png" alt="untitled-1.png"></p>
+</div>
+            
+            <div class="card-body" style="padding: 0.5rem 1.25rem 1rem 1.25rem;">
+                
+                    
+                    
+                        
+                            <a href="blog/series/game-theory-and-strategy/"
+                               class="text-primary text-muted"
+                               style="font-size: 0.75rem;">Game Theory and Strategy 24</a>
+                        
+                    
+                
+                <h5 class="card-title"><a href="blog/cooperative-game-power-of-tomorrow/" class="black-text">市場與網路篇：合作賽局—明天的力量</a></h5>
+                
+
+                
+    <span class="badge badge-default">
+    
+        <a href="blog/langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+                
+
+                    <span class="badge badge-primary">
+                        <a href="blog/tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
+                        </a>
+                    </span>
+
+                    
+
+                
+            </div>
+
+        </div>
+        
+
+    
+
+                
+                    
+
+    
+
+        
+        <div class="card">
+            
+                <div class="post_cover_img"><p><img src="blog/prediction-market-horse-races/cover.jpg" alt="cover.jpg"></p>
+</div>
+            
+            <div class="card-body" style="padding: 0.5rem 1.25rem 1rem 1.25rem;">
+                
+                    
+                    
+                        
+                            <a href="blog/series/game-theory-and-strategy/"
+                               class="text-primary text-muted"
+                               style="font-size: 0.75rem;">Game Theory and Strategy 25</a>
+                        
+                    
+                
+                <h5 class="card-title"><a href="blog/prediction-market-horse-races/" class="black-text">市場與資訊篇：預測市場與賽馬下注</a></h5>
+                
+
+                
+    <span class="badge badge-default">
+    
+        <a href="blog/langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+                
+
+                    <span class="badge badge-primary">
+                        <a href="blog/tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
+                        </a>
+                    </span>
+
+                    
+
+                
+            </div>
+
+        </div>
+        
+
+    
+
+                
+                    
+
+    
+
+        
+        <div class="card">
+            
+                <div class="post_cover_img"><p><img src="blog/must-we-vote-sincerely/cover.jpg" alt="cover.jpg"></p>
+</div>
+            
+            <div class="card-body" style="padding: 0.5rem 1.25rem 1rem 1.25rem;">
+                
+                    
+                    
+                        
+                            <a href="blog/series/game-theory-and-strategy/"
+                               class="text-primary text-muted"
+                               style="font-size: 0.75rem;">Game Theory and Strategy 29</a>
+                        
+                    
+                
+                <h5 class="card-title"><a href="blog/must-we-vote-sincerely/" class="black-text">投票篇：一定要誠實地投嗎？</a></h5>
+                
+
+                
+    <span class="badge badge-default">
+    
+        <a href="blog/langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+                
+
+                    <span class="badge badge-primary">
+                        <a href="blog/tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
+                        </a>
+                    </span>
+
+                    
+
+                
+            </div>
+
+        </div>
+        
+
+    
+
+                
+                    
+
+    
+
+        
+        <div class="card">
+            
+                <div class="post_cover_img"><p><img src="blog/first-price-auction-and-all-pay-auction/cover.jpg" alt="cover.jpg"></p>
+</div>
+            
+            <div class="card-body" style="padding: 0.5rem 1.25rem 1rem 1.25rem;">
+                
+                    
+                    
+                        
+                            <a href="blog/series/game-theory-and-strategy/"
+                               class="text-primary text-muted"
+                               style="font-size: 0.75rem;">Game Theory and Strategy 15</a>
+                        
+                    
+                
+                <h5 class="card-title"><a href="blog/first-price-auction-and-all-pay-auction/" class="black-text">拍賣篇：最高價拍賣與全支付拍賣介紹 First-Price Auction &amp; All-Pay Auction</a></h5>
+                
+
+                
+    <span class="badge badge-default">
+    
+        <a href="blog/langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+                
+
+                    <span class="badge badge-primary">
+                        <a href="blog/tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
+                        </a>
+                    </span>
+
+                    
+
+                
+            </div>
+
+        </div>
+        
+
+    
+
+                
+                    
+
+    
+
+        
+        <div class="card">
+            
+                <div class="post_cover_img"><p><img src="blog/jury-signal-observed-voting/cover.jpg" alt="cover.jpg"></p>
+</div>
+            
+            <div class="card-body" style="padding: 0.5rem 1.25rem 1rem 1.25rem;">
+                
+                    
+                    
+                        
+                            <a href="blog/series/game-theory-and-strategy/"
+                               class="text-primary text-muted"
+                               style="font-size: 0.75rem;">Game Theory and Strategy 30</a>
+                        
+                    
+                
+                <h5 class="card-title"><a href="blog/jury-signal-observed-voting/" class="black-text">投票篇：陪審團成員一定要依觀察到的資訊投票嗎？</a></h5>
+                
+
+                
+    <span class="badge badge-default">
+    
+        <a href="blog/langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+                
+
+                    <span class="badge badge-primary">
+                        <a href="blog/tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
+                        </a>
+                    </span>
+
+                    
+
+                
+            </div>
+
+        </div>
+        
+
+    
+
+                
+                    
+
+    
+
+        
+        <div class="card">
+            
+                <div class="post_cover_img"><p><img src="blog/talk-about-voting/cover.jpg" alt="cover.jpg"></p>
+</div>
+            
+            <div class="card-body" style="padding: 0.5rem 1.25rem 1rem 1.25rem;">
+                
+                    
+                    
+                        
+                            <a href="blog/series/game-theory-and-strategy/"
+                               class="text-primary text-muted"
+                               style="font-size: 0.75rem;">Game Theory and Strategy 28</a>
+                        
+                    
+                
+                <h5 class="card-title"><a href="blog/talk-about-voting/" class="black-text">投票篇：雜談</a></h5>
+                
+
+                
+    <span class="badge badge-default">
+    
+        <a href="blog/langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+                
+
+                    <span class="badge badge-primary">
+                        <a href="blog/tag/賽局與策略/" class="white-text"
+                           aria-label="blog@tag賽局與策略">
+                            賽局與策略
+                        </a>
+                    </span>
+
+                    
+
+                
+            </div>
+
+        </div>
+        
+
+    
+
+                
+            </div>
+        </div>
+        <div class="text-center scroll-fadeInUp">
+            <a class="btn btn-outline btn-sm" id="homepage_jumbotron_about_me_btn" href="blog/"><i
+                    class="fas fa-arrow-right left"></i>Read all articles</a>
+        </div>
+
+    </div>
 
 
 <!-- Footer -->
