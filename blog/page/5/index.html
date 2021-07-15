@@ -999,6 +999,46 @@
         
         <div class="card">
             
+                <style>
+                    .post_cover_img img {
+                        max-width: 100%;
+                    }
+
+                    .card-columns {
+                        -webkit-column-count: 1;
+                        -moz-column-count: 1;
+                        column-count: 1;
+
+                    }
+
+                    #all_posts {
+                        max-width: 400px;
+                    }
+
+                    @media (min-width: 768px) {
+                        .card-columns {
+                            -webkit-column-count: 2;
+                            -moz-column-count: 2;
+                            column-count: 2;
+                        }
+
+                        #all_posts {
+                            max-width: 800px;
+                        }
+                    }
+
+                    @media (min-width: 1200px) {
+                        .card-columns {
+                            -webkit-column-count: 3;
+                            -moz-column-count: 3;
+                            column-count: 3;
+                        }
+
+                        #all_posts {
+                            max-width: 1200px;
+                        }
+                    }
+                </style>
                 <div class="post_cover_img">
                     
                     <img src="../../how-to-check-the-effect-of-links-on-your-website-use-w3c-link-checker/screenshot-from-2020-08-25-22-55-51@400.png" alt="cover_img">
