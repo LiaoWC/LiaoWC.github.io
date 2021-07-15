@@ -267,12 +267,12 @@
                                                     
                                                         
     
-    <a href="./" class="badge bg-white black-text">通訊原理與無線網路</a>
+    <a href="../賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
 
                                                     
                                                         
     
-    <a href="../賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+    <a href="./" class="badge bg-white black-text">通訊原理與無線網路</a>
 
                                                     
                                                         
@@ -305,10 +305,10 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="/blog/series/" class="dark">Series</a>
+                                        <a href="/blog/topics/" class="dark">Topics</a>
                                         <ul style="list-style-type: none">
                                             
-                                                <li><a href="../../series/game-theory-and-strategy/">Game Theory and Strategy</a></li>
+                                                <li><a href="../../topics/game-theory-and-strategy/">Game Theory and Strategy</a></li>
                                             
                                         </ul>
                                     </li>
@@ -863,7 +863,7 @@
                 }
                 result += url_string[i]
             }
-            result =  [...result].reverse().join("")
+            result = [...result].reverse().join("")
             return decodeURIComponent(result)
         }
 
@@ -872,6 +872,7 @@
         let tag_name = getTagNameFromUrl(url_string)
         for (let i = 0; i < target.length; i++) {
             target[i].innerText = tag_name
+            document.title = tag_name + ' ' + document.title
         }
     </script>
     <ul>
