@@ -9,109 +9,31 @@
         
         
             <url>
-                <loc>https://liaowc.github.io/tags/</loc>
+                <loc>https://liaowc.github.io/blog/langs/</loc>
             </url>
         
         
         
             <url>
-                <loc>https://liaowc.github.io/projects/categories/</loc>
+                <loc>https://liaowc.github.io/blog/langs/en/</loc>
             </url>
         
         
         
             <url>
-                <loc>https://liaowc.github.io/projects/categories/ai/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/categories/database/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/categories/flask/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/categories/nodejs/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/categories/philosophy/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/categories/web-app/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/master-the-game-of-3d-connect-four/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/rush-hour-puzzle-ai/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/wfh-work-from-home/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/game_of_personal_identity/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/board-game-center/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/projects/deepthinking/</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/robot.txt</loc>
-            </url>
-        
-        
-        
-            <url>
-                <loc>https://liaowc.github.io/about/</loc>
+                <loc>https://liaowc.github.io/blog/langs/ch/</loc>
             </url>
         
         
         
             <url>
                 <loc>https://liaowc.github.io/blog/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/blog/two-people-computer-game-term/</loc>
             </url>
         
         
@@ -381,7 +303,61 @@
         
         
             <url>
+                <loc>https://liaowc.github.io/tags/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/master-the-game-of-3d-connect-four/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/rush-hour-puzzle-ai/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/wfh-work-from-home/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/game_of_personal_identity/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/board-game-center/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/deepthinking/</loc>
+            </url>
+        
+        
+        
+            <url>
                 <loc>https://liaowc.github.io/blog/topics/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/blog/topics/computer-game/</loc>
             </url>
         
         
@@ -393,19 +369,55 @@
         
         
             <url>
-                <loc>https://liaowc.github.io/blog/langs/</loc>
+                <loc>https://liaowc.github.io/projects/categories/</loc>
             </url>
         
         
         
             <url>
-                <loc>https://liaowc.github.io/blog/langs/en/</loc>
+                <loc>https://liaowc.github.io/projects/categories/ai/</loc>
             </url>
         
         
         
             <url>
-                <loc>https://liaowc.github.io/blog/langs/ch/</loc>
+                <loc>https://liaowc.github.io/projects/categories/database/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/categories/flask/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/categories/nodejs/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/categories/philosophy/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/projects/categories/web-app/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/about/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/robot.txt</loc>
             </url>
         
 </urlset>
