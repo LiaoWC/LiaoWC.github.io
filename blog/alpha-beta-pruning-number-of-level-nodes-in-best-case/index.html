@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Alpha-Beta Pruning: Number of Level Nodes in Best-Case — Liao W.C.</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../../static/img/favicon.png">
+
+    
+
+    
+    <link rel="stylesheet" href="../../third_parties/fontawesome-free-5.15.3-web/css/all.css" -->
+    <!--link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"-->
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+    
+    <link rel="stylesheet" href="../../third_parties/bootstrap-4.6.0-dist/css/bootstrap.css">
+    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"-->
+
+    
+    <link href="../../third_parties/MDB-Free_4.19.2/css/mdb.css" rel="stylesheet">
+    <!--link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"-->
+
+    
+
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176271587-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-176271587-1');
+    </script>
+
+    
+    <script src="../../third_parties/MDB-Free_4.19.2/js/jquery.js"></script>
+    <!--script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script-->
+
+    
+    
+    <!--script-- src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script-->
+
+    
+    <script src="../../third_parties/bootstrap-4.6.0-dist/js/bootstrap.bundle.js"></script>
+    <!--script-- src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script-->
+
+    
+    <script type="text/javascript" src="../../third_parties/MDB-Free_4.19.2/js/mdb.js"></script>
+    <!--script-- type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script-->
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css"
+          integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"
+            integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp"
+            crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"
+            integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            renderMathInElement(document.body, {
+                // customised options
+                // • auto-render specific keys, e.g.:
+                delimiters: [
+                    {left: '$$', right: '$$', display: true},
+                    {left: '$', right: '$', display: false},
+                    {left: '\\(', right: '\\)', display: false},
+                    {left: '\\[', right: '\\]', display: true}
+                ],
+                // • rendering keys, e.g.:
+                throwOnError: false
+            });
+        });
+    </script>
+
+    
+    <link rel="stylesheet" href="../../third_parties/highlight/styles/github.css">
+
+    
+    <link rel="stylesheet" href="../../third_parties/Animate.css/animate.min.css">
+
+    
+    <link rel="stylesheet" href="../../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/partial_layout/header.css">
+    
+    <link rel="stylesheet" type="text/css" href="../../static/css/blog_base.css">
+
+</head>
+<body>
+
+<div id="loader">
+    <div id="loader_spinner_container">
+        <div id="loader_spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden"></span>
+        </div>
+    </div>
+</div>
+
+
+
+
+<section id="layout-nav">
+
+    <nav id='top-nav' class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-xl" id="nav-section-container">
+            <!--(Old logo)   a id='logo' class="navbar-brand" href="/" aria-label="Go to home page">LiaoWC</a-->
+            <a id="" class="navbar-brand" href="/" aria-label="Go to home page"><img
+                    src="../../static/img/lwc_logo2.png" alt="logo" style="max-height: 100px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about/">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarProjects" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Projects
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarProjects">
+                            <a class="dropdown-item" href="../../projects/"
+                               aria-label="See all projects">All projects</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="text-center dropdown-header">Categories</h6>
+                            
+    
+        <a class="dropdown-item" href="../../projects/categories/ai/"
+           aria-label="See project category: AI">AI</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/database/"
+           aria-label="See project category: Database">Database</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/flask/"
+           aria-label="See project category: Flask">Flask</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/nodejs/"
+           aria-label="See project category: NodeJS">NodeJS</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/philosophy/"
+           aria-label="See project category: Philosophy">Philosophy</a>
+    
+        <a class="dropdown-item" href="../../projects/categories/web-app/"
+           aria-label="See project category: Web App">Web App</a>
+    
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarShortcut" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Shortcut
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarShortcut">
+                            
+                            
+                            <a class="dropdown-item"
+                               href="/programs/GraphvizCodeTransformer/GraphvizCodeTransformer.html"
+                               aria-label="Go to Graphviz Code Transformer">Graphviz
+                                Code to SVG</a>
+                            
+                            
+                        </div>
+                    </li>
+                    
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog/" aria-label="Go to blog page">Blog</a>
+                        </li>
+                    
+                    <!--                    <li class="nav-item">-->
+                    <!--                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+                    <!--                    </li>-->
+                    <div class="container" id="hidden_blog_nav"
+                         style="background-color: white; border-radius: 5px; padding-top: 1.8vh;padding-bottom: 1.8vh; display: none;"></div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</section>
+
+
+
+    <section id="blog_post_center">
+        <div class="row" id="blog_row">
+            <div class="col-lg-3 mx-4 my-4" id="blog_left_nav">
+                <div class="container" id="left_nav_container">
+                    
+                    <section id="section_navbar">
+                        <div class="container-fluid">
+                            <nav>
+                                <ul class="nav navbar-nav">
+                                    <li><a
+                                            href="../">All Posts</a>
+                                    </li>
+                                    
+                                    <li>
+                                        
+    <a href="../langs/" class="dark">Language</a>
+    <ul style="list-style: none;">
+        
+            <li>
+                <a href="../langs/en/">English Articles</a>
+            </li>
+        
+            <li>
+                <a href="../langs/ch/">中文文章</a>
+            </li>
+        
+    </ul>
+
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+
+                                    
+                                    <li>
+                                        <a href="../" class="dark">Tags</a>
+                                        
+                                        <ul style="list-style: none;">
+                                            <li>
+                                                    
+                                                        
+    
+    <a href="../tag/Deep Learning/" class="badge bg-white black-text">Deep Learning</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/遊戲AI/" class="badge bg-white black-text">遊戲AI</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/賽局與策略/" class="badge bg-white black-text">賽局與策略</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/通訊原理與無線網路/" class="badge bg-white black-text">通訊原理與無線網路</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/Web Maintenance/" class="badge bg-white black-text">Web Maintenance</a>
+
+                                                    
+                                                        
+    
+    <a href="../tag/Data Analytics/" class="badge bg-white black-text">Data Analytics</a>
+
+                                                    
+
+
+
+
+
+
+
+
+
+
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="/blog/topics/" class="dark">Topics</a>
+                                        <ul style="list-style-type: none">
+                                            
+                                                <li><a href="../topics/computer-game/">Theory of Computer Game</a></li>
+                                            
+                                                <li><a href="../topics/game-theory-and-strategy/">Game Theory and Strategy</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#" class="dark">Dates</a>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                            
+                                            
+                                                
+                                                
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                                    
+                                                
+                                                
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                                    
+                                                
+                                                
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                                    
+                                                
+                                                
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                                    
+                                                
+                                                
+                                                
+                                            
+
+                                        
+                                            
+                                            
+                                                
+                                                    
+                                                
+                                                
+                                                
+                                            
+
+                                        
+                                        
+                                        
+                                        <ul>
+                                            
+                                                <li style="list-style: none;">
+                                                    <div>
+                                                        <a class="" data-toggle="collapse"
+                                                           href="#nav_post_date_month_collapse_2022-02"
+                                                           aria-expanded="false"
+                                                           aria-controls="nav_post_date_month_collapse_2022-02">2022-02
+                                                            (9 posts)</a>
+                                                    </div>
+                                                    
+                                                    <div class="collapse list-group"
+                                                         id="nav_post_date_month_collapse_2022-02">
+                                                        <ul class="list-group">
+                                                            
+                                                            
+                                                                <a href="../alpha-beta-pruning-fail-hardsoft-and-ab-dual-and-ab-sss/"
+                                                                   class="list-group-item list-group-item-action">Alpha-Beta Pruning (Fail-Hard/Soft) &amp; AB-DUAL* &amp; AB-SSS*</a>
+                                                            
+                                                                <a href="./"
+                                                                   class="list-group-item list-group-item-action">Alpha-Beta Pruning: Number of Level Nodes in Best-Case</a>
+                                                            
+                                                                <a href="../mcts-monte-carlo-tree-search/"
+                                                                   class="list-group-item list-group-item-action">MCTS (Monte Carlo Tree Search) 演算法</a>
+                                                            
+                                                                <a href="../pattern-database/"
+                                                                   class="list-group-item list-group-item-action">Pattern Database</a>
+                                                            
+                                                                <a href="../uct-ucb-applied-to-trees-bandit-based-monte-carlo-planning/"
+                                                                   class="list-group-item list-group-item-action">UCT (UCB applied to Trees) - Bandit Based Monte-Carlo Planning</a>
+                                                            
+                                                                <a href="../zobrist-hashing-z-hashing/"
+                                                                   class="list-group-item list-group-item-action">Zobrist Hashing (Z-hashing)</a>
+                                                            
+                                                                <a href="../nash-strategy-stealing-argument/"
+                                                                   class="list-group-item list-group-item-action">策略盜用論點 Nash Strategy Stealing Argument</a>
+                                                            
+                                                                <a href="../two-people-computer-game-term/"
+                                                                   class="list-group-item list-group-item-action">雙人零和對局名詞簡介</a>
+                                                            
+                                                                <a href="../bidirectional-search/"
+                                                                   class="list-group-item list-group-item-action">雙向搜尋（Bidirectional Search）</a>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            
+                                                <li style="list-style: none;">
+                                                    <div>
+                                                        <a class="" data-toggle="collapse"
+                                                           href="#nav_post_date_month_collapse_2021-07"
+                                                           aria-expanded="false"
+                                                           aria-controls="nav_post_date_month_collapse_2021-07">2021-07
+                                                            (27 posts)</a>
+                                                    </div>
+                                                    
+                                                    <div class="collapse list-group"
+                                                         id="nav_post_date_month_collapse_2021-07">
+                                                        <ul class="list-group">
+                                                            
+                                                            
+                                                                <a href="../cooperative-game-power-of-tomorrow/"
+                                                                   class="list-group-item list-group-item-action">市場與網路篇：合作賽局—明天的力量</a>
+                                                            
+                                                                <a href="../prediction-market-horse-races/"
+                                                                   class="list-group-item list-group-item-action">市場與資訊篇：預測市場與賽馬下注</a>
+                                                            
+                                                                <a href="../power-in-social-network/"
+                                                                   class="list-group-item list-group-item-action">市場與網路篇：一個節點在社交網路裡的力量</a>
+                                                            
+                                                                <a href="../network-models-market-intermediaries/"
+                                                                   class="list-group-item list-group-item-action">市場與網路篇：中間商交易</a>
+                                                            
+                                                                <a href="../how-price-distribute-items/"
+                                                                   class="list-group-item list-group-item-action">市場與網路篇：價格如何起到分配物品的作用？</a>
+                                                            
+                                                                <a href="../cooperative-game/"
+                                                                   class="list-group-item list-group-item-action">市場與網路篇：兩個人要怎麼一起分利益？ - 合作賽局 Cooperative Game</a>
+                                                            
+                                                                <a href="../asymmetric-information-used-car-market/"
+                                                                   class="list-group-item list-group-item-action">市場與資訊篇：資訊不對稱之二手車市場</a>
+                                                            
+                                                                <a href="../asymmetric-information-labor-market/"
+                                                                   class="list-group-item list-group-item-action">市場與資訊篇：資訊不對稱之就業市場</a>
+                                                            
+                                                                <a href="../must-we-vote-sincerely/"
+                                                                   class="list-group-item list-group-item-action">投票篇：一定要誠實地投嗎？</a>
+                                                            
+                                                                <a href="../jury-signal-observed-voting/"
+                                                                   class="list-group-item list-group-item-action">投票篇：陪審團成員一定要依觀察到的資訊投票嗎？</a>
+                                                            
+                                                                <a href="../talk-about-voting/"
+                                                                   class="list-group-item list-group-item-action">投票篇：雜談</a>
+                                                            
+                                                                <a href="../all-pay-auction-equilibrium/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：全支付拍賣的均衡點探討 All-Pay Auction Equilibrium</a>
+                                                            
+                                                                <a href="../common-auctions-first-price-second-price/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：常見拍賣形式 &amp; 最高價拍賣 &amp; 次高價拍賣</a>
+                                                            
+                                                                <a href="../sellers-revenue/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：拍賣裡的賣家收益 Seller&#39;s Revenue</a>
+                                                            
+                                                                <a href="../first-price-auction-equilibrium/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：最高價拍賣的均衡點探討 First-Price Auction Equilibrium</a>
+                                                            
+                                                                <a href="../first-price-auction-and-all-pay-auction/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：最高價拍賣與全支付拍賣介紹 First-Price Auction &amp; All-Pay Auction</a>
+                                                            
+                                                                <a href="../second-price-auction-strategy/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：次高價拍賣策略 Second-Price Auction Strategy</a>
+                                                            
+                                                                <a href="../winners-curse-in-auctions/"
+                                                                   class="list-group-item list-group-item-action">拍賣篇：贏者的詛咒 Winner&#39;s Curse</a>
+                                                            
+                                                                <a href="../the-tragedy-of-the-commons/"
+                                                                   class="list-group-item list-group-item-action">財產權篇：共有財悲劇 The Tragedy of the Commons</a>
+                                                            
+                                                                <a href="../property-right-and-externality-and-coase-theorem/"
+                                                                   class="list-group-item list-group-item-action">財產權篇：外部性交易與寇斯定理 Property Right &amp; Externality &amp; Coase Theorem</a>
+                                                            
+                                                                <a href="../copyright-patent/"
+                                                                   class="list-group-item list-group-item-action">財產權篇：著作權與專利</a>
+                                                            
+                                                                <a href="../network-modeling-braess-paradox/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：交通網路模擬與布雷斯悖論 Braess&#39;s Paradox</a>
+                                                            
+                                                                <a href="../dynamic-game/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：動態賽局 Dynamic Game</a>
+                                                            
+                                                                <a href="../evolutionary-game/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：演化賽局 Evolutionary Game</a>
+                                                            
+                                                                <a href="../evolutionary-hawk-dove-game/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：演化賽局版鷹鴿賽局</a>
+                                                            
+                                                                <a href="../hunt-stag-or-hare/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：獵鹿還是獵兔？</a>
+                                                            
+                                                                <a href="../mixed-strategies/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：混合策略 Mixed Strategies － 猜拳、猜硬幣、猜對方如何進攻</a>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            
+                                                <li style="list-style: none;">
+                                                    <div>
+                                                        <a class="" data-toggle="collapse"
+                                                           href="#nav_post_date_month_collapse_2021-06"
+                                                           aria-expanded="false"
+                                                           aria-controls="nav_post_date_month_collapse_2021-06">2021-06
+                                                            (12 posts)</a>
+                                                    </div>
+                                                    
+                                                    <div class="collapse list-group"
+                                                         id="nav_post_date_month_collapse_2021-06">
+                                                        <ul class="list-group">
+                                                            
+                                                            
+                                                                <a href="../facility-location-game/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：設施位置賽局 Facility Location Game</a>
+                                                            
+                                                                <a href="../coordination-game/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：協作賽局 Coordination Game</a>
+                                                            
+                                                                <a href="../nash-equilibrium/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：納許均衡 Nash Equilibrium</a>
+                                                            
+                                                                <a href="../prepare-exam-or-presentation/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：該準備考試還是準備小組報告？</a>
+                                                            
+                                                                <a href="../hawk-dove-game/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：鷹鴿賽局 Hawk-Dove Game</a>
+                                                            
+                                                                <a href="../resnext-structure/"
+                                                                   class="list-group-item list-group-item-action">ResNeXt 架構介紹</a>
+                                                            
+                                                                <a href="../game-01/"
+                                                                   class="list-group-item list-group-item-action">賽局理論篇：從囚徒困境認識賽局基本觀念</a>
+                                                            
+                                                                <a href="../SENet-structure/"
+                                                                   class="list-group-item list-group-item-action">SE-Net (Squeeze-and-Excitation Networks) 架構介紹</a>
+                                                            
+                                                                <a href="../SKNet-structure/"
+                                                                   class="list-group-item list-group-item-action">SK-Net (Selective Kernel Networks) 架構介紹</a>
+                                                            
+                                                                <a href="../game-00/"
+                                                                   class="list-group-item list-group-item-action">賽局與策略前言</a>
+                                                            
+                                                                <a href="../-09-1g-4g/"
+                                                                   class="list-group-item list-group-item-action">通訊原理與無線網路 - 10 1G~4G 簡史</a>
+                                                            
+                                                                <a href="../batch-normalization-notes/"
+                                                                   class="list-group-item list-group-item-action">PyTorch Batch Normalization 1 - 四維張量是如何進行計算？</a>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            
+                                                <li style="list-style: none;">
+                                                    <div>
+                                                        <a class="" data-toggle="collapse"
+                                                           href="#nav_post_date_month_collapse_2021-05"
+                                                           aria-expanded="false"
+                                                           aria-controls="nav_post_date_month_collapse_2021-05">2021-05
+                                                            (3 posts)</a>
+                                                    </div>
+                                                    
+                                                    <div class="collapse list-group"
+                                                         id="nav_post_date_month_collapse_2021-05">
+                                                        <ul class="list-group">
+                                                            
+                                                            
+                                                                <a href="../ch07-multiple-division-techniques/"
+                                                                   class="list-group-item list-group-item-action">通訊原理與無線網路 - 07 Multiple Division Techniques</a>
+                                                            
+                                                                <a href="../ch8-channel-allocation/"
+                                                                   class="list-group-item list-group-item-action">通訊原理與無線網路 - 08 Channel Allocation</a>
+                                                            
+                                                                <a href="../ch09-mobile-communication-systems/"
+                                                                   class="list-group-item list-group-item-action">通訊原理與無線網路 - 09 Mobile Communication Systems</a>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            
+                                                <li style="list-style: none;">
+                                                    <div>
+                                                        <a class="" data-toggle="collapse"
+                                                           href="#nav_post_date_month_collapse_2021-03"
+                                                           aria-expanded="false"
+                                                           aria-controls="nav_post_date_month_collapse_2021-03">2021-03
+                                                            (1 posts)</a>
+                                                    </div>
+                                                    
+                                                    <div class="collapse list-group"
+                                                         id="nav_post_date_month_collapse_2021-03">
+                                                        <ul class="list-group">
+                                                            
+                                                            
+                                                                <a href="../shopee-code-league-1-data-analytics-challenge-multi-channel-contacts/"
+                                                                   class="list-group-item list-group-item-action">Shopee Code League (1) Data Analytics Challenge - Multi-Channel Contacts</a>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            
+                                                <li style="list-style: none;">
+                                                    <div>
+                                                        <a class="" data-toggle="collapse"
+                                                           href="#nav_post_date_month_collapse_2020-08"
+                                                           aria-expanded="false"
+                                                           aria-controls="nav_post_date_month_collapse_2020-08">2020-08
+                                                            (1 posts)</a>
+                                                    </div>
+                                                    
+                                                    <div class="collapse list-group"
+                                                         id="nav_post_date_month_collapse_2020-08">
+                                                        <ul class="list-group">
+                                                            
+                                                            
+                                                                <a href="../how-to-check-the-effect-of-links-on-your-website-use-w3c-link-checker/"
+                                                                   class="list-group-item list-group-item-action">要如何檢測網站的連結是否有效？使用W3C Link Checker和Dr. Link進行網頁連結檢測</a>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+
+            <div class="col-lg-7" id="blog_center_area">
+                
+                <div class="container-xl">
+                    
+    
+
+    
+
+        <div class="blog-post text-break">
+            
+                
+                
+                    
+                        <a class="text-primary" href="../topics/computer-game/">[Theory of Computer Game 6]</a>
+                    
+                
+                    
+                
+            
+            <div>
+                
+                    <h1 class="title">Alpha-Beta Pruning: Number of Level Nodes in Best-Case
+                
+
+                </h1>
+            </div>
+
+            
+    <span class="badge badge-default">
+    
+        <a href="../langs/ch/" class="text-white">
+            Chinese
+        </a>
+    
+    </span>
+
+
+            
+
+                <span class="badge badge-primary">
+                        <a href="../tag/遊戲AI/" class="white-text"
+                           aria-label="blog@tag遊戲AI">
+                            遊戲AI
+                        </a>
+                    </span>
+
+                
+
+            
+            <p class="meta">
+                written by
+                
+                    LiaoWC
+                
+                on 2022-02-17
+            </p>
+            <hr>
+            
+                <p>在 alpha-beta pruning 演算法最佳狀況所生的樹，任一層節點數量總和</p>
+<p>$=d^{\lceil \frac{l}{2}\rceil} + d^{\lfloor \frac{l}{2}\rfloor} - 1$</p>
+<p>證明如下：</p>
+<p><img src="untitled-16.png" alt="untitled-16.png"></p>
+<p><img src="alpha-beta-best-level-node-number-page-3.png" alt="alpha-beta-best-level-node-number-page-3.png"></p>
+<p>圖一</p>
+<p><img src="untitled-17.png" alt="untitled-17.png"></p>
+<p><img src="alpha-beta-best-level-node-number-page-3.png" alt="alpha-beta-best-level-node-number-page-4.png"></p>
+<p>圖二</p>
+<p><img src="untitled-18.png" alt="untitled-18.png"></p>
+
+            
+        </div>
+    
+
+    <div class="py-2"></div>
+    
+    <hr>
+    
+        <div class="row">
+            <div class="text-right col">
+                
+                
+                    
+                    <a href="../alpha-beta-pruning-fail-hardsoft-and-ab-dual-and-ab-sss/" class="topics_prev_next_link">
+                        &laquo;️ Alpha-Beta Pruning (Fail-Hard/Soft) &amp; AB-DUAL* &amp; AB-SSS*
+                    </a>
+                
+            </div>
+            <div class="text-left col">
+                
+                
+                    
+                    <a href="../zobrist-hashing-z-hashing/" class="topics_prev_next_link">
+                        Zobrist Hashing (Z-hashing) &raquo;
+                    </a>
+                
+            </div>
+        </div>
+    
+    
+    <hr>
+    <div class="comments">
+<div id="disqus_thread"></div>
+<script>
+  var disqus_config = function() { this.page.identifier = "/blog/alpha-beta-pruning-number-of-level-nodes-in-best-case"; };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//liaowc-github-page.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>
+  Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript"
+    rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+</div>
+
+                </div>
+                
+            </div>
+
+            <div class="col-lg-2 mx-4 my-4">
+                
+
+            </div>
+
+        </div>
+    </section>
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue ">
+
+    
+    <div class="container">
+
+        
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-12 py-3">
+                <div class="mb-3 flex-center">
+
+                    <!--Linkedin -->
+                    <a class="li-ic" href="https://www.linkedin.com/in/%E5%94%AF%E8%BE%B0-%E5%BB%96-306b951b4/"
+                       aria-label="Go to LiaoWC's LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                    <!--Github-->
+                    <a class="ins-ic" href="https://github.com/LiaoWC" aria-label="Go to LiaoWC's Github">
+                        <i class="fab fa-github fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                    </a>
+                    <!--Heroku-->
+                    <a tabindex="0" class="ins-ic popover-dismiss" aria-label="Got to LiaoWC's Herokuapp"
+                       role="button" data-toggle="popover" data-trigger="focus" data-placement="top"
+                            
+                       data-content="Coming soon..."
+                    >
+                        <i class="fab fa-python fa-lg white-text  fa-2x"></i>
+                    </a>
+
+                </div>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        
+
+    </div>
+    
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3"> Copyright &copy; 2020 LiaoWC. &nbsp;
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<script>
+    $('.popover-dismiss').popover({
+        trigger: 'focus'
+    })
+</script>
+
+
+<button type="button" id="click_to_top_btn" class="btn btn-primary btn-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up"
+         viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+              d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+    </svg>
+</button>
+
+
+
+<!-- Website: https://highlightjs.org/usage/ -->
+<script src="../../third_parties/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+
+<script type="text/javascript" src="../../static/js/layout.js"></script>
+
+    <script type="text/javascript" src="../../static/js/blog.js"></script>
+
+</body>
+</html>

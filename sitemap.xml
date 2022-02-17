@@ -39,7 +39,31 @@
         
         
             <url>
+                <loc>https://liaowc.github.io/blog/alpha-beta-pruning-number-of-level-nodes-in-best-case/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/blog/mcts-monte-carlo-tree-search/</loc>
+            </url>
+        
+        
+        
+            <url>
                 <loc>https://liaowc.github.io/blog/pattern-database/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/blog/uct-ucb-applied-to-trees-bandit-based-monte-carlo-planning/</loc>
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/blog/zobrist-hashing-z-hashing/</loc>
             </url>
         
         
