@@ -550,13 +550,6 @@
         
         
             <url>
-                <loc>https://liaowc.github.io/sitemap2.xml</loc>
-                
-            </url>
-        
-        
-        
-            <url>
                 <loc>https://liaowc.github.io/tags/</loc>
                 
             </url>
@@ -628,6 +621,13 @@
         
             <url>
                 <loc>https://liaowc.github.io/blog/topics/game-theory-and-strategy/</loc>
+                
+            </url>
+        
+        
+        
+            <url>
+                <loc>https://liaowc.github.io/sitemap.xml</loc>
                 
             </url>
         
